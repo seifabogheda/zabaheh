@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/resource/color_manager.dart';
+import '../home/home_view.dart';
 import '../more/more_view.dart';
 import 'cubits/main_navigation_cubit.dart';
 
@@ -21,9 +22,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
 
   final _pageNavigation = [
     // todo put Screens here
-    Center(
-      child: Text("home"),
-    ),
+    HomeView(),
     Center(
       child: Text("orders"),
     ),
