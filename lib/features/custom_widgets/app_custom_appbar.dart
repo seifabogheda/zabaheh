@@ -19,13 +19,14 @@ class AppCustomAppbar extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ColorManager.white,
         elevation: 0,
+        leadingWidth: 70,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p4),
           child: Center(
               child: MyText(
-            title: "المزيد",
+            title: titlePage,
             color: ColorManager.black,
-            size: 18,
+            size: 17,
             fontWeight: FontWeight.bold,
           )),
         ),

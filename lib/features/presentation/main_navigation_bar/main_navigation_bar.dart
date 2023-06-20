@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/resource/color_manager.dart';
 import '../home/home_view.dart';
 import '../more/more_view.dart';
+import '../orders/orders_view.dart';
 import 'cubits/main_navigation_cubit.dart';
 
 class MainNavigationBar extends StatefulWidget {
@@ -23,9 +24,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
   final _pageNavigation = [
     // todo put Screens here
     HomeView(),
-    Center(
-      child: Text("orders"),
-    ),
+    OrdersView(),
     Center(
       child: Text("cart"),
     ),
