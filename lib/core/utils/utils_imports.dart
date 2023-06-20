@@ -9,7 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../features/auth/screens/select_lang/select_lang_view.dart';
+import '../../features/presentation/auth/screens/select_lang/select_lang_view.dart';
 import '../helpers/snack_helper.dart';
 import '../localization/lang_cubit/lang_cubit.dart';
 import '../helpers/app_loader_helper.dart';
