@@ -16,6 +16,8 @@ class ColorManager {
   static Color offWhite = HexColor.fromHex("#F8F8F8");
   static Color error = HexColor.fromHex("#e61f34");
   static Color green = HexColor.fromHex("#90C73E");
+  static Color selectedPaymentColor = HexColor.fromHex("#F9FCF5");
+  static Color selectedTimeColor = HexColor.fromHex("##F892129");
   static Color black= HexColor.fromHex("#000000"); // red color
 }
 

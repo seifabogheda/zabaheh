@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/resource/color_manager.dart';
+import '../cart/cart_view.dart';
 import '../home/home_view.dart';
 import '../more/more_view.dart';
 import '../orders/orders_view.dart';
@@ -25,9 +26,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
     // todo put Screens here
     HomeView(),
     OrdersView(),
-    Center(
-      child: Text("cart"),
-    ),
+    CartView(),
     MoreView()
   ];
 
