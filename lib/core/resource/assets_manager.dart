@@ -24,4 +24,5 @@ class AssetsManager {
   static const String gmail = "$imagePath/gmail.svg";
   static const String whatsapp = "$imagePath/whatsapp.svg";
   static const String twitter = "$imagePath/twitter.svg";
+  static const String box = "$imagePath/box.svg";
 }

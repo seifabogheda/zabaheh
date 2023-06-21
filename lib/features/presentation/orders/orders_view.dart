@@ -13,7 +13,7 @@ class OrdersView extends StatelessWidget {
       length: 2,
       child: AppCustomAppbar(
         titlePage: 'طلباتي',
-        body: OrderBody(),
+        body: OrdersBody(),
       ),
     );
   }
