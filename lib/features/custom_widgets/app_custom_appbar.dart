@@ -1,9 +1,12 @@
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
+import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/core/resource/value_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../presentation/notifications/notifications_view.dart';
 
 class AppCustomAppbar extends StatelessWidget {
   final String titlePage;
@@ -31,11 +34,16 @@ class AppCustomAppbar extends StatelessWidget {
           )),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
-            child: SvgPicture.asset(
-              AssetsManager.notification_icon,
-              color: ColorManager.primary,
+          InkWell(
+            onTap: (){
+              NavigationService.navigateTo(NotificationsView());
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+              child: SvgPicture.asset(
+                AssetsManager.notification_icon,
+                color: ColorManager.primary,
+              ),
             ),
           )
         ],
