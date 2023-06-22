@@ -22,17 +22,17 @@ class LoginButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomButton(title: tr('login'),onTap: (){
+        CustomButton(title: tr(context,'login'),onTap: (){
           NavigationService.removeUntil(BlocProvider(create:  (context) => BottomNavCubit(),child: MainNavigationBar()));
         },margin: EdgeInsets.symmetric(horizontal: 30,vertical: 25),),
         CustomTextButton(title: "تخطي التسجيل", onTap: (){},color: ColorManager.grey2,),
         Text.rich(
             TextSpan(
-                text: tr("don'tHaveAccount"),
+                text: tr(context,"don'tHaveAccount"),
                 style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: ColorManager.black,fontFamily: FontConstants.fontFamily),
                 children: <InlineSpan>[
                   TextSpan(
-                    text: tr("register"),
+                    text: tr(context,"register"),
                     style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal,color: ColorManager.primary,fontFamily: FontConstants.fontFamily),
                     recognizer: TapGestureRecognizer()..onTap=(){
                       NavigationService.navigateTo(RegisterView());

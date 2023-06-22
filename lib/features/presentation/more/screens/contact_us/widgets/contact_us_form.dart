@@ -26,11 +26,11 @@ class ContactUsForm extends StatelessWidget {
             hint: "رجاء ادخال الاسم",
           ),
           CustomTextField(
-            upperText: tr("phone"),
+            upperText: tr(context,"phone"),
             validator: (value) => value?.validatePhone(context),
             fieldTypes: FieldTypes.normal,
             type: TextInputType.phone,
-            hint: tr('phone'),
+            hint: tr(context,'phone'),
             suffixIcon: Container(
               width: 100,
               child: Row(

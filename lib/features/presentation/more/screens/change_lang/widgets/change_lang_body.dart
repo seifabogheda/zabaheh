@@ -35,7 +35,7 @@ class ChangeLangBody extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: MyText(
-                    title: tr("selectLang"),
+                    title: tr(context,"selectLang"),
                     size: 23,
                     fontWeight: FontWeight.w600,
                     color: ColorManager.black,
@@ -79,7 +79,7 @@ class ChangeLangBody extends StatelessWidget {
                               child: MyText(
                                 color: ColorManager.black,
                                 size: 16,
-                                title: tr("langAr"),
+                                title: tr(context,"langAr"),
                               ),
                             ),
                           ],
@@ -121,7 +121,7 @@ class ChangeLangBody extends StatelessWidget {
                               child: MyText(
                                 color: ColorManager.black,
                                 size: 16,
-                                title: tr("langEn"),
+                                title: tr(context,"langEn"),
                               ),
                             )
                           ],
@@ -133,7 +133,7 @@ class ChangeLangBody extends StatelessWidget {
                 ),
                 Spacer(),
                 CustomButton(
-                  title: tr("confirm"),
+                  title: tr(context,"confirm"),
                   width: 300,
                   margin: EdgeInsets.only(bottom: 25),
                   borderRadius: BorderRadius.circular(10),

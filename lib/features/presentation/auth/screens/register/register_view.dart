@@ -14,7 +14,7 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
       scaffoldColor: ColorManager.offWhite,
-      title: tr('register'),
+      title: tr(context,'register'),
       needBack: true,
       child: Expanded(
         child: RegisterBody(),

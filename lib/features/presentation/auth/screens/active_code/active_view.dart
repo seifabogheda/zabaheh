@@ -7,6 +7,6 @@ class ActiveView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
-        title: tr("register"), needBack: false, child: ActiveBody());
+        title: tr(context,"register"), needBack: false, child: ActiveBody());
   }
 }

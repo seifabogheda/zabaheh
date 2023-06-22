@@ -30,4 +30,5 @@ class AssetsManager {
   static const String card = "$imagePath/card.svg";
   static const String check = "$imagePath/check.svg";
   static const String coupon = "$imagePath/coupon.svg";
+  static const String location = "$imagePath/location.svg";
 }

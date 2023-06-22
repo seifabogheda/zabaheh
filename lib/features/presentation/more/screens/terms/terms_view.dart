@@ -11,7 +11,7 @@ class TermsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoreScaffold(
-      titleScreen: tr("terms"),
+      titleScreen: tr(context,"terms"),
       body: TermsBody(),
     );
   }

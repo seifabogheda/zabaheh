@@ -1,19 +1,43 @@
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
+import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/base_widgets/my_text.dart';
+import '../../../../core/location_address/LocationAddressImports.dart';
+import '../../../../core/location_address/location_cubit/location_cubit.dart';
 import '../../../../core/resource/color_manager.dart';
+import '../../../../core/utils/utils_imports.dart';
+import '../../../../core/location_address/location_model/location_model.dart';
 import 'build_receive_order_time_item.dart';
 
 class CartReceiveOrder extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    final LocationCubit locationCubit = LocationCubit();
     final GenericCubit<int> selectWayReceiveOrderCubit = GenericCubit(0);
     final GenericCubit<int> selectTimeReceiveOrderCubit = GenericCubit(0);
+    void onLocationClick() async {
+      var _loc = await Utils.getCurrentLocation();
+      locationCubit.onLocationUpdated(LocationModel(
+        lat: _loc?.latitude ?? 24.77426,
+        lng: _loc?.longitude ?? 46.738586,
+        address: "",
+      ));
+      Navigator.of(context).push(
+        CupertinoPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: locationCubit,
+            child: LocationAddress(),
+          ),
+        ),
+      );
+    }
     return Container(
       height: context.height * 0.62,
       width: context.width * 0.9,
@@ -72,18 +96,46 @@ class CartReceiveOrder extends StatelessWidget {
               );
             },
           ),
-          CustomTextField(
-            onTap: () {
-              // todo : open google map -_-
+          BlocListener<LocationCubit, LocationState>(
+            bloc: locationCubit,
+            listener: (context, state) {
+              // TODO: implement listener
+              // companyData.address.text = state.model?.address ?? "";
+
+
+
             },
-            validator: (value) {},
-            fieldTypes: FieldTypes.clickable,
-            type: TextInputType.none,
-            hint: "برجاء تحديد موقع التوصيل",
-            upperText: "موقع التوصيل",
-            suffixIcon: Icon(
-              Icons.location_on_sharp,
-              color: ColorManager.error,
+            child: BlocBuilder<LocationCubit, LocationState>(
+              bloc: locationCubit,
+              builder: (context,state){
+                if(state is LocationInitial){
+                  return   CustomTextField(
+                    onTap: () =>onLocationClick(),
+                    validator: (value) {},
+                    fieldTypes: FieldTypes.clickable,
+                    type: TextInputType.none,
+                    hint: "برجاء تحديد موقع التوصيل",
+                    upperText: "موقع التوصيل",
+                    suffixIcon: Icon(
+                      Icons.location_on_sharp,
+                      color: ColorManager.error,
+                    ),
+                  );
+                }
+              return  state is LocationLoading ? AppLoaderHelper.showLoadingDialog() :
+                CustomTextField(
+                  onTap: () =>onLocationClick(),
+                  validator: (value) {},
+                  fieldTypes: FieldTypes.clickable,
+                  type: TextInputType.none,
+                  hint: "برجاء تحديد موقع التوصيل",
+                  upperText: "موقع التوصيل",
+                  suffixIcon: Icon(
+                    Icons.location_on_sharp,
+                    color: ColorManager.error,
+                  ),
+                );
+              },
             ),
           ),
           Padding(
@@ -100,13 +152,15 @@ class CartReceiveOrder extends StatelessWidget {
               return Wrap(
                 children: List.generate(
                   3,
-                  (index) => InkWell(
-                      onTap: () {
-                        selectTimeReceiveOrderCubit.onUpdateData(index);
-                      },
-                      child: BuildReceiveOrderTimeItem(
-                        index: index, selectedCubit: selectTimeReceiveOrderCubit,
-                      )),
+                      (index) =>
+                      InkWell(
+                          onTap: () {
+                            selectTimeReceiveOrderCubit.onUpdateData(index);
+                          },
+                          child: BuildReceiveOrderTimeItem(
+                            index: index,
+                            selectedCubit: selectTimeReceiveOrderCubit,
+                          )),
                 ),
               );
             },

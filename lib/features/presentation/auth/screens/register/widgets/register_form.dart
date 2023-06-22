@@ -43,11 +43,11 @@ class RegisterForm extends StatelessWidget {
           ),
         ),
         CustomTextField(
-          upperText: tr("phone"),
+          upperText: tr(context,"phone"),
           validator: (value) => value?.validatePhone(context),
           fieldTypes: FieldTypes.normal,
           type: TextInputType.phone,
-          hint: tr('phone'),
+          hint: tr(context,'phone'),
           prefixIcon: Icon(
             Icons.phone_android_sharp,
             color: ColorManager.primary,

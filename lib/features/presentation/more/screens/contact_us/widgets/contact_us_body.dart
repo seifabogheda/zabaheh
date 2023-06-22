@@ -13,7 +13,7 @@ class ContactUsBody extends StatelessWidget {
         children: [
           ContactUsForm(),
           CustomButton(
-            title: tr("send"),
+            title: tr(context,"send"),
             onTap: () {},
             margin: EdgeInsets.symmetric(vertical: 15, horizontal: 5),
           ),

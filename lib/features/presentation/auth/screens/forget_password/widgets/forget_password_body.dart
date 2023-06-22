@@ -28,11 +28,11 @@ class ForgetPasswordBody extends StatelessWidget {
           ForgetPasswordTexts(),
           Form(
             child: CustomTextField(
-              upperText: tr("phone"),
+              upperText: tr(context,"phone"),
               validator: (value) => value?.validatePhone(context),
               fieldTypes: FieldTypes.normal,
               type: TextInputType.phone,
-              hint: tr('phone'),
+              hint: tr(context,'phone'),
               prefixIcon: Icon(
                 Icons.phone_android_sharp,
                 color: ColorManager.primary,
@@ -69,7 +69,7 @@ class ForgetPasswordBody extends StatelessWidget {
           Spacer(),
           CustomButton(
             margin: EdgeInsets.only(bottom: 30),
-            title: tr("send"),
+            title: tr(context,"send"),
             width: context.width*0.8,
             onTap: () {
               NavigationService.navigateTo(ResetPasswordView());

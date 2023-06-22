@@ -14,7 +14,7 @@ class ChangePasswordBody extends StatelessWidget {
       child: Column(
         children: [
           ChangePasswordForm(),
-          CustomButton(title: tr("confirm"),onTap: (){},),
+          CustomButton(title: tr(context,"confirm"),onTap: (){},),
         ],
       ),
     );

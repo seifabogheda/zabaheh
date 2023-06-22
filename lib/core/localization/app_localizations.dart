@@ -10,10 +10,10 @@ class AppLocalizations {
   AppLocalizations({
     this.locale,
   });
-  static BuildContext? currentContext = navigatorKey.currentContext;
-  static AppLocalizations? of() {
+  // static BuildContext? currentContext = navigatorKey.currentContext;
+  static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(
-        currentContext!, AppLocalizations);
+        context, AppLocalizations);
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
@@ -55,11 +55,11 @@ class _AppLocalizationsDelegate
 }
 
 // todo : check this
-tr(String key) {
-  return AppLocalizations.of()!.translate(key);
+tr(BuildContext context,String key) {
+  return AppLocalizations.of(context)!.translate(key);
 }
 // extension TranslateX on String {
-//   String tr(BuildContext context) {
+//   String tr(context,BuildContext context) {
 //     return AppLocalizations.of(context)!.translate(this);
 //   }
 //

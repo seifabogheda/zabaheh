@@ -32,8 +32,8 @@ class TabBarBody extends StatelessWidget {
             fontSize: 14,
             color: ColorManager.grey),
         tabs: [
-          TabBarItem(title: tr("current")),
-          TabBarItem(title: tr("finished")),
+          TabBarItem(title: tr(context,"current")),
+          TabBarItem(title: tr(context,"finished")),
         ],
       ),
     );

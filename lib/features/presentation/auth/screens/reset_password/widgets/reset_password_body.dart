@@ -24,7 +24,7 @@ class ResetPasswordBody extends StatelessWidget {
               ResetPasswordTexts(),
               ResetPasswordForm(),
               CustomButton(
-                title: tr("confirm"),
+                title: tr(context,"confirm"),
                 onTap: () {
                   NavigationService.removeUntil(LoginView());
                 },

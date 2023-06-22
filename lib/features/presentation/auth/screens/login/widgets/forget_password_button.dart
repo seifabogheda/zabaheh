@@ -10,7 +10,7 @@ class ForgetPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextButton(
-      title: tr('forgetPassword'),
+      title: tr(context,'forgetPassword'),
       onTap: () {
         NavigationService.navigateTo(ForgetPasswordView());
       },

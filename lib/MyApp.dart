@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             // theme: MainData.defaultThem,
             title: "Base",
-            supportedLocales: const [Locale("ar"), Locale("en")],
+            supportedLocales: const [Locale("ar","SA"), Locale("en","US")],
             locale: state.locale,
             localizationsDelegates: const [
               AppLocalizations.delegate,
@@ -31,7 +31,16 @@ class _MyAppState extends State<MyApp> {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate
             ],
+          localeResolutionCallback: (deviceLocale, supportedLocales) {
+            for (var locale in supportedLocales) {
+              if (deviceLocale != null &&
+                  deviceLocale.languageCode == locale.languageCode) {
+                return deviceLocale;
+              }
+            }
 
+            return supportedLocales.first;
+          },
             navigatorKey: navigatorKey,
             builder: (ctx, child) {
               child = FlutterEasyLoading(child: child); //do something

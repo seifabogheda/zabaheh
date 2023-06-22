@@ -20,7 +20,7 @@ class RegisterBody extends StatelessWidget {
             RegisterTexts(),
             RegisterForm(),
             CustomButton(
-              title: tr('confirm'),
+              title: tr(context,'confirm'),
               onTap: () {
                 NavigationService.navigateTo(ActiveView());
               },

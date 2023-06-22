@@ -19,11 +19,11 @@ class LoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomTextField(
-          upperText: tr("phone"),
+          upperText: tr(context,"phone"),
           validator: (value) => value?.validatePhone(context),
           fieldTypes: FieldTypes.normal,
           type: TextInputType.phone,
-          hint: tr('phone'),
+          hint: tr(context,'phone'),
           prefixIcon: Icon(Icons.phone_android_sharp,color: ColorManager.primary,),
           suffixIcon: Container(
             width: 100,
@@ -51,11 +51,11 @@ class LoginForm extends StatelessWidget {
         ),
 
         CustomTextField(
-          upperText: tr("password"),
+          upperText: tr(context,"password"),
           validator: (value) => value?.validatePhone(context),
           fieldTypes: FieldTypes.password,
           type: TextInputType.text,
-          hint: tr("password"),
+          hint: tr(context,"password"),
           prefixIcon: Icon(Icons.lock,color: ColorManager.primary,),
           suffixIcon: Icon(Icons.visibility_off,color: ColorManager.grey2,),
         ),

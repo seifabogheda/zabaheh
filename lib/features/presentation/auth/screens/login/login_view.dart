@@ -9,7 +9,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
       scaffoldColor: ColorManager.offWhite,
-        title: tr('login'),
+        title: tr(context,'login'),
         needBack: false,
         child: Expanded(
           child: LoginBody(),

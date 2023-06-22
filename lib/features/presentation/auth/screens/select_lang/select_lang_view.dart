@@ -37,7 +37,7 @@ class SelectLangView extends StatelessWidget {
                   Container(
                     alignment: Alignment.center,
                     child: MyText(
-                      title: tr("selectLang"),
+                      title: tr(context, "selectLang"),
                       size: 23,
                       fontWeight: FontWeight.w600,
                       color: ColorManager.black,
@@ -81,7 +81,7 @@ class SelectLangView extends StatelessWidget {
                                 child: MyText(
                                   color: ColorManager.black,
                                   size: 16,
-                                  title: tr("langAr"),
+                                  title: tr(context, "langAr"),
                                 ),
                               ),
                             ],
@@ -123,7 +123,7 @@ class SelectLangView extends StatelessWidget {
                                 child: MyText(
                                   color: ColorManager.black,
                                   size: 16,
-                                  title: tr("langEn"),
+                                  title: tr(context, "langEn"),
                                 ),
                               )
                             ],
@@ -135,7 +135,7 @@ class SelectLangView extends StatelessWidget {
                   ),
                   Spacer(),
                   CustomButton(
-                    title: tr("confirm"),
+                    title: tr(context, "confirm"),
                     width: 300,
                     margin: EdgeInsets.only(bottom: 25),
                     borderRadius: BorderRadius.circular(10),
