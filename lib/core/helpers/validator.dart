@@ -49,10 +49,7 @@ extension Validator on String {
   String? validatePhone(BuildContext context,{String? message}) {
     if (this.trim().isEmpty) {
       return message ?? tr(context,"fillField");
-    } else if (!RegExp(
-        r'(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)')
-        .hasMatch(this) ||
-        this.length < 10) {
+    } else if (this.length != 9) {
       return message ?? tr(context,"phoneValidation");
     }
     return null;

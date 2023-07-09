@@ -1,6 +1,5 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
-import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';

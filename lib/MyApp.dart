@@ -5,6 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/localization/app_localizations.dart';
 import 'core/localization/lang_cubit/lang_cubit.dart';
 import 'core/resource/navigation_service.dart';
+import 'features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
+import 'features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import 'features/presentation/auth/screens/splash/view.dart';
 
 class MyApp extends StatefulWidget {
@@ -17,13 +19,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LangCubit, ChangeLangState>(
-      builder: (context, state) {
-        return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (BuildContext context) => AuthCubit(),
+        ),
+        BlocProvider<UserCubit>(
+          create: (BuildContext context) => UserCubit(),
+        ),
+      ],
+      child: BlocBuilder<LangCubit, ChangeLangState>(
+        builder: (context, state) {
+          return MaterialApp(
             debugShowCheckedModeBanner: false,
             // theme: MainData.defaultThem,
             title: "Base",
-            supportedLocales: const [Locale("ar","SA"), Locale("en","US")],
+            supportedLocales: const [Locale("ar", "SA"), Locale("en", "US")],
             locale: state.locale,
             localizationsDelegates: const [
               AppLocalizations.delegate,
@@ -31,24 +42,25 @@ class _MyAppState extends State<MyApp> {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate
             ],
-          localeResolutionCallback: (deviceLocale, supportedLocales) {
-            for (var locale in supportedLocales) {
-              if (deviceLocale != null &&
-                  deviceLocale.languageCode == locale.languageCode) {
-                return deviceLocale;
+            localeResolutionCallback: (deviceLocale, supportedLocales) {
+              for (var locale in supportedLocales) {
+                if (deviceLocale != null &&
+                    deviceLocale.languageCode == locale.languageCode) {
+                  return deviceLocale;
+                }
               }
-            }
 
-            return supportedLocales.first;
-          },
+              return supportedLocales.first;
+            },
             navigatorKey: navigatorKey,
             builder: (ctx, child) {
               child = FlutterEasyLoading(child: child); //do something
               return child;
             },
             home: Splash(),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

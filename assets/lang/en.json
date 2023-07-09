@@ -1,5 +1,6 @@
 {
   "selectLang": " Determine the application language ",
+  "welcome" : "Welcome",
   "langEn": "English",
   "langAr": " Arabic ",
   "login": " Login ",
@@ -90,7 +91,7 @@
   "contactOnWhats": "Communication via WhatsApp",
   "activeAccount": "activate the account",
   "codeSendToPhone":"An activation code will be sent to your mobile number via SMS",
-  "passValidation": "Please enter at least 6 letters or numbers",
+  "passValidation": "Please enter at least 8 letters or numbers",
   "mailValidation": "Please enter a valid email",
   "phoneValidation": "Please enter a valid mobile phone",
   "confirmValidation": "Please enter the password identical",
@@ -342,6 +343,8 @@
   "totalSalary": "Total income",
   "finishChat": "Finish Chat",
   "travelCityDestination": "The city you want to travel to",
-  "noOffers": "No offers"
+  "noOffers": "No offers",
+  "someThingWrong" : "Some Thing Wrong,please try again",
+  "loginDone" : "Logged in successfully"
 
 }

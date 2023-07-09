@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:base_flutter/core/helpers/preferences_helper.dart';
@@ -9,7 +10,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import '../../features/models/user_model.dart';
+import '../../features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
+import '../../features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import '../../features/presentation/auth/screens/select_lang/select_lang_view.dart';
+import '../../features/presentation/main_navigation_bar/cubits/main_navigation_cubit.dart';
+import '../../features/presentation/main_navigation_bar/main_navigation_bar.dart';
 import '../helpers/snack_helper.dart';
 import '../localization/lang_cubit/lang_cubit.dart';
 import '../helpers/app_loader_helper.dart';

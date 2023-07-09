@@ -5,10 +5,11 @@ class Utils {
     getCurrentLocation();
     var strUser = Preferences.getString("user");
     if (strUser != null) {
-      // UserModel data = UserModel.fromJson(json.decode("$strUser"));
-      // GlobalState.instance.set("token", data.token);
-      // changeLanguage(data.lang, context);/
-      // setCurrentUserData(data, context);
+      UserModel data = UserModel.fromJson(json.decode("$strUser"));
+      Preferences.setString("token", data.token ?? "");
+      changeLanguage(
+          context.read<LangCubit>().state.locale.languageCode, context);
+      setCurrentUserData(data);
     } else {
       changeLanguage("ar", context);
       NavigationService.removeUntil(SelectLangView());
@@ -16,39 +17,33 @@ class Utils {
     }
   }
 
-  //
-  // static Future<bool> manipulateLoginData(
-  //     BuildContext context, dynamic data, String token) async {
-  //   if (data != null) {
-  //     int status = data["status"];
-  //     if (status == 1) {
-  //       await Utils.setDeviceId("$token");
-  //       UserModel user = UserModel.fromJson(data["data"]);
-  //       int type = data["data"]["type"];
-  //       user.type = type == 1 ? "user" : "company";
-  //       user.token = data["token"];
-  //       user.lang = context.read<LangCubit>().state.locale.languageCode;
-  //       GlobalState.instance.set("token", user.token);
-  //       await Utils.saveUserData(user);
-  //       Utils.setCurrentUserData(user, context);
-  //     } else if (status == 2) {
-  //       AutoRouter.of(context)
-  //           .push(ActiveAccountRoute(userId: data["data"]["id"]));
-  //     }
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  static Future<bool> manipulateLoginData(dynamic data, String token) async {
+    if (data != null) {
+      log("token : $token");
+      await Utils.setDeviceId("$token");
+      UserModel user = UserModel.fromJson(data);
+      Preferences.setString("token", token);
+      await Utils.saveUserData(user);
+      Utils.setCurrentUserData(user);
+      return true;
+    }
+    return false;
+  }
 
-  // static void setCurrentUserData(UserModel model, BuildContext context) async {
-  //   // context.read<UserCubit>().onUpdateUserData(model);
-  //   // ExtendedNavigator.of(context).push(Routes.home,arguments: HomeArguments(parentCount: parentCount));
-  // }
+  static void setCurrentUserData(UserModel model) async {
+    navigatorKey.currentContext!.read<AuthCubit>().onUpdateAuth(true);
+    navigatorKey.currentContext?.read<UserCubit>().onUpdateUserData(model);
+    NavigationService.removeUntil(
+      BlocProvider(
+        create: (context) => BottomNavCubit(),
+        child: MainNavigationBar(),
+      ),
+    );
+  }
 
-  // static Future<void> saveUserData(UserModel model) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setString("user", json.encode(model.toJson()));
-  // }
+  static Future<void> saveUserData(UserModel model) async {
+    Preferences.setString("user", json.encode(model.toJson()));
+  }
 
   static void changeLanguage(String lang, BuildContext context) {
     context.read<LangCubit>().changeLanguage(lang);
@@ -68,6 +63,7 @@ class Utils {
 
   static void clearSavedData() async {
     Preferences.clearAll();
+    navigatorKey.currentContext!.read<AuthCubit>().onUpdateAuth(false);
   }
 
   static String getCurrentUserId({required BuildContext context}) {

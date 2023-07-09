@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../resource/navigation_service.dart';
 
 class AppLocalizations {
   final Locale? locale;

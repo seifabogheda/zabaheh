@@ -12,20 +12,38 @@ import '../../../../../../core/base_widgets/my_text.dart';
 import '../../../../../../core/resource/value_manager.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 
+import '../../../blocs/update_profile_cubit/update_profile_cubit.dart';
+
 
 class ProfileForm extends StatelessWidget {
   final List<String> cities = ["saudi", "Egypt", "اختر بلد"];
   @override
   Widget build(BuildContext context) {
+    var cubit = UpdateProfileCubit.get(context);
     return Form(
+      key: cubit.formKey,
         child: Column(
       children: [
         CustomTextField(
           validator: (value) => value?.validateEmpty(context),
           fieldTypes: FieldTypes.normal,
+          controller: cubit.firstNameController,
           type: TextInputType.text,
-          upperText: "اسم المستخدم",
+          upperText: "الاسم الاول",
           hint: "الرجاء ادخال الاسم الاول",
+          prefixIcon: Icon(
+            Icons.person,
+            color: ColorManager.primary,
+          ),
+          suffixIcon:  Image.asset(AssetsManager.edit,scale: 3,color: ColorManager.grey2,),
+        ),
+        CustomTextField(
+          validator: (value) => value?.validateEmpty(context),
+          fieldTypes: FieldTypes.normal,
+          controller: cubit.lastNameController,
+          type: TextInputType.text,
+          upperText: "الاسم الاخير",
+          hint: "الرجاء ادخال الاسم الاخير",
           prefixIcon: Icon(
             Icons.person,
             color: ColorManager.primary,
@@ -37,6 +55,7 @@ class ProfileForm extends StatelessWidget {
           validator: (value) => value?.validatePhone(context),
           fieldTypes: FieldTypes.normal,
           type: TextInputType.phone,
+          controller: cubit.phoneController,
           hint: tr(context,'phone'),
           prefixIcon: Icon(
             Icons.phone_android_sharp,
@@ -70,10 +89,11 @@ class ProfileForm extends StatelessWidget {
             ),
           ),
         ),
-        CustomTextField (
+        CustomTextField(
           validator: (value) => value?.validateEmpty(context),
           fieldTypes: FieldTypes.normal,
           type: TextInputType.text,
+          controller: cubit.emailController,
           upperText: "البريد الالكترونى",
           hint: "seifabogheda89@gmail.com",
           prefixIcon: Icon(

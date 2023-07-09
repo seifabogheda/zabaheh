@@ -11,7 +11,7 @@ class OrderDetailsView extends StatefulWidget {
 }
 
 class _OrderDetailsViewState extends State<OrderDetailsView>
-    with TickerProviderStateMixin {
+        with TickerProviderStateMixin {
   late AnimationController controller;
   @override
   initState() {

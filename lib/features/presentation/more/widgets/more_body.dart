@@ -2,9 +2,15 @@ import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
+import 'package:base_flutter/features/presentation/auth/screens/login/login_view.dart';
 import 'package:base_flutter/features/presentation/more/widgets/more_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/localization/app_localizations.dart';
+import '../../../repos/auth_repo_impl.dart';
+import '../../../repos/base_repo.dart';
+import '../../auth/blocs/auth_cubit/auth_cubit.dart';
 import '../../auth/screens/profile/profile_view.dart';
 import '../screens/about/about_view.dart';
 import '../screens/change_lang/change_lang_view.dart';
@@ -17,6 +23,9 @@ class MoreBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var auth = context.read<AuthCubit>().state.authorized;
+    BaseRepo authRepo = AuthRepoImpl();
+
     return ListView(
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       children: [
@@ -98,9 +107,11 @@ class MoreBody extends StatelessWidget {
           height: 10,
         ),
         MoreItem(
-          titleItem: 'تسجيل خروج',
+          titleItem:auth? tr(context,"logout") : tr(context,"login"),
           imageItem: AssetsManager.logout,
-          onTap: () {},
+          onTap: () {
+            auth ? authRepo.logout() : NavigationService.removeUntil(LoginView());
+          },
           isLogout: true,
         ),
       ],

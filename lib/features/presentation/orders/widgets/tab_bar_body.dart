@@ -1,5 +1,3 @@
-
-
 import 'package:base_flutter/features/presentation/orders/widgets/tab_bar_item.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +6,6 @@ import '../../../../core/resource/color_manager.dart';
 import '../../../../core/resource/font_manager.dart';
 
 class TabBarBody extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,8 +29,8 @@ class TabBarBody extends StatelessWidget {
             fontSize: 14,
             color: ColorManager.grey),
         tabs: [
-          TabBarItem(title: tr(context,"current")),
-          TabBarItem(title: tr(context,"finished")),
+          TabBarItem(title: tr(context, "current")),
+          TabBarItem(title: tr(context, "finished")),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';

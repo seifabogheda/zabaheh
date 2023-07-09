@@ -1,5 +1,6 @@
 {
   "selectLang": " تحديد لغة التطبيق ",
+  "welcome" : "مرحبا بك",
   "langEn": "English",
   "langAr": " العربية ",
   "login": " تسجيل دخول ",
@@ -90,7 +91,7 @@
   "contactOnWhats": "التواصل عبر الواتس اب",
   "activeAccount": "تفعيل الحساب",
   "codeSendToPhone":"سوف يتم إرسال كود التفعيل لرقم الجوال الخاص بك عبر الرسائل",
-  "passValidation": "من فضلك ادخل علي الاقل 6 حروف او ارقام",
+  "passValidation": "من فضلك ادخل علي الاقل 8 حروف او ارقام",
   "mailValidation": "من فضلك ادخل البريد صحيحا",
   "phoneValidation": "من فضلك ادخل الجوال صحيحا",
   "confirmValidation": "من فضلك ادخل كلمة المرورمتطابق",
@@ -343,7 +344,9 @@
   "finishChat": "انهاء المحادثة",
   "travelCityDestination": "المدينة المراد السفر إليها",
   "noOffers": "لا توجد عروض",
-  "travelDestinationCountry": "الدولة المراد السفر اليها"
+  "travelDestinationCountry": "الدولة المراد السفر اليها",
+  "someThingWrong" : "حدث خطأ ما, برجاء المحاولة مرة اخرى",
+  "loginDone" : "تم تسجيل الدخول بنجاح"
 }
 
 

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/resource/color_manager.dart';
 
 class TabBarItem extends StatelessWidget {
 final String title;

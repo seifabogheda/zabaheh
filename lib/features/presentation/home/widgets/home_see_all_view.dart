@@ -1,4 +1,3 @@
-import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/custom_widgets/auth_custom_appbar.dart';
 import 'package:flutter/material.dart';
