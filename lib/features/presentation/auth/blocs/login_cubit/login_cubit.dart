@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/localization/app_localizations.dart';
 import '../../../../../core/resource/navigation_service.dart';
-import '../../../../repos/auth_repo_impl.dart';
+import '../../../../repos/repo_impl.dart';
 import '../../../../repos/base_repo.dart';
 import '../../../main_navigation_bar/cubits/main_navigation_cubit.dart';
 import '../../../main_navigation_bar/main_navigation_bar.dart';
@@ -26,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  BaseRepo authRepo = AuthRepoImpl();
+  BaseRepo authRepo = RepoImpl();
 
   login(BuildContext context) async {
     if (formKey.currentState!.validate()) {

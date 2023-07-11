@@ -6,7 +6,6 @@ import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../more/screens/change_password/change_password_view.dart';
 import '../../../../more/screens/change_password/widgets/change_password_body.dart';
 import '../../../blocs/change_password_cubit/change_password_cubit.dart';
 import '../../../blocs/update_profile_cubit/update_profile_cubit.dart';

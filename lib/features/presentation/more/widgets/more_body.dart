@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/localization/app_localizations.dart';
-import '../../../repos/auth_repo_impl.dart';
+import '../../../repos/repo_impl.dart';
 import '../../../repos/base_repo.dart';
 import '../../auth/blocs/auth_cubit/auth_cubit.dart';
 import '../../auth/screens/profile/profile_view.dart';
@@ -24,7 +24,7 @@ class MoreBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var auth = context.read<AuthCubit>().state.authorized;
-    BaseRepo authRepo = AuthRepoImpl();
+    BaseRepo authRepo = RepoImpl();
 
     return ListView(
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),

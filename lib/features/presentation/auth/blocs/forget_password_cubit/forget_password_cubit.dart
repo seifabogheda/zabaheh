@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../repos/auth_repo_impl.dart';
+import '../../../../repos/repo_impl.dart';
 import '../../../../repos/base_repo.dart';
 
 part 'forget_password_state.dart';
@@ -18,7 +18,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController phoneController = TextEditingController();
-  BaseRepo authRepo = AuthRepoImpl();
+  BaseRepo authRepo = RepoImpl();
 
   void checkPhoneNumber() async {
     if (formKey.currentState!.validate()) {

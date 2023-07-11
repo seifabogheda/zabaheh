@@ -1,6 +1,6 @@
 import 'package:base_flutter/core/localization/lang_cubit/lang_cubit.dart';
 import 'package:base_flutter/features/models/update_profile_model.dart';
-import 'package:base_flutter/features/repos/auth_repo_impl.dart';
+import 'package:base_flutter/features/repos/repo_impl.dart';
 import 'package:base_flutter/features/repos/base_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  BaseRepo authRepo = AuthRepoImpl();
+  BaseRepo authRepo = RepoImpl();
   getProfileData(){
     phoneController.text = user.phone ?? '';
     firstNameController.text = user.firstName ?? '';

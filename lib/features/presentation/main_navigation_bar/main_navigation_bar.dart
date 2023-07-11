@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/resource/assets_manager.dart';
+import 'package:base_flutter/features/presentation/home/cubits/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +24,10 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
   }
 
   final _pageNavigation = [
-    // todo put Screens here
-    HomeView(),
+    BlocProvider(
+      create: (context) => HomeCubit()..getHome(),
+      child: HomeView(),
+    ),
     OrdersView(),
     CartView(),
     MoreView()

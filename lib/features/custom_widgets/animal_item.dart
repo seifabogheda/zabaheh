@@ -1,18 +1,25 @@
 import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/base_widgets/my_text.dart';
 import '../../core/resource/color_manager.dart';
 import '../presentation/animal_details/animal_details_view.dart';
+import '../presentation/animal_details/cubits/product_details/product_details_cubit.dart';
 
 class AnimalItem extends StatelessWidget {
+
   final String image =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9dzIHVAv1xLixcBkhvrQczkClOugFe5qPtg&usqp=CAU';
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        NavigationService.navigateTo(AnimalDetailsView());
+        NavigationService.navigateTo(BlocProvider(
+          create: (context) => ProductDetailsCubit()..getProductDetails(1),
+          child: AnimalDetailsView(title: '',),
+        ));
       },
       child: Container(
         height: 80,

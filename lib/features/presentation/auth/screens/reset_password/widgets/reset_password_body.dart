@@ -1,7 +1,6 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/localization/app_localizations.dart';
-import 'package:base_flutter/core/resource/navigation_service.dart';
 
 import 'package:base_flutter/features/custom_widgets/logo_widget.dart';
 import 'package:base_flutter/features/presentation/auth/screens/reset_password/widgets/reset_password_form.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/reset_password_cubit/reset_password_cubit.dart';
-import '../../login/login_view.dart';
 
 class ResetPasswordBody extends StatelessWidget {
   const ResetPasswordBody();

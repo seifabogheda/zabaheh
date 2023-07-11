@@ -1,8 +1,12 @@
 import 'package:base_flutter/core/base_widgets/my_text.dart';
+import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildQty extends StatelessWidget {
+  final GenericCubit<int> quantityCubit = GenericCubit(0);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,31 +17,48 @@ class BuildQty extends StatelessWidget {
         color: ColorManager.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CircleAvatar(
-            backgroundColor: ColorManager.green,
-            child: MyText(
-              title: "+",
-              size: 25,
-              color: ColorManager.white,
-            ),
-          ),
-          MyText(
-            title: "5",
-            size: 18,
-            color: ColorManager.black,
-          ),
-          CircleAvatar(
-            backgroundColor: ColorManager.offWhite,
-            child: MyText(
-              title: "-",
-              size: 25,
-              color: ColorManager.grey,
-            ),
-          ),
-        ],
+      child: BlocBuilder<GenericCubit<int>, GenericState<int>>(
+        bloc: quantityCubit,
+        builder: (context, state) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {
+                  quantityCubit.onUpdateData(state.data + 1);
+                },
+                child: CircleAvatar(
+                  backgroundColor: ColorManager.green,
+                  child: MyText(
+                    title: "+",
+                    size: 25,
+                    color: ColorManager.white,
+                  ),
+                ),
+              ),
+              MyText(
+                title: "${state.data}",
+                size: 18,
+                color: ColorManager.black,
+              ),
+              InkWell(
+                onTap: () {
+                  if (state.data > 0) {
+                    quantityCubit.onUpdateData(state.data - 1);
+                  }
+                },
+                child: CircleAvatar(
+                  backgroundColor: ColorManager.offWhite,
+                  child: MyText(
+                    title: "-",
+                    size: 25,
+                    color: ColorManager.grey,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

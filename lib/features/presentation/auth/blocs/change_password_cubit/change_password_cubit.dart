@@ -1,6 +1,6 @@
 import 'package:base_flutter/core/helpers/snack_helper.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
-import 'package:base_flutter/features/repos/auth_repo_impl.dart';
+import 'package:base_flutter/features/repos/repo_impl.dart';
 import 'package:base_flutter/features/repos/base_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   TextEditingController oldPassController = TextEditingController();
   TextEditingController newPassController = TextEditingController();
   TextEditingController confirmNewPassController = TextEditingController();
-  BaseRepo authRepo = AuthRepoImpl();
+  BaseRepo authRepo = RepoImpl();
   void changePassword() async{
     if (changePasswordFormKey.currentState!.validate()) {
       emit(ChangePasswordLoading());

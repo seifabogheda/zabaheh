@@ -1,6 +1,5 @@
-import 'package:base_flutter/features/repos/auth_repo_impl.dart';
+import 'package:base_flutter/features/repos/repo_impl.dart';
 import 'package:base_flutter/features/repos/base_repo.dart';
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +21,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   TextEditingController code = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmNewPasswordController = TextEditingController();
-  BaseRepo authRepo = AuthRepoImpl();
+  BaseRepo authRepo = RepoImpl();
   void resetPassword() async {
     if (formKey.currentState!.validate()) {
       emit(ResetPasswordLoading());

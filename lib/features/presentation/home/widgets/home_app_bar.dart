@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/resource/assets_manager.dart';
 import '../../../../core/resource/color_manager.dart';
 import '../../../../core/resource/value_manager.dart';
+import '../../notifications/notifications_view.dart';
 import '../../search/search_view.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -35,11 +36,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: ColorManager.white,
                 fontWeight: FontWeight.w600,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
-                child: SvgPicture.asset(
-                  AssetsManager.notification_icon, height: 40,
-                  // color: ColorManager.primary,
+              InkWell(
+                onTap: ()=>NavigationService.navigateTo(NotificationsView()),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+                  child: SvgPicture.asset(
+                    AssetsManager.notification_icon, height: 40,
+                    // color: ColorManager.primary,
+                  ),
                 ),
               )
             ],

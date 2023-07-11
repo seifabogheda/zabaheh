@@ -70,7 +70,7 @@ class LocationAddressData {
 
   addMarker(BuildContext context, LatLng latLng) async {
     Uint8List markerImg = await getBytesFromAsset(AssetsManager.location, 5);
-    String address = await Utils.getAddress(latLng, context);
+     await Utils.getAddress(latLng, context);
     addMarkerCubit.state.data.clear();
     addMarkerCubit.state.data.add(Marker(
       markerId: const MarkerId("0"),

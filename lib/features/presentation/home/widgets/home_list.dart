@@ -1,5 +1,6 @@
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
+import 'package:base_flutter/features/models/home_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/base_widgets/my_text.dart';
@@ -7,6 +8,9 @@ import 'home_item.dart';
 import 'home_see_all_view.dart';
 
 class HomeList extends StatelessWidget {
+  final HomeModel model;
+
+  const HomeList({Key? key, required this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +23,7 @@ class HomeList extends StatelessWidget {
             children: [
               Expanded(
                 child: MyText(
-                  title: "نعيمي بلدي",
+                  title: model.name ?? '',
                   color: ColorManager.black,
                   fontWeight: FontWeight.w600,
                   size: 14,
@@ -45,9 +49,9 @@ class HomeList extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 2,
+            itemCount: model.products?.length,
             itemBuilder: (_, position) {
-              return HomeItem();
+              return HomeItem(products: model.products![position],);
             },
           ),
         ),

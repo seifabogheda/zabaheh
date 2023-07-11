@@ -111,7 +111,7 @@ class CartReceiveOrder extends StatelessWidget {
                 if(state is LocationInitial){
                   return   CustomTextField(
                     onTap: () =>onLocationClick(),
-                    validator: (value) {},
+                    validator: (value)=> value?.noValidate(),
                     fieldTypes: FieldTypes.clickable,
                     type: TextInputType.none,
                     hint: "برجاء تحديد موقع التوصيل",
@@ -125,7 +125,7 @@ class CartReceiveOrder extends StatelessWidget {
               return  state is LocationLoading ? AppLoaderHelper.showLoadingDialog() :
                 CustomTextField(
                   onTap: () =>onLocationClick(),
-                  validator: (value) {},
+                  validator: (value)=> value?.noValidate(),
                   fieldTypes: FieldTypes.clickable,
                   type: TextInputType.none,
                   hint: "برجاء تحديد موقع التوصيل",

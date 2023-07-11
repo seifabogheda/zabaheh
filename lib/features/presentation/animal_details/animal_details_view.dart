@@ -5,17 +5,21 @@ import 'package:base_flutter/features/presentation/animal_details/widgets/build_
 import 'package:flutter/material.dart';
 
 class AnimalDetailsView extends StatelessWidget {
+  final String title;
+
+  const AnimalDetailsView({Key? key, required this.title}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
-      title: "نعيمي بلدي",
+      title: title,
       needBack: true,
       scaffoldColor: ColorManager.offWhite,
       textColor: ColorManager.green,
       child: BuildAnimalBody(),
       bottomNavigationBar: Container(
         color: ColorManager.white,
-        child: CustomButton(title: 'أضف للسلة',onTap: (){}  ,),
+        child: CustomButton(title: 'أضف للسلة',onTap: (){},),
       ),
     );
   }
