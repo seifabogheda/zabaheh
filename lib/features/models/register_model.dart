@@ -9,6 +9,7 @@ class RegisterModel {
   String? confirmPassword;
   String? lang;
   int? cityId;
+  String? token;
 
   RegisterModel(
       {
@@ -20,6 +21,7 @@ class RegisterModel {
         this.lang,
         this.phone,
         this.cityId,
+        this.token,
       });
 
   RegisterModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class RegisterModel {
     lang = json['lang'];
     confirmPassword = json['password_confirmation'];
     cityId = json['city_id'];
+    token = json['access_token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +46,7 @@ class RegisterModel {
     data['password_confirmation'] = this.confirmPassword;
     data['lang'] = this.lang;
     data['city_id'] = this.cityId;
+    data['access_token'] = this.token;
 
 
     return data;

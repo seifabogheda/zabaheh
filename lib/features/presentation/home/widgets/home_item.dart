@@ -20,7 +20,7 @@ class HomeItem extends StatelessWidget {
       onTap: () {
         NavigationService.navigateTo(BlocProvider(
           create: (context) => ProductDetailsCubit()..getProductDetails(products.id ?? 1),
-          child: AnimalDetailsView(title: products.name ?? '',),
+          child: AnimalDetailsView(title: products.name ?? '', productId: products.id ?? 1,),
         ));
       },
       child: Container(
@@ -49,9 +49,8 @@ class HomeItem extends StatelessWidget {
                   size: 12,
                 ),
                 SizedBox(height: 10,),
-                // todo : tell backend to add city name
                 MyText(
-                  title: 'الرياض',
+                  title: products.cityName ?? '',
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w600,
                   size: 12,

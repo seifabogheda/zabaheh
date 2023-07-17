@@ -8,7 +8,6 @@ import '../../../../../core/localization/app_localizations.dart';
 import '../../../../../core/resource/navigation_service.dart';
 import '../../../../repos/repo_impl.dart';
 import '../../../../repos/base_repo.dart';
-import '../../../main_navigation_bar/cubits/main_navigation_cubit.dart';
 import '../../../main_navigation_bar/main_navigation_bar.dart';
 
 part 'login_state.dart';
@@ -35,10 +34,7 @@ class LoginCubit extends Cubit<LoginState> {
       var result =
           await authRepo.login(phone, passwordController.text);
       if (result) {
-        NavigationService.removeUntil(BlocProvider(
-          create: (context) => BottomNavCubit(),
-          child: MainNavigationBar(),
-        ));
+        NavigationService.removeUntil(MainNavigationBar());
         SnackBarHelper.showBasicSnack(msg: tr(context, "loginDone"));
 
         emit(LoginSuccess());

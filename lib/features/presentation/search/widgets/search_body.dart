@@ -5,6 +5,8 @@ import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/custom_widgets/animal_item.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/product_model.dart';
+
 class SearchBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class SearchBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                     ),
                     SizedBox(height: 15,),
-                    ...List.generate(2, (index) =>AnimalItem(),),
+                    ...List.generate(2, (index) =>AnimalItem(product: Products(),),),
                     SizedBox(height: 15,),
                   ],
                 );

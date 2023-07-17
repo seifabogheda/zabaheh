@@ -4,8 +4,9 @@ class Products {
   int? categoryId;
   String? description;
   String? image;
-  double? mainPrice;
-  double? discountPrice;
+  String? cityName;
+  num? mainPrice;
+  num? discountPrice;
   int? storeQuantity;
   int? status;
 
@@ -15,6 +16,7 @@ class Products {
         this.id,
         this.description,
         this.image,
+        this.cityName,
         this.mainPrice,
         this.discountPrice,
         this.storeQuantity,
@@ -26,6 +28,7 @@ class Products {
     categoryId = json['category_id'];
     description = json['description'];
     image = json['image'];
+    cityName = json['city_name'];
     mainPrice = json['main_price'];
     discountPrice = json['discount_price'];
     storeQuantity = json['store_quantity'];
@@ -43,6 +46,7 @@ class Products {
     data['discount_price'] = this.discountPrice;
     data['store_quantity'] = this.storeQuantity;
     data['status'] = this.status;
+    data['city_name'] = this.cityName;
     return data;
   }
 }

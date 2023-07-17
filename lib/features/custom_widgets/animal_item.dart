@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/resource/navigation_service.dart';
+import 'package:base_flutter/features/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,9 +9,11 @@ import '../presentation/animal_details/animal_details_view.dart';
 import '../presentation/animal_details/cubits/product_details/product_details_cubit.dart';
 
 class AnimalItem extends StatelessWidget {
-
+  final Products product;
   final String image =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9dzIHVAv1xLixcBkhvrQczkClOugFe5qPtg&usqp=CAU';
+
+  const AnimalItem({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class AnimalItem extends StatelessWidget {
       onTap: () {
         NavigationService.navigateTo(BlocProvider(
           create: (context) => ProductDetailsCubit()..getProductDetails(1),
-          child: AnimalDetailsView(title: '',),
+          child: AnimalDetailsView(title: '', productId: 0,),
         ));
       },
       child: Container(
@@ -38,14 +41,14 @@ class AnimalItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                    image: NetworkImage(image), scale: 2, fit: BoxFit.fill),
+                    image: NetworkImage(product.image ?? ''), scale: 2, fit: BoxFit.fill),
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MyText(
-                  title: 'نعيمي بلدي',
+                  title: product.name ?? '',
                   color: ColorManager.black,
                   fontWeight: FontWeight.w600,
                   size: 12,
@@ -54,7 +57,7 @@ class AnimalItem extends StatelessWidget {
                   height: 10,
                 ),
                 MyText(
-                  title: 'الرياض',
+                  title: product.cityName ?? '',
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w600,
                   size: 12,

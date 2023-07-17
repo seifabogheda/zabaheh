@@ -15,4 +15,12 @@ class RegisterFailed extends RegisterState {
   RegisterFailed(this.error);
   @override
   List<Object> get props => [error];
+}class CitiesLoading extends RegisterState {}
+class CitiesSuccess extends RegisterState {}
+class CitiesFailed extends RegisterState {
+  final String error;
+
+  CitiesFailed(this.error);
+  @override
+  List<Object> get props => [error];
 }

@@ -6,7 +6,7 @@ class Utils {
     var strUser = Preferences.getString("user");
     if (strUser != null) {
       UserModel data = UserModel.fromJson(json.decode("$strUser"));
-      Preferences.setString("token", data.token ?? "");
+      Preferences.getString("token");
       changeLanguage(
           context.read<LangCubit>().state.locale.languageCode, context);
       setCurrentUserData(data);
@@ -34,10 +34,7 @@ class Utils {
     navigatorKey.currentContext!.read<AuthCubit>().onUpdateAuth(true);
     navigatorKey.currentContext?.read<UserCubit>().onUpdateUserData(model);
     NavigationService.removeUntil(
-      BlocProvider(
-        create: (context) => BottomNavCubit(),
-        child: MainNavigationBar(),
-      ),
+      MainNavigationBar(),
     );
   }
 

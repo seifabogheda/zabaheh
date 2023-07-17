@@ -14,7 +14,6 @@ import '../../features/models/user_model.dart';
 import '../../features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
 import '../../features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import '../../features/presentation/auth/screens/select_lang/select_lang_view.dart';
-import '../../features/presentation/main_navigation_bar/cubits/main_navigation_cubit.dart';
 import '../../features/presentation/main_navigation_bar/main_navigation_bar.dart';
 import '../helpers/snack_helper.dart';
 import '../localization/lang_cubit/lang_cubit.dart';

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
+import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/presentation/auth/blocs/register_cubit/register_cubit.dart';
@@ -14,6 +15,7 @@ import '../../../../../../core/base_widgets/my_text.dart';
 import '../../../../../../core/localization/app_localizations.dart';
 import '../../../../../../core/resource/assets_manager.dart';
 import '../../../../../../core/resource/value_manager.dart';
+import '../../../../../models/city_model.dart';
 
 
 class RegisterForm extends StatelessWidget {
@@ -22,7 +24,6 @@ class RegisterForm extends StatelessWidget {
     final GenericCubit<bool> showPassCubit = GenericCubit(false);
     final GenericCubit<bool> showConfirmPassCubit = GenericCubit(false);
     var cubit = RegisterCubit.get(context);
-    final List<String> cities = ["saudi", "Egypt", "اختر بلد"];
     return Form(
         key: cubit.formKey,
         child: Column(
@@ -156,20 +157,23 @@ class RegisterForm extends StatelessWidget {
                 );
               },
             ),
-            DropdownButtonCustom<String>(
+        cubit.state is CitiesLoading ? AppLoaderHelper.showSimpleLoading() :    DropdownButtonCustom<CityModel>(
               hintText: "اختر بلد",
               items: [
-                for (var item in cities)
-                  DropdownMenuItem<String>(
+                for (var item in cubit.cities ?? [])
+                  DropdownMenuItem<CityModel>(
                     value: item,
                     child: Text(
-                      item,
+                      item.nameAr ?? '',
                     ),
                   )
               ],
-              dropDownValue: cities.last,
+              dropDownValue: cubit.cities?.first,
               onChangeAction: (v) {
                 log("change : $v");
+                cubit.selectedCity = v;
+                log("change : ${cubit.selectedCity?.nameAr}");
+
               },
             )
           ],

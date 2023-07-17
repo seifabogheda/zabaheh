@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/localization/app_localizations.dart';
-import '../../../../main_navigation_bar/cubits/main_navigation_cubit.dart';
 import '../../../../main_navigation_bar/main_navigation_bar.dart';
 import '../../../blocs/register_cubit/register_cubit.dart';
 import '../../register/register_view.dart';
@@ -31,9 +30,7 @@ class LoginButtons extends StatelessWidget {
               return CustomButton(
                 title: tr(context, 'login'),
                 onTap: () {
-                  NavigationService.removeUntil(BlocProvider(
-                      create: (context) => BottomNavCubit(),
-                      child: MainNavigationBar()));
+                  NavigationService.removeUntil(MainNavigationBar());
                 },
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
               );
@@ -73,7 +70,7 @@ class LoginButtons extends StatelessWidget {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       NavigationService.navigateTo(BlocProvider(
-                        create: (context) => RegisterCubit(),
+                        create: (context) => RegisterCubit()..getCities(),
                         child: RegisterView(),
                       ));
                     })

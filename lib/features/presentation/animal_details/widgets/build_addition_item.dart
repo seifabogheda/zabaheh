@@ -7,6 +7,8 @@ import 'package:base_flutter/features/models/option_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubits/add_to_cart_cubit/add_to_cart_cubit.dart';
+
 class BuildAdditionItem extends StatelessWidget {
   final OptionModel model;
 
@@ -15,6 +17,9 @@ class BuildAdditionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GenericCubit<int> radioCubit = GenericCubit(0);
+    return BlocBuilder<AddToCartCubit, AddToCartState>(
+  builder: (context, state) {
+    var cubit = AddToCartCubit.get(context);
     return Container(
       color: ColorManager.white,
       margin: EdgeInsets.symmetric(vertical: 5),
@@ -39,7 +44,10 @@ class BuildAdditionItem extends StatelessWidget {
                           groupValue: state.data,
                           onChanged: (value) {
                             radioCubit.onUpdateData(value!);
-                            log("log radio : ${radioCubit.state.data}");
+                            cubit.options?.add(value);
+
+                            log("log radio : ${model.optionValues?[index].id}");
+                            log("update options : ${cubit.options?.length}");
                           },
                         );
                       },
@@ -68,5 +76,7 @@ class BuildAdditionItem extends StatelessWidget {
         ],
       ),
     );
+  },
+);
   }
 }

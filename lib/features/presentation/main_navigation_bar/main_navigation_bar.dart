@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/resource/color_manager.dart';
 import '../cart/cart_view.dart';
+import '../cart/cubits/cart_cubit/cart_cubit.dart';
 import '../home/home_view.dart';
 import '../more/more_view.dart';
 import '../orders/orders_view.dart';
@@ -29,7 +30,10 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
       child: HomeView(),
     ),
     OrdersView(),
-    CartView(),
+    BlocProvider(
+      create: (context) => CartCubit(),
+      child: CartView(),
+    ),
     MoreView()
   ];
 

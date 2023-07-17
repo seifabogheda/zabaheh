@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/features/presentation/home/cubits/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,20 +22,29 @@ class HomeBody extends StatelessWidget {
         BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             if (state is HomeLoading) {
-              return Expanded(child: Center(child: AppLoaderHelper.showSimpleLoading(),));
+              return Expanded(
+                  child: Center(
+                child: AppLoaderHelper.showSimpleLoading(),
+              ));
             } else {
               return state is HomeSuccess
                   ? Expanded(
                       child: ListView.builder(
                         itemCount: state.home.length,
-                        itemBuilder: (_, index) {
+                          itemBuilder: (_, index) {
                           return HomeList(
                             model: state.home[index],
                           );
                         },
                       ),
                     )
-                  : SizedBox();
+                  : Expanded(
+                      child: Center(
+                        child: MyText(
+                          title: 'No Data',
+                        ),
+                      ),
+                    );
             }
           },
         ),

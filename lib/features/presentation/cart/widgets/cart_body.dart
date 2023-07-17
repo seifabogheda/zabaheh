@@ -1,7 +1,10 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/helpers/app_loader_helper.dart';
+import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
 import 'package:base_flutter/features/presentation/cart/widgets/cart_payment_way.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cart_coupon.dart';
 import 'cart_details.dart';

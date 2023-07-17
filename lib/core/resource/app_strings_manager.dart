@@ -10,6 +10,16 @@ class AppStringsManager{
   static const String home = "/api/get-categories-products";
   static const String options = "/api/get-option-with-values";
   static const String productDetails = "/api/get-product-byId/";
+  static const String allProducts = "/api/get-product-category/";
+  static const String addToCart = "/api/add-to-cart";
+  static const String deleteProduct = "/api/delete-product-cart/";
+  static const String deleteAllProducts = "/api/delete-all-product-cart";
+  static const String updateCart = "/api/update-cart/";
+  static const String cartProducts = "/api/get-cart-products";
+  static const String deliveryTime = "/api/delivery-time";
+  static const String currentOrder = "/api/user-current-orders?page=";
+  static const String completedOrder = "/api/user-complete-orders?page=";
+  static const String cities = "/api/cities";
   static const String notFound = "Not Found Page";
   static const String hello = "hello";
   static const String baseUrl = "https://zabaih.thecodetime.com/";

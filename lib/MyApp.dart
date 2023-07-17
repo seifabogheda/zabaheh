@@ -5,9 +5,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/localization/app_localizations.dart';
 import 'core/localization/lang_cubit/lang_cubit.dart';
 import 'core/resource/navigation_service.dart';
+import 'features/presentation/animal_details/cubits/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
 import 'features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import 'features/presentation/auth/screens/splash/view.dart';
+import 'features/presentation/main_navigation_bar/cubits/main_navigation_cubit.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -23,9 +25,14 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider<AuthCubit>(
           create: (BuildContext context) => AuthCubit(),
+        ), BlocProvider<BottomNavCubit>(
+          create: (BuildContext context) => BottomNavCubit(),
         ),
         BlocProvider<UserCubit>(
           create: (BuildContext context) => UserCubit(),
+        ),
+        BlocProvider<AddToCartCubit>(
+          create: (BuildContext context) => AddToCartCubit(),
         ),
       ],
       child: BlocBuilder<LangCubit, ChangeLangState>(

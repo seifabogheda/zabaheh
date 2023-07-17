@@ -4,6 +4,8 @@ import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubits/add_to_cart_cubit/add_to_cart_cubit.dart';
+
 class BuildQty extends StatelessWidget {
   final GenericCubit<int> quantityCubit = GenericCubit(0);
 
@@ -26,6 +28,8 @@ class BuildQty extends StatelessWidget {
               InkWell(
                 onTap: () {
                   quantityCubit.onUpdateData(state.data + 1);
+                  context.read<AddToCartCubit>().quantity =
+                      quantityCubit.state.data;
                 },
                 child: CircleAvatar(
                   backgroundColor: ColorManager.green,
@@ -45,6 +49,8 @@ class BuildQty extends StatelessWidget {
                 onTap: () {
                   if (state.data > 0) {
                     quantityCubit.onUpdateData(state.data - 1);
+                    context.read<AddToCartCubit>().quantity =
+                        quantityCubit.state.data;
                   }
                 },
                 child: CircleAvatar(

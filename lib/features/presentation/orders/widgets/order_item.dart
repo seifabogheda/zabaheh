@@ -7,15 +7,19 @@ import 'package:base_flutter/features/presentation/order_details/order_details_v
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../models/orders_model.dart';
+
 class OrderItem extends StatelessWidget {
+  final OrderData orderData;
+
+  const OrderItem({Key? key, required this.orderData}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ()=>NavigationService.navigateTo(OrderDetailsView()),
       child: Container(
-        height: 120,
-        margin: EdgeInsets.symmetric(vertical: 5),
-        padding: EdgeInsets.symmetric(horizontal: 7),
+        margin: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 7,vertical: 5),
         decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(10),
@@ -34,7 +38,7 @@ class OrderItem extends StatelessWidget {
               ),
               child: CachedImage(
                 url:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA2Nyo6Kgr43mj1hQnuypINqA0RjFtwWujzg&usqp=CAU",
+                    "${orderData.products![0].image}",
                 borderRadius: BorderRadius.circular(15),
                 height: 60,
                 width: 50,
@@ -49,13 +53,13 @@ class OrderItem extends StatelessWidget {
                   Row(
                     children: [
                       MyText(
-                        title: "رقم الطلب : #12354",
+                        title: "رقم الطلب : #${orderData.orderNumber}",
                         color: ColorManager.black,
-                        size: 14,
+                        size: 13,
                       ),
                       Spacer(),
                       MyText(
-                        title: "منذ 1 ساعة",
+                        title: "${orderData.createdAt?.substring(14,19)}",
                         color: ColorManager.grey,
                         size: 10,
                       ),
@@ -64,22 +68,29 @@ class OrderItem extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  ...List.generate(orderData.products?.length ?? 0, (index) => Column(
                     children: [
-                      MyText(
-                        title: "اسم المنتج : ",
-                        color: ColorManager.grey,
-                        size: 10,
-                        fontWeight: FontWeight.normal,
+                      Row(
+                        children: [
+                          MyText(
+                            title: "اسم المنتج : ",
+                            color: ColorManager.grey,
+                            size: 10,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          MyText(
+                            title: "${orderData.products![index].name}",
+                            color: ColorManager.grey,
+                            size: 10,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ],
                       ),
-                      MyText(
-                        title: "وسط نعيمي بلدي",
-                        color: ColorManager.grey,
-                        size: 10,
-                        fontWeight: FontWeight.w700,
+                      SizedBox(
+                        height: 5,
                       ),
                     ],
-                  ),
+                  ),),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
                     child: Divider(
@@ -100,7 +111,7 @@ class OrderItem extends StatelessWidget {
                             size: 12,
                           ),
                           MyText(
-                            title: "جاري التجهيز",
+                            title: "${orderData.orderStatus}",
                             color: ColorManager.primary,
                             size: 12,
                           ),
