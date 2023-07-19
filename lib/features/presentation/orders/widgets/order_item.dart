@@ -16,7 +16,7 @@ class OrderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>NavigationService.navigateTo(OrderDetailsView()),
+      onTap: ()=>NavigationService.navigateTo(OrderDetailsView(id: orderData.id ?? 0,)),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
         padding: EdgeInsets.symmetric(horizontal: 7,vertical: 5),

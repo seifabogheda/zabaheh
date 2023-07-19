@@ -1,4 +1,5 @@
 class GetCartModel {
+  int? id;
   ProductId? productId;
   UserId? userId;
   num? price;
@@ -9,19 +10,21 @@ class GetCartModel {
   GetCartModel(
       {this.productId,
         this.userId,
+        this.id,
         this.price,
         this.quantity,
         this.note,
         this.options});
 
   GetCartModel.fromJson(Map<String, dynamic> json) {
-    productId = json['product_id'] != null
-        ? new ProductId.fromJson(json['product_id'])
+    productId = json['product'] != null
+        ? new ProductId.fromJson(json['product'])
         : null;
     userId =
-    json['user_id'] != null ? new UserId.fromJson(json['user_id']) : null;
+    json['user'] != null ? new UserId.fromJson(json['user']) : null;
     price = json['price'];
     quantity = json['quantity'];
+    id = json['id'];
     note = json['note'];
     options = json['options'].cast<String>();
   }
@@ -29,15 +32,16 @@ class GetCartModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.productId != null) {
-      data['product_id'] = this.productId!.toJson();
+      data['product'] = this.productId!.toJson();
     }
     if (this.userId != null) {
-      data['user_id'] = this.userId!.toJson();
+      data['user'] = this.userId!.toJson();
     }
     data['price'] = this.price;
     data['quantity'] = this.quantity;
     data['note'] = this.note;
     data['options'] = this.options;
+    data['id'] = this.id;
     return data;
   }
 }

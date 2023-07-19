@@ -12,7 +12,9 @@ import 'cubits/add_to_cart_cubit/add_to_cart_cubit.dart';
 class AnimalDetailsView extends StatelessWidget {
   final String title;
   final int productId;
-  const AnimalDetailsView({Key? key, required this.title, required this.productId}) : super(key: key);
+  const AnimalDetailsView(
+      {Key? key, required this.title, required this.productId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +29,42 @@ class AnimalDetailsView extends StatelessWidget {
         color: ColorManager.white,
         child: BlocBuilder<AddToCartCubit, AddToCartState>(
           builder: (context, state) {
-
-            switch(state.addToCartRequestState){
+            switch (state.addToCartRequestState) {
               case RequestState.init:
-                return CustomButton(title: 'أضف للسلة', onTap: () {
-                  context.read<AddToCartCubit>().addToCart();
-                },);
+                return CustomButton(
+                  title: 'أضف للسلة',
+                  onTap: () {
+                    context.read<AddToCartCubit>().addToCart();
+                  },
+                );
               case RequestState.loaded:
                 // TODO: Handle this case.
                 break;
               case RequestState.error:
-                return CustomButton(title: 'أضف للسلة', onTap: () {
-                  context.read<AddToCartCubit>().addToCart();
-                },);
+                return CustomButton(
+                  title: 'أضف للسلة',
+                  onTap: () {
+                    context.read<AddToCartCubit>().addToCart();
+                  },
+                );
               case RequestState.loading:
-                return Center(child: AppLoaderHelper.showSimpleLoading(),);
-              default: return CustomButton(title: 'أضف للسلة', onTap: () {
-                context.read<AddToCartCubit>().addToCart();
-              },);
+                return Center(
+                  child: AppLoaderHelper.showSimpleLoading(),
+                );
+              default:
+                return CustomButton(
+                  title: 'أضف للسلة',
+                  onTap: () {
+                    context.read<AddToCartCubit>().addToCart();
+                  },
+                );
             }
-            return CustomButton(title: 'أضف للسلة', onTap: () {
-              context.read<AddToCartCubit>().addToCart();
-            },);
+            return CustomButton(
+              title: 'أضف للسلة',
+              onTap: () {
+                context.read<AddToCartCubit>().addToCart();
+              },
+            );
           },
         ),
       ),

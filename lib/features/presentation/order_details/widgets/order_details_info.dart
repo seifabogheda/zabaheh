@@ -3,9 +3,13 @@ import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/order_details_model.dart';
 import 'order_details_info_item.dart';
 
 class OrderDetailsInfo extends StatelessWidget {
+  final OrderDetailsModel? model;
+
+  const OrderDetailsInfo({Key? key,  this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,16 +32,16 @@ class OrderDetailsInfo extends StatelessWidget {
             ),
           ),
           Divider(),
-          OrderDetailsInfoItem(title: 'رقم الطلب', value: '#1907', neeWhiteColor: true,),
-          OrderDetailsInfoItem(title: 'تاريخ التوصيل', value: '02/01/2023', neeWhiteColor: false,),
-          OrderDetailsInfoItem(title: 'وقت التوصيل', value: '2 ساعة', neeWhiteColor: true,),
+          OrderDetailsInfoItem(title: 'رقم الطلب', value: '#${model?.orderNumber ?? 0}', neeWhiteColor: true,),
+          OrderDetailsInfoItem(title: 'تاريخ التوصيل', value: '${model?.deliveryDate ?? 0}', neeWhiteColor: false,),
+          OrderDetailsInfoItem(title: 'وقت التوصيل', value: '${model?.deliveryTime?.from} : ${model?.deliveryTime?.to}', neeWhiteColor: true,),
           OrderDetailsInfoItem(title: 'طريقة الدفع', value: 'كاش', neeWhiteColor: false,),
-          OrderDetailsInfoItem(title: 'عنوان التوصيل', value: 'الرياض', neeWhiteColor: true,),
-          OrderDetailsInfoItem(title: 'قيمة الطلب', value: '50 رس', neeWhiteColor: false,),
-          OrderDetailsInfoItem(title: 'قيمة التوصيل', value: '10 رس', neeWhiteColor: true,),
-          OrderDetailsInfoItem(title: 'قيمة الخصم', value: '40 رس', neeWhiteColor: false,),
-          OrderDetailsInfoItem(title: 'القيمة المضافة', value: '00 رس', neeWhiteColor: true,),
-          OrderDetailsInfoItem(title: 'المجموع الكلي', value: '50 رس', neeWhiteColor: false,needGreenColor: true,),
+          OrderDetailsInfoItem(title: 'عنوان التوصيل', value: '${model?.location?.address ?? ''}', neeWhiteColor: true,),
+          OrderDetailsInfoItem(title: 'قيمة الطلب', value: '${model?.subtotal ?? 0} رس', neeWhiteColor: false,),
+          OrderDetailsInfoItem(title: 'قيمة التوصيل', value: '${model?.shippingCost} رس', neeWhiteColor: true,),
+          OrderDetailsInfoItem(title: 'قيمة الخصم', value: '${model?.couponDiscount} رس', neeWhiteColor: false,),
+          OrderDetailsInfoItem(title: 'القيمة المضافة', value: '${model?.valueAdded ?? 0} %', neeWhiteColor: true,),
+          OrderDetailsInfoItem(title: 'المجموع الكلي', value: '${model?.total ?? 0} رس', neeWhiteColor: false,needGreenColor: true,),
         ],
       ),
     );

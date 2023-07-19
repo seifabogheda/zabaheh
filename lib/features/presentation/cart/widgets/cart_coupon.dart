@@ -1,9 +1,14 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
+import 'package:base_flutter/core/utils/enums.dart';
+import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
+import 'package:base_flutter/features/presentation/cart/cubits/coupon_cubit/coupon_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/resource/color_manager.dart';
@@ -11,6 +16,7 @@ import '../../../../core/resource/color_manager.dart';
 class CartCoupon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var cartCubit = context.read<CartCubit>();
     return Container(
       height: 100,
       width: context.width * 0.8,
@@ -30,19 +36,32 @@ class CartCoupon extends StatelessWidget {
           ),
           Expanded(
               child: CustomTextField(
-            validator: (value) => value?.noValidate(),
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
-            hint: "أضف كوبون الخصم",
-          )),
-
-          CustomButton(
-            title: "تفعيل",
-            onTap: () {},
-            width: 80,
-            height: 35,
-            color: ColorManager.green,
-          ),
+                validator: (value) => value?.noValidate(),
+                fieldTypes: FieldTypes.normal,
+                type: TextInputType.text,
+                controller: cartCubit.couponController,
+                hint: "أضف كوبون الخصم",
+              )),
+          if(cartCubit.state.couponState == RequestState.init)
+            CustomButton(
+              title: "تفعيل",
+              onTap: () {
+                cartCubit.checkCoupon();
+              },
+              width: 80,
+              height: 35,
+              color: ColorManager.green,
+            ),
+          if(cartCubit.state.couponState == RequestState.loading)
+            AppLoaderHelper.showLoadingView(),
+          if(cartCubit.state.couponState == RequestState.loaded)
+            CustomButton(
+              title: "تفعيل",
+              onTap: () {},
+              width: 80,
+              height: 35,
+              color: ColorManager.grey,
+            ),
         ],
       ),
     );

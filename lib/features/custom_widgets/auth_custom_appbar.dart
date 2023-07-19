@@ -22,6 +22,7 @@ class AuthCustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: scaffoldColor ?? ColorManager.white,
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Container(

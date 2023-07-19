@@ -1,8 +1,10 @@
 import '../models/add_to_cart_model.dart';
 import '../models/all_cart_model.dart';
 import '../models/city_model.dart';
+import '../models/create_order_model.dart';
 import '../models/home_model.dart';
 import '../models/option_model.dart';
+import '../models/order_details_model.dart';
 import '../models/orders_model.dart';
 import '../models/product_model.dart';
 import '../models/register_model.dart';
@@ -40,4 +42,8 @@ abstract class BaseRepo {
   // orders
   Future<OrdersModel?> currentOrders(int page);
   Future<OrdersModel?> completedOrders(int page);
+  Future<OrderDetailsModel?> orderDetails(int id);
+  Future<bool> cancelOrder(int id, String reason);
+  Future<String?> checkCoupon(String coupon);
+  Future<bool> createOrder(CreateOrderModel model);
 }

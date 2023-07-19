@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:base_flutter/features/models/home_model.dart';
@@ -13,7 +14,9 @@ import '../../core/utils/utils_imports.dart';
 import '../models/add_to_cart_model.dart';
 import '../models/all_cart_model.dart';
 import '../models/city_model.dart';
+import '../models/create_order_model.dart';
 import '../models/option_model.dart';
+import '../models/order_details_model.dart';
 import '../models/orders_model.dart';
 import '../models/product_model.dart';
 import '../models/register_model.dart';
@@ -294,6 +297,7 @@ class RepoImpl extends BaseRepo {
     }
     return null;
   }
+
   Future<OrdersModel?> completedOrders(int page) async {
     var data = await DioHelper().get(
       url: AppStringsManager.completedOrder + '$page',
@@ -302,5 +306,55 @@ class RepoImpl extends BaseRepo {
       return OrdersModel.fromJson(data["data"]);
     }
     return null;
+  }
+
+  Future<OrderDetailsModel?> orderDetails(int id) async {
+    var data = await DioHelper().get(
+      url: AppStringsManager.orderDetails + '$id',
+    );
+    if (data['data'] != null) {
+      return OrderDetailsModel.fromJson(data["data"]);
+    }
+    return null;
+  }
+
+  Future<bool> cancelOrder(int id, String reason) async {
+    var data = await DioHelper().post(
+      url: AppStringsManager.cancelOrder,
+      body: {'order_id': id,'reason' : reason},
+    );
+    if (data != null) {
+      SnackBarHelper.showBasicSnack(msg: data['message']);
+      // NavigationService.removeUntil(MainNavigationBar());
+      return true;
+    } else {
+      return false;
+    }
+  }
+  Future<String?> checkCoupon(String coupon) async {
+    const JsonEncoder encoder = JsonEncoder();
+    var data =  await DioHelper().post(
+      url: AppStringsManager.checkCoupon,
+      body: {'name' : coupon},
+    );
+    if(data != null){
+      SnackBarHelper.showBasicSnack(msg: data["message"]);
+      return data['data']['discount'];
+    }else{
+      return null;
+    }
+  }
+  Future<bool> createOrder(CreateOrderModel model) async{
+    var data = await DioHelper().post(
+      url: AppStringsManager.createOrder,
+      body: model.toJson(),
+    );
+    if (data != null) {
+      SnackBarHelper.showBasicSnack(msg: data['message']);
+      NavigationService.removeUntil(MainNavigationBar());
+      return true;
+    } else {
+      return false;
+    }
   }
 }

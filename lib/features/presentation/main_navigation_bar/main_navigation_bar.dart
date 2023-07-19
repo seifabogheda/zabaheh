@@ -31,7 +31,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
     ),
     OrdersView(),
     BlocProvider(
-      create: (context) => CartCubit(),
+      create: (context) => CartCubit()..getCart(),
       child: CartView(),
     ),
     MoreView()

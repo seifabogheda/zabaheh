@@ -4,3 +4,10 @@ enum RequestState{
   loaded,
   error,
 }
+
+enum OrderState{
+  pending,
+  onway,
+  completed,
+  cancelled,
+}
