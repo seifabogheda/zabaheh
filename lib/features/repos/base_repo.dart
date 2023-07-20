@@ -3,11 +3,14 @@ import '../models/all_cart_model.dart';
 import '../models/city_model.dart';
 import '../models/create_order_model.dart';
 import '../models/home_model.dart';
+import '../models/notifications_model.dart';
 import '../models/option_model.dart';
 import '../models/order_details_model.dart';
 import '../models/orders_model.dart';
 import '../models/product_model.dart';
 import '../models/register_model.dart';
+import '../models/settings_model.dart';
+import '../models/slider_model.dart';
 import '../models/time_model.dart';
 import '../models/update_profile_model.dart';
 
@@ -46,4 +49,15 @@ abstract class BaseRepo {
   Future<bool> cancelOrder(int id, String reason);
   Future<String?> checkCoupon(String coupon);
   Future<bool> createOrder(CreateOrderModel model);
+
+  // settings
+  Future<List<SettingsModel>> settings();
+  Future<bool> contactUs(String name, String phone,String message);
+
+  // slider
+  Future<List<SliderModel>> slider();
+  Future<List<Products>> search(String search);
+
+  // notifications
+  Future<List<NotificationModel>> notifications();
 }

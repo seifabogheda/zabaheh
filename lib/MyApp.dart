@@ -10,6 +10,7 @@ import 'features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
 import 'features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import 'features/presentation/auth/screens/splash/view.dart';
 import 'features/presentation/main_navigation_bar/cubits/main_navigation_cubit.dart';
+import 'features/presentation/more/cubits/settings_cubit/settings_cubit.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -33,6 +34,8 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider<AddToCartCubit>(
           create: (BuildContext context) => AddToCartCubit(),
+        ),BlocProvider<SettingsCubit>(
+          create: (BuildContext context) => SettingsCubit()..getSettings(),
         ),
       ],
       child: BlocBuilder<LangCubit, ChangeLangState>(

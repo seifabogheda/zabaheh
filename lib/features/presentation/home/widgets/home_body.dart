@@ -4,6 +4,7 @@ import 'package:base_flutter/features/presentation/home/cubits/home_cubit/home_c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubits/slider_cubit/slider_cubit.dart';
 import 'home_list.dart';
 import 'home_swiper.dart';
 
@@ -15,7 +16,10 @@ class HomeBody extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        HomeSwiper(),
+        BlocProvider(
+          create: (context) => SliderCubit()..getSlider(),
+          child: HomeSwiper(),
+        ),
         SizedBox(
           height: 10,
         ),
@@ -24,27 +28,27 @@ class HomeBody extends StatelessWidget {
             if (state is HomeLoading) {
               return Expanded(
                   child: Center(
-                child: AppLoaderHelper.showSimpleLoading(),
-              ));
+                    child: AppLoaderHelper.showSimpleLoading(),
+                  ));
             } else {
               return state is HomeSuccess
                   ? Expanded(
-                      child: ListView.builder(
-                        itemCount: state.home.length,
-                          itemBuilder: (_, index) {
-                          return HomeList(
-                            model: state.home[index],
-                          );
-                        },
-                      ),
-                    )
-                  : Expanded(
-                      child: Center(
-                        child: MyText(
-                          title: 'No Data',
-                        ),
-                      ),
+                child: ListView.builder(
+                  itemCount: state.home.length,
+                  itemBuilder: (_, index) {
+                    return HomeList(
+                      model: state.home[index],
                     );
+                  },
+                ),
+              )
+                  : Expanded(
+                child: Center(
+                  child: MyText(
+                    title: 'No Data',
+                  ),
+                ),
+              );
             }
           },
         ),

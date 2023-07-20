@@ -1,55 +1,54 @@
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
+import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
+import 'package:base_flutter/core/utils/enums.dart';
 import 'package:base_flutter/features/custom_widgets/animal_item.dart';
+import 'package:base_flutter/features/presentation/search/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/product_model.dart';
 
 class SearchBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          CustomTextField(
-            validator: (value) => value?.noValidate(),
-            fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
-            hint: "ابحث عما تريد...",
-            suffixIcon: Icon(Icons.search),
+    return BlocBuilder<SearchCubit, SearchState>(
+      builder: (context, state) {
+        return Expanded(
+          child: Column(
+            children: [
+              CustomTextField(
+                validator: (value) => value?.noValidate(),
+                fieldTypes: FieldTypes.normal,
+                type: TextInputType.text,
+                hint: "ابحث عما تريد...",
+                suffixIcon: Icon(Icons.search),
+                controller: context.read<SearchCubit>().searchController,
+                onFieldSubmitted: (value){
+                  context.read<SearchCubit>().search();
+                },
+              ),
+              if(state.searchState == RequestState.init)
+                Center(child: MyText(title: "ابدا بالبحث",),),
+              if(state.searchState == RequestState.loading)
+                Center(child: AppLoaderHelper.showSimpleLoading(),),
+              if(state.searchState == RequestState.loaded)
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(top: 10),
+                    itemCount: context.read<SearchCubit>().state.products.length,
+                    itemBuilder: (context, index) {
+                      return AnimalItem(product: context.read<SearchCubit>().state.products[index],);
+                    },
+                  ),
+                )
+
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.only(top: 10),
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: MyText(
-                            title: "حاشي بلدي",
-                            size: 16,
-                            color: ColorManager.black,
-                          ),
-                        ),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.start,
-                    ),
-                    SizedBox(height: 15,),
-                    ...List.generate(2, (index) =>AnimalItem(product: Products(),),),
-                    SizedBox(height: 15,),
-                  ],
-                );
-              },
-            ),
-          )
-        ],
-      ),
+        );
+      },
     );
   }
 }

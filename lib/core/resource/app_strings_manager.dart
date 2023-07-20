@@ -17,6 +17,10 @@ class AppStringsManager{
   static const String updateCart = "/api/update-cart/";
   static const String cartProducts = "/api/get-cart-products";
   static const String deliveryTime = "/api/delivery-time";
+  static const String settings = "/api/settings";
+  static const String search = "/api/search/";
+  static const String notifications = "/api/get-all-notifications";
+  static const String contactUs = "/api/contact-us";
   static const String currentOrder = "/api/user-current-orders?page=";
   static const String completedOrder = "/api/user-complete-orders?page=";
   static const String orderDetails = "/api/order-details/";

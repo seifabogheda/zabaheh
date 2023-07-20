@@ -1,4 +1,6 @@
+import 'package:base_flutter/features/presentation/more/cubits/contact_us_cubit/contact_us_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:base_flutter/core/helpers/validator.dart';
@@ -15,7 +17,9 @@ import '../../../../../../core/resource/value_manager.dart';
 class ContactUsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<ContactUsCubit>();
     return Form(
+      key: cubit.formKey,
       child: Column(
         children: [
           CustomTextField(
@@ -24,12 +28,14 @@ class ContactUsForm extends StatelessWidget {
             type: TextInputType.text,
             upperText: "الاسم",
             hint: "رجاء ادخال الاسم",
+            controller: cubit.nameController,
           ),
           CustomTextField(
             upperText: tr(context,"phone"),
             validator: (value) => value?.validatePhone(context),
             fieldTypes: FieldTypes.normal,
             type: TextInputType.phone,
+            controller: cubit.phoneController,
             hint: tr(context,'phone'),
             suffixIcon: Container(
               width: 100,
@@ -65,6 +71,7 @@ class ContactUsForm extends StatelessWidget {
             type: TextInputType.text,
             upperText: "الرسالة",
             hint: "برجاء كتابة الرساله",
+            controller: cubit.messageController,
             maxLines: 5,
           ),
         ],

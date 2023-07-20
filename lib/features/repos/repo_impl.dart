@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:base_flutter/features/models/home_model.dart';
@@ -15,11 +14,14 @@ import '../models/add_to_cart_model.dart';
 import '../models/all_cart_model.dart';
 import '../models/city_model.dart';
 import '../models/create_order_model.dart';
+import '../models/notifications_model.dart';
 import '../models/option_model.dart';
 import '../models/order_details_model.dart';
 import '../models/orders_model.dart';
 import '../models/product_model.dart';
 import '../models/register_model.dart';
+import '../models/settings_model.dart';
+import '../models/slider_model.dart';
 import '../models/time_model.dart';
 import '../presentation/auth/screens/reset_password/reset_password_view.dart';
 import '../presentation/main_navigation_bar/main_navigation_bar.dart';
@@ -332,7 +334,6 @@ class RepoImpl extends BaseRepo {
     }
   }
   Future<String?> checkCoupon(String coupon) async {
-    const JsonEncoder encoder = JsonEncoder();
     var data =  await DioHelper().post(
       url: AppStringsManager.checkCoupon,
       body: {'name' : coupon},
@@ -357,4 +358,82 @@ class RepoImpl extends BaseRepo {
       return false;
     }
   }
+  // Settings
+  Future<List<SettingsModel>> settings() async {
+    var data = await DioHelper().get(
+      url: AppStringsManager.settings,
+    );
+    if (data != null) {
+      log("cart : $data");
+      return List<SettingsModel>.from(data["data"].map(
+            (e) => SettingsModel.fromJson(e),
+      ));
+    } else {
+      return [];
+    }
+  }
+  Future<bool> contactUs(String name, String phone,String message) async{
+    var data = await DioHelper().post(
+      url: AppStringsManager.contactUs,
+      body: {
+        "name" : name,
+        "phone":phone,
+        "message" : message,
+      },
+    );
+    if (data != null) {
+      SnackBarHelper.showBasicSnack(msg: data['message']);
+      NavigationService.back();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // slider
+  Future<List<SliderModel>> slider() async {
+    var data = await DioHelper().get(
+      url: AppStringsManager.settings,
+    );
+    if (data != null) {
+      log("cart : $data");
+      return List<SliderModel>.from(data["data"].map(
+            (e) => SliderModel.fromJson(e),
+      ));
+    } else {
+      return [];
+    }
+  }
+  Future<List<Products>> search(String search) async {
+    var data = await DioHelper().get(
+      url: AppStringsManager.search + "$search",
+    );
+    if (data != null) {
+      log("cart : $data");
+      return List<Products>.from(data["data"].map(
+            (e) => Products.fromJson(e),
+      ));
+    } else {
+      return [];
+    }
+  }
+  // notifications
+
+  Future<List<NotificationModel>> notifications() async {
+    var data = await DioHelper().get(
+      url: AppStringsManager.notifications,
+    );
+    if (data != null) {
+      log("cart : $data");
+      return List<NotificationModel>.from(data["data"].
+      map(
+            (e) => NotificationModel.fromJson(e),
+      ));
+    } else {
+      return [];
+    }
+  }
+
+
+
 }

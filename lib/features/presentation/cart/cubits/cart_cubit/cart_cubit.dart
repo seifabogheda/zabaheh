@@ -106,7 +106,6 @@ class CartCubit extends Cubit<CartState> {
      coupon = await repo.checkCoupon(couponController.text);
      if (coupon != '') {
        emit(state.copyWith(couponState: RequestState.loaded));
-       num couponDiscount = num.parse(coupon ?? '');
        num result = state.cartPrice - 10;
        log("result price :$result");
        print("result price :$result");

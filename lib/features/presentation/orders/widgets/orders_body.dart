@@ -14,6 +14,7 @@ class OrdersBody extends StatelessWidget {
         TabBarBody(),
         Flexible(
           child: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
               BlocProvider(
                 create: (context) =>

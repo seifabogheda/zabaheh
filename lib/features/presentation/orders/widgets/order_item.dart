@@ -38,7 +38,7 @@ class OrderItem extends StatelessWidget {
               ),
               child: CachedImage(
                 url:
-                    "${orderData.products![0].image}",
+                    "${orderData.products?.first.image ?? ''}",
                 borderRadius: BorderRadius.circular(15),
                 height: 60,
                 width: 50,

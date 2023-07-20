@@ -6,7 +6,6 @@ import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/utils/enums.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
-import 'package:base_flutter/features/presentation/cart/cubits/coupon_cubit/coupon_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

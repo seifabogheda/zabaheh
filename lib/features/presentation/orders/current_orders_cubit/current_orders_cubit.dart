@@ -34,11 +34,11 @@ class CurrentOrdersCubit extends Cubit<CurrentOrdersState> {
     var data = await orderRepo.completedOrders(page);
     if (data!.orderData?.length != 0 && data.nextPageUrl != null) {
       emit(CurrentOrdersSuccess(data));
-      log("data is ${data.orderData?.first.id}");
+      log("data is 0 ${data.orderData?.first.id}");
       page++;
     } else if (data.nextPageUrl == null) {
       emit(CurrentOrdersSuccess(data));
-      log("data is ${data.orderData?.first.id}");
+      log("data is ${data.orderData?.length}");
     } else {
       emit(CurrentOrdersFailed());
     }

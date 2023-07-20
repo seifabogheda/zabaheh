@@ -1,4 +1,9 @@
+import 'package:base_flutter/core/base_widgets/my_text.dart';
+import 'package:base_flutter/core/helpers/app_loader_helper.dart';
+import 'package:base_flutter/core/utils/enums.dart';
+import 'package:base_flutter/features/presentation/home/cubits/slider_cubit/slider_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 
 import '../../../../core/base_widgets/cache_image.dart';
@@ -6,29 +11,38 @@ import '../../../../core/base_widgets/cache_image.dart';
 class HomeSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<String> slider = [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA2Nyo6Kgr43mj1hQnuypINqA0RjFtwWujzg&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9dzIHVAv1xLixcBkhvrQczkClOugFe5qPtg&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCDoVVCv83tk1XnWVmIB3niuOI7X1A3m8W3A&usqp=CAU"
-    ];
-    return Container(
-      height: 140,
-      child: Swiper(
-        pagination: new SwiperPagination(),
-        itemCount: slider.length,
-        autoplay: true,
-        itemWidth: MediaQuery.of(context).size.width * .9,
-        layout: SwiperLayout.DEFAULT,
-        itemBuilder: (BuildContext context, int index) {
+
+    return BlocBuilder<SliderCubit, SliderState>(
+      builder: (context, state) {
+        if(state.sliderState == RequestState.loading){
+          return Center(child: AppLoaderHelper.showSimpleLoading(),);
+        }
+        if(state.sliderState == RequestState.loaded)
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: CachedImage(
-              url: slider[index],
-              borderRadius: BorderRadius.circular(10),
+            height: 140,
+            child: Swiper(
+              pagination: new SwiperPagination(),
+              itemCount: state.sliderList.length,
+              autoplay: true,
+              itemWidth: MediaQuery
+                  .of(context)
+                  .size
+                  .width * .9,
+              layout: SwiperLayout.DEFAULT,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: CachedImage(
+                    url: state.sliderList[index].fileName ?? '',
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                );
+              },
             ),
           );
-        },
-      ),
+        return Center(child: MyText(title: "لا يوجد بيانات",),);
+
+      },
     );
   }
 }
