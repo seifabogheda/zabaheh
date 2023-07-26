@@ -4,6 +4,7 @@ import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
+import 'package:base_flutter/core/localization/lang_cubit/lang_cubit.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/presentation/auth/blocs/register_cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +34,8 @@ class RegisterForm extends StatelessWidget {
               fieldTypes: FieldTypes.normal,
               controller: cubit.firstNameController,
               type: TextInputType.text,
-              upperText: "الاسم الاول",
-              hint: "الرجاء ادخال الاسم الاول",
+              upperText: tr(context, "firstName"),
+              hint: tr(context, "insertFirstName"),
               prefixIcon: Icon(
                 Icons.person,
                 color: ColorManager.primary,
@@ -45,8 +46,8 @@ class RegisterForm extends StatelessWidget {
               fieldTypes: FieldTypes.normal,
               controller: cubit.lastNameController,
               type: TextInputType.text,
-              upperText: "الاسم الاخير",
-              hint: "الرجاء ادخال الاسم الاخير",
+              upperText: tr(context, "insertLastName"),
+              hint: tr(context, "insertLastName"),
               prefixIcon: Icon(
                 Icons.person,
                 color: ColorManager.primary,
@@ -96,8 +97,8 @@ class RegisterForm extends StatelessWidget {
               fieldTypes: FieldTypes.normal,
               type: TextInputType.emailAddress,
               controller: cubit.emailController,
-              upperText: "البريد الالكترونى (اختياري) ",
-              hint: "الرجاء ادخال البريد الالكترونى",
+              upperText: tr(context, "mail"),
+              hint: tr(context, "mail"),
               prefixIcon: Icon(
                 Icons.email,
                 color: ColorManager.primary,
@@ -111,8 +112,8 @@ class RegisterForm extends StatelessWidget {
                   fieldTypes:state.data ? FieldTypes.normal : FieldTypes.password,
                   type: TextInputType.text,
                   controller: cubit.passwordController,
-                  upperText: "كلمة المرور",
-                  hint: "الرجاء ادخال كلمة المرور",
+                  upperText: tr(context, "password"),
+                  hint: tr(context, "insertPass"),
                   prefixIcon: Icon(
                     Icons.lock,
                     color: ColorManager.primary,
@@ -139,8 +140,8 @@ class RegisterForm extends StatelessWidget {
                   fieldTypes:state.data ? FieldTypes.normal : FieldTypes.password,
                   controller: cubit.confirmPasswordController,
                   type: TextInputType.text,
-                  upperText: "تأكيد كلمة المرور",
-                  hint: "الرجاء ادخال تأكيد كلمة المرور",
+                  upperText: tr(context, 'confirmPassword'),
+                  hint: tr(context, 'insertConfirmPass'),
                   prefixIcon: Icon(
                     Icons.lock,
                     color: ColorManager.primary,
@@ -158,13 +159,13 @@ class RegisterForm extends StatelessWidget {
               },
             ),
         cubit.state is CitiesLoading ? AppLoaderHelper.showSimpleLoading() :    DropdownButtonCustom<CityModel>(
-              hintText: "اختر بلد",
+              hintText:tr(context, 'selectCity'),
               items: [
                 for (var item in cubit.cities ?? [])
                   DropdownMenuItem<CityModel>(
                     value: item,
                     child: Text(
-                      item.nameAr ?? '',
+                    context.read<LangCubit>().state.locale.languageCode == 'ar' ?   item.nameAr  : item.nameEn ?? '',
                     ),
                   )
               ],

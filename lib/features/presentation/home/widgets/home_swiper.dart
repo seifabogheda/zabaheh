@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 
 import '../../../../core/base_widgets/cache_image.dart';
+import '../../../../core/localization/app_localizations.dart';
 
 class HomeSwiper extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class HomeSwiper extends StatelessWidget {
               },
             ),
           );
-        return Center(child: MyText(title: "لا يوجد بيانات",),);
+        return Center(child: MyText(title: tr(context,"noData"),),);
 
       },
     );

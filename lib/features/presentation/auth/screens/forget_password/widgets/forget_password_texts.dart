@@ -15,7 +15,7 @@ class ForgetPasswordTexts extends StatelessWidget {
         // SizedBox(height: context.height*0.1,),
         MyText(title: tr(context, "forgetPassword"),size: 22,fontWeight: FontWeight.bold,color: ColorManager.black,),
         SizedBox(height: 5,),
-        MyText(title: "برجاء كتابة رقم الهاتف لارسال كود التحقق",size: 14,fontWeight: FontWeight.normal,color: ColorManager.grey2,),
+        MyText(title: tr(context, "insertPhoneForForget"),size: 14,fontWeight: FontWeight.normal,color: ColorManager.grey2,),
         SizedBox(height: 25,),
       ],
     );

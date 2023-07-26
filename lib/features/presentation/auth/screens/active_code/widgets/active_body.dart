@@ -23,7 +23,11 @@ class ActiveBody extends StatelessWidget {
               ActiveTexts(),
               ActiveForm(),
               ReceiveCode(),
-              CustomButton(title: tr(context,"confirm"),onTap: (){},width: context.width*0.8,),
+              CustomButton(
+                title: tr(context, "confirm"),
+                onTap: () {},
+                width: context.width * 0.8,
+              ),
             ],
           ),
         ),

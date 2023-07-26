@@ -1,36 +1,22 @@
-
 import 'package:base_flutter/core/base_widgets/cache_image.dart';
+import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 
 class AnimalDetailsSwiper extends StatelessWidget {
+  final String image;
 
+  const AnimalDetailsSwiper({Key? key, required this.image}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final List<String> slider = [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA2Nyo6Kgr43mj1hQnuypINqA0RjFtwWujzg&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9dzIHVAv1xLixcBkhvrQczkClOugFe5qPtg&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCDoVVCv83tk1XnWVmIB3niuOI7X1A3m8W3A&usqp=CAU"
-    ];
-    return Container(
-      height: 140,
-      child: Swiper(
-        pagination: new SwiperPagination(),
-        itemCount: slider.length,
-        autoplay: true,
-        itemWidth: MediaQuery.of(context).size.width * .9,
-        layout: SwiperLayout.DEFAULT,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: CachedImage(
-              url: slider[index],
-              borderRadius: BorderRadius.circular(10),
-            ),
-          );
-        },
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: CachedImage(
+        url: image,
+        haveRadius: true,
+        borderRadius: BorderRadius.circular(8),
+        height: 150,
+        width: context.width,
       ),
-    )
-    ;
+    );
   }
 }

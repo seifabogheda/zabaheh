@@ -3,6 +3,7 @@ import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/utils/enums.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
@@ -39,11 +40,11 @@ class CartCoupon extends StatelessWidget {
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.text,
                 controller: cartCubit.couponController,
-                hint: "أضف كوبون الخصم",
+                hint: tr(context, "insertCoupon"),
               )),
           if(cartCubit.state.couponState == RequestState.init)
             CustomButton(
-              title: "تفعيل",
+              title: tr(context, "active"),
               onTap: () {
                 cartCubit.checkCoupon();
               },
@@ -55,7 +56,7 @@ class CartCoupon extends StatelessWidget {
             AppLoaderHelper.showLoadingView(),
           if(cartCubit.state.couponState == RequestState.loaded)
             CustomButton(
-              title: "تفعيل",
+              title: tr(context, "active"),
               onTap: () {},
               width: 80,
               height: 35,

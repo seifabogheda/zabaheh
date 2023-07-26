@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/more/screens/about/widgets/about_body.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class AboutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MoreScaffold(
-      titleScreen: "من نحن",
+      titleScreen: tr(context, "about"),
       body: AboutBody(),
     );
   }

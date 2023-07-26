@@ -3,6 +3,7 @@ import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/localization/app_localizations.dart';
 import '../../../blocs/timer_cubit/timer_cubit.dart';
 import '../../../blocs/timer_cubit/timer_state.dart';
 
@@ -24,7 +25,7 @@ class _ReceiveCodeState extends State<ReceiveCode> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MyText(
-                  title: "لم تستلم الكود بعد ؟ ",
+                  title: tr(context,"noReceiveCode"),
                   size: 16,
                   color: ColorManager.grey2,
                   fontWeight: FontWeight.w500,
@@ -34,7 +35,7 @@ class _ReceiveCodeState extends State<ReceiveCode> {
                     BlocProvider.of<TimerCubit>(context).startWorkout(59);
                   },
                   child: MyText(
-                    title: "أعد إرسال الكود",
+                    title: tr(context, "sendCode"),
                     size: 14,
                     color: ColorManager.green,
                     fontWeight: FontWeight.w500,

@@ -434,6 +434,23 @@ class RepoImpl extends BaseRepo {
     }
   }
 
-
+// review
+  Future<bool> orderReview(int orderId, num rate,String comment) async{
+    var data = await DioHelper().post(
+      url: AppStringsManager.orderReview,
+      body: {
+        "order_id" : orderId,
+        "rate":rate,
+        "comment" : comment,
+      },
+    );
+    if (data != null) {
+      SnackBarHelper.showBasicSnack(msg: data['message']);
+      NavigationService.removeUntil(MainNavigationBar());
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

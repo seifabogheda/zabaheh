@@ -36,4 +36,8 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     await orderDetailsRepo.cancelOrder(orderId, reason);
     NavigationService.removeUntil(MainNavigationBar());
   }
+  reviewOrder(int orderId,num rate ,String comment) async {
+    SnackBarHelper.showBasicSnack(msg: "جاري اسال التقييم");
+    await orderDetailsRepo.orderReview(orderId, rate ,comment);
+  }
 }

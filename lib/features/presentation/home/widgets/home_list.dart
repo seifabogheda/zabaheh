@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/features/models/home_model.dart';
@@ -40,7 +41,7 @@ class HomeList extends StatelessWidget {
                   ));
                 },
                 child: MyText(
-                  title: 'مشاهدة الكل',
+                  title: tr(context, "seeAll"),
                   color: ColorManager.green,
                   fontWeight: FontWeight.w600,
                   size: 12,

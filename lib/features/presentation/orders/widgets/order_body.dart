@@ -1,5 +1,6 @@
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/orders/current_orders_cubit/current_orders_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,7 @@ class OrderBody extends StatelessWidget {
                 },
               ) : Center(
                   child: MyText(
-                    title: "لا يوجد طلبات",
+                    title: tr(context, "noData"),
                   ))
           );
         }
@@ -32,7 +33,7 @@ class OrderBody extends StatelessWidget {
             child: AppLoaderHelper.showSimpleLoading())
             : Center(
                 child: MyText(
-                title: "لا يوجد طلبات",
+                title:tr(context, "noData"),
               ));
       },
     );

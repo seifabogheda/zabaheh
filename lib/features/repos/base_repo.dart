@@ -60,4 +60,7 @@ abstract class BaseRepo {
 
   // notifications
   Future<List<NotificationModel>> notifications();
+
+  // review
+  Future<bool> orderReview(int orderId, num rate,String comment);
 }

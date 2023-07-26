@@ -2,6 +2,7 @@ import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
 import 'package:base_flutter/core/helpers/ui_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
@@ -11,8 +12,10 @@ import 'package:base_flutter/features/custom_widgets/auth_custom_appbar.dart';
 import 'package:base_flutter/features/presentation/order_details/widgets/order_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../core/helpers/snack_helper.dart';
+import '../../../core/localization/app_localizations.dart';
 import 'cubits/order_details_cubit/order_details_cubit.dart';
 
 class OrderDetailsView extends StatefulWidget {
@@ -28,11 +31,13 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
     with TickerProviderStateMixin {
   late AnimationController controller;
   late TextEditingController reasonController;
+  late TextEditingController commentReviewController;
 
   @override
   initState() {
     super.initState();
     reasonController = TextEditingController();
+    commentReviewController = TextEditingController();
     controller = BottomSheet.createAnimationController(this);
     // Animation duration for displaying the BottomSheet
     controller.duration = const Duration(milliseconds: 600);
@@ -42,10 +47,12 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
     controller.drive(CurveTween(curve: Curves.easeIn));
   }
 
+  final GenericCubit<num> rateCubit = GenericCubit(0.0);
   @override
   void dispose() {
     controller.dispose();
     reasonController.dispose();
+    commentReviewController.dispose();
     super.dispose();
   }
 
@@ -54,7 +61,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
     return BlocProvider(
       create: (context) => OrderDetailsCubit()..orderDetails(widget.id),
       child: AuthCustomAppBar(
-        title: "تفاصيل الطلب",
+        title: tr(context, "orderDetails"),
         needBack: true,
         scaffoldColor: ColorManager.offWhite,
         textColor: ColorManager.green,
@@ -67,24 +74,113 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
               height: 70,
               color: ColorManager.white,
               child: state.orderDetailsModel?.orderStatus ==
-                      OrderState.completed.name
+                      OrderState.pending.name
                   ? CustomButton(
-                      title: "استلام الطلب",
+                      title: tr(context, "receiveOrder"),
                       onTap: () {
-                        // todo : // create rating screen
                         UIHelper.showBottomSheet(
-                            context: context,
-                            controller: controller,
-                            child: Center(
-                              child: Text("Seif Abogheda Number #1"),
+                          context: context,
+                          controller: controller,
+                          child: Center(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  MyText(
+                                    title: tr(context, "rateOrder"),
+                                    color: ColorManager.green,
+                                  ),
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  MyText(
+                                    title: tr(context, "rateComment"),
+                                    color: ColorManager.grey2,
+                                    size: 10,
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  BlocBuilder<GenericCubit<num>,
+                                      GenericState<num>>(
+                                    bloc: rateCubit,
+                                    builder: (context, state) {
+                                      return RatingBar.builder(
+                                        initialRating: 0,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemPadding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        itemBuilder: (context, _) => Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          rateCubit.onUpdateData(rating);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                  CustomTextField(
+                                    validator: (value) => value?.noValidate(),
+                                    fieldTypes: FieldTypes.normal,
+                                    type: TextInputType.text,
+                                    hint: tr(context, "rateComment"),
+                                    controller: commentReviewController,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CustomButton(
+                                          title: tr(context, "sendRate"),
+                                          onTap: () {
+                                            if (commentReviewController
+                                                .text.isNotEmpty) {
+                                              context
+                                                  .read<OrderDetailsCubit>()
+                                                  .reviewOrder(
+                                                      state.orderDetailsModel
+                                                              ?.id ??
+                                                          0,
+                                                      rateCubit.state.data,
+                                                      commentReviewController
+                                                          .text);
+                                            } else {
+                                              SnackBarHelper.showBasicSnack(
+                                                  msg: tr(context,
+                                                      "insertRateComment"));
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: CustomButton(
+                                          title: tr(context, "back"),
+                                          onTap: () {
+                                            NavigationService.back();
+                                          },
+                                          color: ColorManager.offWhite,
+                                          textColor: ColorManager.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                            height: 100);
+                          ),
+                          height: context.height * 0.5,
+                        );
                       },
                     )
                   : state.orderDetailsModel?.orderStatus ==
                           OrderState.pending.name
                       ? CustomButton(
-                          title: "الغاء الطلب",
+                          title: tr(context, "cancel"),
                           onTap: () {
                             UIHelper.showBottomSheet(
                               context: context,
@@ -102,7 +198,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
                                           height: 10,
                                         ),
                                         MyText(
-                                          title: "ماهو سبب إلغاء الطلب ؟",
+                                          title: tr(
+                                              context, "whyOrderCancelReason"),
                                           color: ColorManager.black,
                                         ),
                                         Divider(
@@ -113,14 +210,15 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
                                               value?.noValidate(),
                                           fieldTypes: FieldTypes.normal,
                                           type: TextInputType.text,
-                                          hint: "سبب الغاء الطلب",
+                                          hint:
+                                              tr(context, "cancelOrderReason"),
                                           controller: reasonController,
                                         ),
                                         Row(
                                           children: [
                                             Expanded(
                                               child: CustomButton(
-                                                title: 'تأكيد الالغاء',
+                                                title: tr(context, "confirm"),
                                                 onTap: () {
                                                   if (reasonController
                                                       .text.isNotEmpty) {
@@ -135,14 +233,14 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
                                                                 .text);
                                                   } else {
                                                     SnackBarHelper.showBasicSnack(
-                                                        msg: "اكتب السبب اولا");
+                                                        msg: tr(context, "writeReasonFirst"));
                                                   }
                                                 },
                                               ),
                                             ),
                                             Expanded(
                                               child: CustomButton(
-                                                title: 'تراجع',
+                                                title: tr(context, "back"),
                                                 onTap: () {
                                                   NavigationService.back();
                                                 },

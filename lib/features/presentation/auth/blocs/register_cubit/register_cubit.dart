@@ -68,8 +68,6 @@ class RegisterCubit extends Cubit<RegisterState> {
       } else {
         emit(RegisterInitial());
       }
-    } else {
-      emit(RegisterFailed("يجب اكمال جميع البيانات"));
     }
   }
 }

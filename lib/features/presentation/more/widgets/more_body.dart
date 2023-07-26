@@ -38,14 +38,14 @@ class MoreBody extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
-                title: "معلومات حسابى",
+                title:tr(context, "accountInfo"),
                 size: 12,
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.w600,
               ),
             ),
             MoreItem(
-              titleItem: 'الملف الشخصي',
+              titleItem:tr(context, "profile"),
               imageItem: AssetsManager.profile,
               onTap: () {
                 NavigationService.navigateTo(ProfileView());
@@ -54,14 +54,14 @@ class MoreBody extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
-                title: "إعدادات عامة",
+                title: tr(context, "publicSettings"),
                 size: 12,
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.w600,
               ),
             ),
             MoreItem(
-              titleItem: 'إعدادات اللفة',
+              titleItem: tr(context, "langSettings"),
               imageItem: AssetsManager.translate,
               onTap: () {
                 NavigationService.navigateTo(ChangeLangView());
@@ -70,42 +70,42 @@ class MoreBody extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
-                title: "معلومات عامة",
+                title: tr(context, "otherInfo"),
                 size: 12,
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.w600,
               ),
             ),
             MoreItem(
-              titleItem: 'من نحن',
+              titleItem: tr(context, "about"),
               imageItem: AssetsManager.about,
               onTap: () {
                 NavigationService.navigateTo(AboutView());
               },
             ),
             MoreItem(
-              titleItem: 'تواصل معنا',
+              titleItem: tr(context, "contactUs"),
               imageItem: AssetsManager.contactus,
               onTap: () {
                 NavigationService.navigateTo(ContactUsView());
               },
             ),
             MoreItem(
-              titleItem: 'سياسة الخصوصية',
+              titleItem: tr(context, "policy"),
               imageItem: AssetsManager.policy,
               onTap: () {
                 NavigationService.navigateTo(PolicyView());
               },
             ),
             MoreItem(
-              titleItem: 'الشروط والاحكام',
+              titleItem: tr(context, "terms"),
               imageItem: AssetsManager.terms,
               onTap: () {
                 NavigationService.navigateTo(TermsView());
               },
             ),
             MoreItem(
-              titleItem: 'قيم التطبيق',
+              titleItem: tr(context, "rateApp"),
               imageItem: AssetsManager.wallet,
               onTap: () {},
             ),

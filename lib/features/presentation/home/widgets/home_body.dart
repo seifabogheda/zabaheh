@@ -4,6 +4,7 @@ import 'package:base_flutter/features/presentation/home/cubits/home_cubit/home_c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/localization/app_localizations.dart';
 import '../cubits/slider_cubit/slider_cubit.dart';
 import 'home_list.dart';
 import 'home_swiper.dart';
@@ -45,7 +46,7 @@ class HomeBody extends StatelessWidget {
                   : Expanded(
                 child: Center(
                   child: MyText(
-                    title: 'No Data',
+                    title: tr(context,"noData"),
                   ),
                 ),
               );

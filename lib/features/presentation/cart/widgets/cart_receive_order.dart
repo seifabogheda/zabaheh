@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/base_widgets/custom_drop_down.dart';
 import '../../../../core/base_widgets/my_text.dart';
 import '../../../../core/helpers/adaptive_picker.dart';
+import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/location_address/location_cubit/location_cubit.dart';
 import '../../../../core/resource/color_manager.dart';
 
@@ -71,7 +72,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
     void dateOrder(BuildContext context) {
       AdaptivePicker.datePicker(
         context: context,
-        title: "تاريخ لتوصيل",
+        title: tr(context,"deliveryOrderDate"),
         onConfirm: (time) {
           cubit.dateController.text = time.toString().substring(0, 10);
         },
@@ -90,7 +91,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: "إستلام الطلب:",
+              title: "${tr(context, "receiveOrder")}:",
               color: ColorManager.black,
               size: 14,
             ),
@@ -110,7 +111,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
                             selectWayReceiveOrderCubit.state.data;
                       }),
                   MyText(
-                    title: "توصيل",
+                    title: tr(context, "delivery"),
                     color: state.data == 0
                         ? ColorManager.black
                         : ColorManager.grey2,
@@ -128,7 +129,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
                             selectWayReceiveOrderCubit.state.data;
                       }),
                   MyText(
-                    title: "إستلام من الفرع",
+                    title: tr(context, "fromBranch"),
                     color: state.data == 1
                         ? ColorManager.black
                         : ColorManager.grey2,
@@ -143,9 +144,9 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
             validator: (value) => value?.noValidate(),
             fieldTypes: FieldTypes.clickable,
             type: TextInputType.none,
-            hint: "برجاء تحديد تاريخ التوصيل",
+            hint: tr(context, "deliveryOrderValidation"),
             controller: cubit.dateController,
-            upperText: "تاريخ التوصيل",
+            upperText: tr(context,"deliveryOrderDate"),
           ),
           // BlocListener<LocationCubit, LocationState>(
           //   bloc: locationCubit,
@@ -193,7 +194,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
             builder: (context, state) {
               if (state is GenericUpdateState) {
                 return DropdownButtonCustom<CityModel>(
-                  hintText: "اختر بلد",
+                  hintText: tr(context, "selectCity"),
                   items: [
                     for (var item in state.data)
                       DropdownMenuItem<CityModel>(
@@ -219,7 +220,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: "وقت التوصيل",
+              title: tr(context,"deliveryOrderDate"),
               color: ColorManager.black,
               size: 14,
             ),
@@ -258,7 +259,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
                   } else {
                     return Center(
                       child: MyText(
-                        title: "لا يوجد بيانات",
+                        title: tr(context,"noData"),
                       ),
                     );
                   }
@@ -270,8 +271,8 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
             validator: (value) => value?.noValidate(),
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
-            hint: "في حالة وجود ملاحظات أضف هنا",
-            upperText: "ملاحظاتك",
+            hint: tr(context, "WriteNotesHere"),
+            upperText: tr(context, "addNotes"),
             maxLines: 3,
             controller: cubit.notesController,
           ),

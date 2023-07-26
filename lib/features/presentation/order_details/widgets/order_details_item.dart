@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/base_widgets/cache_image.dart';
 import '../../../../core/base_widgets/my_text.dart';
+import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/resource/color_manager.dart';
 import '../../../models/order_details_model.dart';
 
@@ -26,7 +27,7 @@ class OrderDetailsOrderItem extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: ": تفاصيل الطلب",
+              title: " ${tr(context, "orderDetails")} :",
               color: ColorManager.black,
               size: 14,
             ),
@@ -71,7 +72,8 @@ class OrderDetailsOrderItem extends StatelessWidget {
                             Row(
                               children: [
                                 MyText(
-                                  title: "${productsOrder[index].discountPrice} رس",
+                                  title:
+                                      "${productsOrder[index].discountPrice} ${tr(context, "sr")}",
                                   color: ColorManager.primary,
                                   size: 12,
                                   fontWeight: FontWeight.w700,
@@ -80,7 +82,8 @@ class OrderDetailsOrderItem extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 5),
                                   child: MyText(
-                                    title: "الكمية: 2",
+                                    title:
+                                        "${tr(context, "qty")}: ${productsOrder[index].orderQuantity}",
                                     color: ColorManager.grey,
                                     size: 10,
                                   ),

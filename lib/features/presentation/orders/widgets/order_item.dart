@@ -1,5 +1,6 @@
 import 'package:base_flutter/core/base_widgets/cache_image.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
@@ -53,7 +54,7 @@ class OrderItem extends StatelessWidget {
                   Row(
                     children: [
                       MyText(
-                        title: "رقم الطلب : #${orderData.orderNumber}",
+                        title: "${tr(context, "orderNum")} : #${orderData.orderNumber}",
                         color: ColorManager.black,
                         size: 13,
                       ),
@@ -73,7 +74,7 @@ class OrderItem extends StatelessWidget {
                       Row(
                         children: [
                           MyText(
-                            title: "اسم المنتج : ",
+                            title: "${tr(context, "productName")} : ",
                             color: ColorManager.grey,
                             size: 10,
                             fontWeight: FontWeight.normal,
@@ -106,7 +107,7 @@ class OrderItem extends StatelessWidget {
                             width: 5,
                           ),
                           MyText(
-                            title: "الحالة : ",
+                            title: "${tr(context, "orderStatus")} : ",
                             color: ColorManager.grey,
                             size: 12,
                           ),
@@ -121,7 +122,7 @@ class OrderItem extends StatelessWidget {
                       Row(
                         children: [
                           MyText(
-                            title: "عرض المزيد",
+                            title: tr(context, "showMore"),
                             color: ColorManager.black,
                             size: 10,
                             fontWeight: FontWeight.w600,

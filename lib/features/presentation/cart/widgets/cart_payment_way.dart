@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,18 +18,18 @@ class CartPaymentWay extends StatelessWidget {
     List<PaymentWayModel> paymentList = [
       PaymentWayModel(
           id: 1,
-          subTitle: 'الدفع بالبطاقة الائتمانية',
-          title: 'بطاقة إئتمانية',
+          subTitle: tr(context, 'onlinePayment'),
+          title: tr(context, 'online'),
           image: AssetsManager.card),
       PaymentWayModel(
           id: 2,
-          subTitle: 'الدفع عند الاستلام',
-          title: 'الدفع كاش',
+          subTitle: tr(context, "payOnReceipt"),
+          title: tr(context, "cash"),
           image: AssetsManager.cash),
       PaymentWayModel(
           id: 3,
-          subTitle: 'الدفع عند التحويل البنكي',
-          title: 'تحويل بنكي',
+          subTitle: tr(context, 'bankTransferByBank'),
+          title: tr(context, "bankTransfer"),
           image: AssetsManager.bank),
     ];
     return Container(
@@ -45,7 +46,7 @@ class CartPaymentWay extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: "طريقة الدفع:",
+              title: "${tr(context, 'paymentWay')}:",
               color: ColorManager.black,
               size: 14,
             ),

@@ -1,5 +1,6 @@
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,8 +37,8 @@ class ResetPasswordForm extends StatelessWidget {
                       state.data ? FieldTypes.normal : FieldTypes.password,
                   type: TextInputType.text,
                   controller: cubit.newPasswordController,
-                  upperText: "كلمة المرور",
-                  hint: "الرجاء ادخال كلمة المرور",
+                  upperText: tr(context, "password"),
+                  hint: tr(context, "insertPass"),
                   prefixIcon: Icon(
                     Icons.lock,
                     color: ColorManager.primary,
@@ -69,8 +70,8 @@ class ResetPasswordForm extends StatelessWidget {
                     fieldTypes:state.data ? FieldTypes.normal : FieldTypes.password,
                     type: TextInputType.text,
                     controller: cubit.confirmNewPasswordController,
-                    upperText: "تأكيد كلمة المرور",
-                    hint: "الرجاء ادخال تأكيد كلمة المرور",
+                    upperText: tr(context, "confirmPassword"),
+                    hint: tr(context, "insertConfirmPass"),
                     prefixIcon: Icon(
                       Icons.lock,
                       color: ColorManager.primary,

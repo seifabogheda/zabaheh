@@ -27,6 +27,7 @@ class AppStringsManager{
   static const String cancelOrder = "/api/cancel-order";
   static const String checkCoupon = "/api/check-coupon";
   static const String createOrder = "/api/create-order";
+  static const String orderReview = "/api/order-review";
   static const String cities = "/api/cities-shopping-cost";
   static const String notFound = "Not Found Page";
   static const String hello = "hello";

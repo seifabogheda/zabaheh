@@ -16,7 +16,7 @@ class BuildAnimalBody extends StatelessWidget {
           return Expanded(
             child: ListView(
               children: [
-                AnimalDetailsSwiper(),
+                AnimalDetailsSwiper(image: state.products.image ?? '',),
                 AnimalDescription(
                   title: state.products.name ?? '',
                   desc: state.products.description ?? '',

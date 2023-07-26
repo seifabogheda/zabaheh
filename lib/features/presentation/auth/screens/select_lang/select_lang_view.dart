@@ -24,7 +24,7 @@ class SelectLangView extends StatelessWidget {
   Widget build(BuildContext context) {
     final GenericCubit<String> langBloc = GenericCubit('');
     return AuthCustomAppBar(
-        title: "لغة التطبيق",
+        title: tr(context, "selectLang"),
         needBack: false,
         child: Expanded(
           child: BlocBuilder<GenericCubit<String>, GenericState<String>>(

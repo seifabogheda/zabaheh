@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
+
 part 'change_password_state.dart';
 
 class ChangePasswordCubit extends Cubit<ChangePasswordState> {
@@ -33,8 +34,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         SnackBarHelper.showBasicSnack(msg: "تم تغيير كلمة المرور بنجاح",color: ColorManager.green);
         emit(ChangePasswordSuccess());
       }
-    } else {
-      emit(ChangePasswordFailed("يجب اكمال جميع البيانات"));
     }
   }
 }

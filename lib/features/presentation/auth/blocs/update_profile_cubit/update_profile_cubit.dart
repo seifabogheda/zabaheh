@@ -53,7 +53,6 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       }
     } else {
       emit(UpdateProfileInitial());
-      emit(UpdateProfileFailed("يجب اكمال جميع البيانات"));
     }
   }
 }

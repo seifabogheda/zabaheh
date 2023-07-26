@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,31 +26,31 @@ class CartSummary extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: "ملخص الطلب: ",
+              title: "${tr(context, "orderSummary")}: ",
               color: ColorManager.black,
               size: 14,
             ),
           ),
           Divider(),
           CartSummaryItem(
-            title: 'قيمة الطلب',
-            value: '${cubit.state.productPrice} رس',
+            title: tr(context, "orderPrice"),
+            value: '${cubit.state.productPrice} ${tr(context,"sr")}',
           ),
           CartSummaryItem(
-            title: 'سعر التوصيل',
-            value: '${cubit.selectedCity?.shippingCost ?? 0} رس',
+            title: tr(context, "deliveryPrice"),
+            value: '${cubit.selectedCity?.shippingCost ?? 0} ${tr(context,"sr")}',
           ),
           CartSummaryItem(
-            title: 'قيمة الخصم',
-            value: '${cubit.coupon ?? 0} رس',
+            title: tr(context, "discount"),
+            value: '${cubit.coupon ?? 0} ${tr(context,"sr")}',
           ),
           CartSummaryItem(
-            title: 'القيمة المضافة',
+            title: tr(context, "totalAdd"),
             value: '15%',
           ),
           CartSummaryItem(
-            title: 'الاجمالى',
-            value: '${cubit.state.cartPrice} رس',
+            title: tr(context, "total"),
+            value: '${cubit.state.cartPrice} ${tr(context,"sr")}',
             changeToGreenBackground: true,
           ),
         ],

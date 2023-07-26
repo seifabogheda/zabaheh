@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/base_widgets/my_text.dart';
@@ -25,7 +26,7 @@ class OrderDetailsNotices extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: "ملاحظات",
+              title: tr(context, "notes"),
               color: ColorManager.black,
               size: 14,
             ),

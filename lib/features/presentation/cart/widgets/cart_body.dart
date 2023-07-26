@@ -2,6 +2,7 @@ import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/coupon_cubit/coupon_cubit.dart';
 import 'package:base_flutter/features/presentation/cart/widgets/cart_payment_way.dart';
@@ -36,7 +37,7 @@ class CartBody extends StatelessWidget {
                 CartSummary(),
                 CustomButton(
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  title: "تاكيد الطلب",
+                  title: tr(context, "confirm"),
                   onTap: () {
                     context.read<CartCubit>().createOrder();
                   },
@@ -47,7 +48,7 @@ class CartBody extends StatelessWidget {
             );
           return Center(
             child: MyText(
-              title: "لا يوجد بيانات",
+              title: tr(context,"noData"),
             ),
           );
         },

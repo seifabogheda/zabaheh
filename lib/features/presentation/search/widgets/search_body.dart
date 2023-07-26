@@ -2,14 +2,12 @@ import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
-import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/utils/enums.dart';
 import 'package:base_flutter/features/custom_widgets/animal_item.dart';
 import 'package:base_flutter/features/presentation/search/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/product_model.dart';
 
 class SearchBody extends StatelessWidget {
   @override

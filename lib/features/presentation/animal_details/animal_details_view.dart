@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/custom_widgets/auth_custom_appbar.dart';
 import 'package:base_flutter/features/presentation/animal_details/widgets/build_animal_body.dart';
@@ -25,6 +26,7 @@ class AnimalDetailsView extends StatelessWidget {
       scaffoldColor: ColorManager.offWhite,
       textColor: ColorManager.green,
       child: BuildAnimalBody(),
+      // todo : refactor this shit..
       bottomNavigationBar: Container(
         color: ColorManager.white,
         child: BlocBuilder<AddToCartCubit, AddToCartState>(
@@ -32,7 +34,7 @@ class AnimalDetailsView extends StatelessWidget {
             switch (state.addToCartRequestState) {
               case RequestState.init:
                 return CustomButton(
-                  title: 'أضف للسلة',
+                  title: tr(context, "addToCart"),
                   onTap: () {
                     context.read<AddToCartCubit>().addToCart();
                   },
@@ -42,7 +44,7 @@ class AnimalDetailsView extends StatelessWidget {
                 break;
               case RequestState.error:
                 return CustomButton(
-                  title: 'أضف للسلة',
+                  title: tr(context, "addToCart"),
                   onTap: () {
                     context.read<AddToCartCubit>().addToCart();
                   },
@@ -53,14 +55,14 @@ class AnimalDetailsView extends StatelessWidget {
                 );
               default:
                 return CustomButton(
-                  title: 'أضف للسلة',
+                  title: tr(context, "addToCart"),
                   onTap: () {
                     context.read<AddToCartCubit>().addToCart();
                   },
                 );
             }
             return CustomButton(
-              title: 'أضف للسلة',
+              title: tr(context, "addToCart"),
               onTap: () {
                 context.read<AddToCartCubit>().addToCart();
               },

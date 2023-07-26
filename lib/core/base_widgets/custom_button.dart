@@ -73,7 +73,7 @@ class CustomButton extends StatelessWidget {
                   : SizedBox(),
               MyText(
                 title: title,
-                size: fontSize ?? 17,
+                size: fontSize ?? 15,
                 color: textColor ?? ColorManager.white,
                 fontWeight: FontWeight.w600,
               ),

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
@@ -45,9 +44,6 @@ class BuildAdditionItem extends StatelessWidget {
                           onChanged: (value) {
                             radioCubit.onUpdateData(value!);
                             cubit.options?.add(value);
-
-                            log("log radio : ${model.optionValues?[index].id}");
-                            log("update options : ${cubit.options?.length}");
                           },
                         );
                       },

@@ -1,5 +1,6 @@
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/models/all_cart_model.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class CartDetails extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: MyText(
-                  title: "تفاصيل الطلب: ",
+                  title: "${tr(context, "orderDetails")}: ",
                   color: ColorManager.black,
                   size: 14,
                 ),
@@ -52,7 +53,7 @@ class CartDetails extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: MyText(
-                    title: "حذف السلة",
+                    title: tr(context, "deleteCart"),
                     color: ColorManager.error,
                     size: 14,
                   ),
@@ -126,7 +127,7 @@ class CartDetails extends StatelessWidget {
                                 builder: (context, priceState) {
                                   return MyText(
                                     title:
-                                        "${cubit.state.cartList[index].price} رس  ",
+                                        "${cubit.state.cartList[index].price} ${tr(context, 'sr')}  ",
                                     color: ColorManager.primary,
                                     size: 12,
                                     fontWeight: FontWeight.w700,

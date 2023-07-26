@@ -5,6 +5,7 @@ import 'package:base_flutter/features/presentation/order_details/widgets/order_d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/utils/enums.dart';
 import '../cubits/stepper_cubit.dart';
 import 'order_details_info.dart';
@@ -42,7 +43,7 @@ class OrderDetailsBody extends StatelessWidget {
           case RequestState.error:
             return Center(
               child: MyText(
-                title: "لا يوجد بيانات",
+                title: tr(context,"noData"),
               ),
             );
           case RequestState.init:

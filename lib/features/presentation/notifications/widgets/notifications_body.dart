@@ -36,7 +36,7 @@ class _NotificationsBodyState extends State<NotificationsBody> {
       bloc: notificationCubit,
       builder: (context, state) {
         if (state is GenericUpdateState) {
-          if (state.data.isNotEmpty) {
+          if (state.data != []) {
             return Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
@@ -46,16 +46,21 @@ class _NotificationsBodyState extends State<NotificationsBody> {
                 },
               ),
             );
-          } else {
-            Center(
-              child: MyText(
-                title: "لا يوجد اشعارات",
+          }
+          else {
+            Expanded(
+              child: Center(
+                child: MyText(
+                  title: "لا يوجد اشعارات",
+                ),
               ),
             );
           }
         }
-        return Center(
-          child: AppLoaderHelper.showSimpleLoading(),
+        return Expanded(
+          child: Center(
+            child: AppLoaderHelper.showSimpleLoading(),
+          ),
         );
       },
     );

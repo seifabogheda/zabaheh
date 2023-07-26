@@ -34,8 +34,7 @@ class LoginButtons extends StatelessWidget {
                 },
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
               );
-            }
-            else {
+            } else {
               return CustomButton(
                 title: tr(context, 'login'),
                 onTap: () {
@@ -46,13 +45,13 @@ class LoginButtons extends StatelessWidget {
             }
           },
         ),
-
         CustomTextButton(
-          title: "تخطي التسجيل",
+          title: tr(context, "skip"),
           onTap: () {},
           color: ColorManager.grey2,
         ),
-        Text.rich(TextSpan(
+        Text.rich(
+          TextSpan(
             text: tr(context, "don'tHaveAccount"),
             style: TextStyle(
                 fontSize: 16,
@@ -61,20 +60,23 @@ class LoginButtons extends StatelessWidget {
                 fontFamily: FontConstants.fontFamily),
             children: <InlineSpan>[
               TextSpan(
-                  text: tr(context, "register"),
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: ColorManager.primary,
-                      fontFamily: FontConstants.fontFamily),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      NavigationService.navigateTo(BlocProvider(
-                        create: (context) => RegisterCubit()..getCities(),
-                        child: RegisterView(),
-                      ));
-                    })
-            ]))
+                text: tr(context, "register"),
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: ColorManager.primary,
+                    fontFamily: FontConstants.fontFamily),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    NavigationService.navigateTo(BlocProvider(
+                      create: (context) => RegisterCubit()..getCities(),
+                      child: RegisterView(),
+                    ));
+                  },
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
