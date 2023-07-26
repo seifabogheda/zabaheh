@@ -3,7 +3,6 @@ import 'package:base_flutter/core/base_widgets/custom_text_button.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
-import 'package:base_flutter/features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import 'package:base_flutter/features/repos/base_repo.dart';
 import 'package:base_flutter/features/repos/repo_impl.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +38,7 @@ class ProfileButtons extends StatelessWidget {
         CustomTextButton(
           title: 'حذف الحساب  ',
           onTap: () async{
-         await repo.deleteAcc(context.read<UserCubit>().state.model.id ?? 0);
+         await repo.deleteAcc();
           },
           color: ColorManager.error,
         ),

@@ -75,9 +75,9 @@ class RepoImpl extends BaseRepo {
       return false;
     }
   }
-  Future<bool> deleteAcc(int userId) async {
+  Future<bool> deleteAcc() async {
     var data = await DioHelper().delete(
-      url: AppStringsManager.deleteAccount + '$userId',
+      url: AppStringsManager.deleteAccount,
     );
     if (data != null) {
       SnackBarHelper.showBasicSnack(msg: data['message']);

@@ -1,11 +1,8 @@
 
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
-import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
-import 'package:base_flutter/features/presentation/auth/blocs/user_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/localization/app_localizations.dart';
