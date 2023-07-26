@@ -3,6 +3,9 @@ import 'package:base_flutter/core/base_widgets/custom_text_button.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
+import 'package:base_flutter/features/presentation/auth/blocs/user_cubit/user_cubit.dart';
+import 'package:base_flutter/features/repos/base_repo.dart';
+import 'package:base_flutter/features/repos/repo_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +17,7 @@ class ProfileButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = UpdateProfileCubit.get(context);
-
+    BaseRepo repo = RepoImpl();
     return Column(
       children: [
       cubit.state is UpdateProfileLoading ? AppLoaderHelper.showLoadingView():  CustomButton(
@@ -32,7 +35,14 @@ class ProfileButtons extends StatelessWidget {
             ),);
           },
           color: ColorManager.black,
-        )
+        ),
+        CustomTextButton(
+          title: 'حذف الحساب  ',
+          onTap: () async{
+         await repo.deleteAcc(context.read<UserCubit>().state.model.id ?? 0);
+          },
+          color: ColorManager.error,
+        ),
       ],
     );
   }

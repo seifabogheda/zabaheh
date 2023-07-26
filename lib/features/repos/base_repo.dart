@@ -63,4 +63,6 @@ abstract class BaseRepo {
 
   // review
   Future<bool> orderReview(int orderId, num rate,String comment);
+  // delete account
+  Future<bool> deleteAcc(int userId);
 }

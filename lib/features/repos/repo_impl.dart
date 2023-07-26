@@ -6,6 +6,7 @@ import 'package:base_flutter/features/presentation/auth/screens/login/login_view
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../core/api_service/DioImports.dart';
+import '../../core/helpers/preferences_helper.dart';
 import '../../core/helpers/snack_helper.dart';
 import '../../core/resource/app_strings_manager.dart';
 import '../../core/resource/navigation_service.dart';
@@ -42,7 +43,6 @@ class RepoImpl extends BaseRepo {
       Utils.manipulateLoginData(data["user"], data['access_token']);
       return true;
     } else {
-      SnackBarHelper.showBasicSnack(msg: data['error']);
       return false;
     }
   }
@@ -69,6 +69,19 @@ class RepoImpl extends BaseRepo {
     );
     if (data != null) {
       SnackBarHelper.showBasicSnack(msg: data['message']);
+      NavigationService.removeUntil(LoginView());
+      return true;
+    } else {
+      return false;
+    }
+  }
+  Future<bool> deleteAcc(int userId) async {
+    var data = await DioHelper().delete(
+      url: AppStringsManager.deleteAccount + '$userId',
+    );
+    if (data != null) {
+      SnackBarHelper.showBasicSnack(msg: data['message']);
+      Preferences.clearAll();
       NavigationService.removeUntil(LoginView());
       return true;
     } else {

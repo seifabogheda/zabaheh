@@ -280,6 +280,7 @@ class DioHelper {
           }
           break;
         case 401:
+          SnackBarHelper.showBasicSnack( msg: data["error"].toString());
           tokenExpired();
           break;
         case 301:
