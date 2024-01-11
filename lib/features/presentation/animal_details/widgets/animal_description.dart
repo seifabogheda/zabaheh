@@ -17,7 +17,7 @@ class AnimalDescription extends StatelessWidget {
       color: ColorManager.white,
       child: Column(
         children: [
-          MyText(title: title,color: ColorManager.green,size: 16,),
+          MyText(title: title,color: ColorManager.primary,size: 16,),
           SizedBox(height: 10,),
           MyText(title:desc,color: ColorManager.grey2,size: 12,
           fontWeight: FontWeight.normal,),

@@ -2,7 +2,11 @@ import 'package:base_flutter/core/base_widgets/custom_button.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/helpers/app_loader_helper.dart';
+import 'package:base_flutter/core/helpers/ui_helper.dart';
 import 'package:base_flutter/core/localization/app_localizations.dart';
+import 'package:base_flutter/core/resource/navigation_service.dart';
+import 'package:base_flutter/features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
+import 'package:base_flutter/features/presentation/auth/screens/login/login_view.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/coupon_cubit/coupon_cubit.dart';
 import 'package:base_flutter/features/presentation/cart/widgets/cart_payment_way.dart';
@@ -15,8 +19,10 @@ import 'cart_receive_order.dart';
 import 'cart_summary.dart';
 
 class CartBody extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => CouponCubit(),
       child: BlocBuilder<CartCubit, CartState>(
@@ -52,7 +58,7 @@ class CartBody extends StatelessWidget {
             ),
           );
         },
-      ),
+      ) ,
     );
   }
 }

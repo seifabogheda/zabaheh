@@ -11,7 +11,7 @@ class SearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
       scaffoldColor: ColorManager.offWhite,
-      textColor: ColorManager.green,
+      textColor: ColorManager.primary,
       title: "نتيجة البحث",
       needBack: true,
       child: BlocProvider(

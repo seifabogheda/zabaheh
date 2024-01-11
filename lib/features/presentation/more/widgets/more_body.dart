@@ -35,7 +35,7 @@ class MoreBody extends StatelessWidget {
         return ListView(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           children: [
-            Padding(
+            auth?     Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
                 title:tr(context, "accountInfo"),
@@ -43,15 +43,15 @@ class MoreBody extends StatelessWidget {
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.w600,
               ),
-            ),
-            MoreItem(
+            ) : SizedBox(),
+         auth?   MoreItem(
               titleItem:tr(context, "profile"),
               imageItem: AssetsManager.profile,
               onTap: () {
                 NavigationService.navigateTo(ProfileView());
               },
-            ),
-            Padding(
+            ) : SizedBox(),
+            auth?     Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
                 title: tr(context, "publicSettings"),
@@ -59,14 +59,14 @@ class MoreBody extends StatelessWidget {
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.w600,
               ),
-            ),
-            MoreItem(
+            ):SizedBox(),
+          auth?  MoreItem(
               titleItem: tr(context, "langSettings"),
               imageItem: AssetsManager.translate,
               onTap: () {
                 NavigationService.navigateTo(ChangeLangView());
               },
-            ),
+            ) : SizedBox(),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
@@ -83,13 +83,13 @@ class MoreBody extends StatelessWidget {
                 NavigationService.navigateTo(AboutView());
               },
             ),
-            MoreItem(
+         auth?   MoreItem(
               titleItem: tr(context, "contactUs"),
               imageItem: AssetsManager.contactus,
               onTap: () {
                 NavigationService.navigateTo(ContactUsView());
               },
-            ),
+            ) : SizedBox(),
             MoreItem(
               titleItem: tr(context, "policy"),
               imageItem: AssetsManager.policy,
@@ -104,11 +104,11 @@ class MoreBody extends StatelessWidget {
                 NavigationService.navigateTo(TermsView());
               },
             ),
-            MoreItem(
-              titleItem: tr(context, "rateApp"),
-              imageItem: AssetsManager.wallet,
-              onTap: () {},
-            ),
+            // MoreItem(
+            //   titleItem: tr(context, "rateApp"),
+            //   imageItem: AssetsManager.wallet,
+            //   onTap: () {},
+            // ),
             SizedBox(
               height: 10,
             ),

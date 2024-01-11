@@ -4,8 +4,10 @@ import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/core/resource/value_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../presentation/auth/blocs/auth_cubit/auth_cubit.dart';
 import '../presentation/notifications/notifications_view.dart';
 
 class AppCustomAppbar extends StatelessWidget {
@@ -17,6 +19,8 @@ class AppCustomAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var auth = context.read<AuthCubit>().state.authorized;
+
     return Scaffold(
       backgroundColor: ColorManager.offWhite,
       appBar: AppBar(
@@ -34,7 +38,7 @@ class AppCustomAppbar extends StatelessWidget {
           )),
         ),
         actions: [
-          InkWell(
+          auth?   InkWell(
             onTap: (){
               NavigationService.navigateTo(NotificationsView());
             },
@@ -45,7 +49,7 @@ class AppCustomAppbar extends StatelessWidget {
                 color: ColorManager.primary,
               ),
             ),
-          )
+          ) : SizedBox()
         ],
       ),
       body: body,

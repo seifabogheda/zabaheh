@@ -4,6 +4,8 @@ import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/font_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
+import 'package:base_flutter/core/utils/utils_imports.dart';
+import 'package:base_flutter/features/presentation/auth/blocs/auth_cubit/auth_cubit.dart';
 import 'package:base_flutter/features/presentation/auth/blocs/login_cubit/login_cubit.dart';
 
 import 'package:flutter/gestures.dart';
@@ -47,7 +49,10 @@ class LoginButtons extends StatelessWidget {
         ),
         CustomTextButton(
           title: tr(context, "skip"),
-          onTap: () {},
+          onTap: () {
+            context.read<AuthCubit>().onUpdateAuth(false);
+            NavigationService.removeUntil(MainNavigationBar());
+          },
           color: ColorManager.grey2,
         ),
         Text.rich(

@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             // theme: MainData.defaultThem,
-            title: "Base",
+            title: "ذبيحة اونلاين",
             supportedLocales: const [Locale("ar", "SA"), Locale("en", "US")],
             locale: state.locale,
             localizationsDelegates: const [

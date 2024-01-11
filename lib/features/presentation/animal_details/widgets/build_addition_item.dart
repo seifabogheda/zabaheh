@@ -27,7 +27,7 @@ class BuildAdditionItem extends StatelessWidget {
           Align(alignment: Alignment.topRight, child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: MyText(title: model.name ?? '',
-              color: ColorManager.green,
+              color: ColorManager.primary,
               size: 14,),
           )),
           Divider(color: ColorManager.grey2, thickness: 0.1,),

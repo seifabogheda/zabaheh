@@ -44,7 +44,10 @@ class CartCubit extends Cubit<CartState> {
           cartList: result,
           cartPrice: totalPrice,
           productPrice: productPrice));
+      log("done");
+
     } else {
+      log("errorCart");
       emit(state.copyWith(cartState: RequestState.error, cartList: []));
     }
   }

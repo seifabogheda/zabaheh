@@ -24,7 +24,7 @@ class AnimalDetailsView extends StatelessWidget {
       title: title,
       needBack: true,
       scaffoldColor: ColorManager.offWhite,
-      textColor: ColorManager.green,
+      textColor: ColorManager.primary,
       child: BuildAnimalBody(),
       // todo : refactor this shit..
       bottomNavigationBar: Container(

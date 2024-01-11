@@ -32,7 +32,7 @@ class BuildQty extends StatelessWidget {
                       quantityCubit.state.data;
                 },
                 child: CircleAvatar(
-                  backgroundColor: ColorManager.green,
+                  backgroundColor: ColorManager.secondary ,
                   child: MyText(
                     title: "+",
                     size: 25,

@@ -6,6 +6,7 @@ import 'package:base_flutter/features/presentation/home/cubits/all_products_cubi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/localization/app_localizations.dart';
 import '../../../custom_widgets/animal_item.dart';
 
 class HomeSeeAllView extends StatelessWidget {
@@ -20,7 +21,7 @@ class HomeSeeAllView extends StatelessWidget {
       scaffoldColor: ColorManager.offWhite,
       title: categoryTitle,
       needBack: true,
-      textColor: ColorManager.green,
+      textColor: ColorManager.primary,
       child: BlocBuilder<AllProductsCubit, AllProductsState>(
         builder: (context, state) {
           if (state is AllProductsLoading) {
@@ -39,11 +40,9 @@ class HomeSeeAllView extends StatelessWidget {
           } else {
             return Expanded(
               child: Center(
-                child: MyText(
-                  title: 'No Data',
-                  color: ColorManager.green,
-                ),
-              ),
+                  child: MyText(
+                    title: tr(context, "noData"),
+                  )),
             );
           }
         },

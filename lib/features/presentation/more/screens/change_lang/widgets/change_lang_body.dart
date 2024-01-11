@@ -57,7 +57,7 @@ class ChangeLangBody extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         decoration: BoxDecoration(
                           color: state.data == "ar"
-                              ? ColorManager.primary
+                              ? ColorManager.secondary
                               : ColorManager.white,
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
@@ -77,7 +77,7 @@ class ChangeLangBody extends StatelessWidget {
                             ),
                             Center(
                               child: MyText(
-                                color: ColorManager.black,
+                                color:state.data == "ar" ? ColorManager.white : ColorManager.black,
                                 size: 16,
                                 title: tr(context,"langAr"),
                               ),
@@ -99,7 +99,7 @@ class ChangeLangBody extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         decoration: BoxDecoration(
                           color: state.data == "en"
-                              ? ColorManager.primary
+                              ? ColorManager.secondary
                               : ColorManager.white,
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
@@ -119,7 +119,7 @@ class ChangeLangBody extends StatelessWidget {
                             ),
                             Center(
                               child: MyText(
-                                color: ColorManager.black,
+                                color:state.data == "en"? ColorManager.white : ColorManager.black,
                                 size: 16,
                                 title: tr(context,"langEn"),
                               ),
