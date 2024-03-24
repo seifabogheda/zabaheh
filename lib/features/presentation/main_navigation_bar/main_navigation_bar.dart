@@ -39,6 +39,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+
     return WillPopScope(
       onWillPop: onBackPressed,
       child: BlocBuilder<BottomNavCubit, int>(
