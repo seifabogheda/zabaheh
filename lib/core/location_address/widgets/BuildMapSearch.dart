@@ -24,8 +24,8 @@ class BuildMapSearch extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: InkWell(
-        onTap: () =>
-            locationAddressData.onSearchPressed(context),
+        // onTap: () =>
+            // locationAddressData.onSearchPressed(context),
         child: Icon(
           Icons.search,
           size: 25,

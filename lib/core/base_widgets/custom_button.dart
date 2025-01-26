@@ -50,8 +50,8 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all(color ?? ColorManager.secondary),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                WidgetStateProperty.all(color ?? ColorManager.primary),
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: borderRadius ?? BorderRadius.circular(5.0),
               ),

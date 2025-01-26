@@ -10,9 +10,9 @@ class LocationAddressData {
   final LocationCubit locationCubit = new LocationCubit();
   final GenericCubit<Set<Marker>> addMarkerCubit = new GenericCubit({});
   late GoogleMapController googleMapController;
-  final Mode _mode = Mode.overlay;
+  // final Mode _mode = Mode.overlay;
   static const kGoogleApiKey = 'AIzaSyAUmn1DI_PvYJ_3Bo-2ZRn2iwT_tNlzxC8';
-  GoogleMapsPlaces places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
+  // GoogleMapsPlaces places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
 
   void getLocationAddress(BuildContext context) async {
     LatLng loc = LatLng(locationModel.lat, locationModel.lng);
@@ -95,55 +95,55 @@ class LocationAddressData {
 
 //******************** map by search ***************************
 
-  Future<void> onSearchPressed(BuildContext context) async {
-    var lang = context.read<LangCubit>().state.locale.languageCode;
-    Prediction? p = await PlacesAutocomplete.show(
-        context: context,
-        apiKey: kGoogleApiKey,
-        onError: onSearchError,
-        mode: _mode,
-        language: lang == "ar" ? 'ar' : 'en',
-        strictbounds: false,
-        types: [""],
-        decoration: InputDecoration(
-            hintText: '${tr(context,"search")}',
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(color: Colors.white))),
-        components: [
-          Component(Component.country, "eg"),
-          Component(Component.country, "usa"),
-          Component(Component.country, "sa"),
-        ]);
-    displaySearchPrediction(p!);
-  }
+  // Future<void> onSearchPressed(BuildContext context) async {
+  //   var lang = context.read<LangCubit>().state.locale.languageCode;
+  //   Prediction? p = await PlacesAutocomplete.show(
+  //       context: context,
+  //       apiKey: kGoogleApiKey,
+  //       onError: onSearchError,
+  //       mode: _mode,
+  //       language: lang == "ar" ? 'ar' : 'en',
+  //       strictbounds: false,
+  //       types: [""],
+  //       decoration: InputDecoration(
+  //           hintText: '${tr(context,"search")}',
+  //           focusedBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.circular(20),
+  //               borderSide: BorderSide(color: Colors.white))),
+  //       components: [
+  //         Component(Component.country, "eg"),
+  //         Component(Component.country, "usa"),
+  //         Component(Component.country, "sa"),
+  //       ]);
+  //   displaySearchPrediction(p!);
+  // }
 
   /// used when search get pressed.
 
-  void onSearchError(PlacesAutocompleteResponse response) {
-    // ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(content: Text(response.errorMessage!)));
-    SnackBarHelper.showBasicSnack(msg: response.errorMessage ?? '');
-  }
+  // void onSearchError(PlacesAutocompleteResponse response) {
+  //   // ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(content: Text(response.errorMessage!)));
+  //   SnackBarHelper.showBasicSnack(msg: response.errorMessage ?? '');
+  // }
 
-  Future<void> displaySearchPrediction(Prediction p) async {
-    GoogleMapsPlaces places = GoogleMapsPlaces(
-        apiKey: kGoogleApiKey,
-        apiHeaders: await const GoogleApiHeaders().getHeaders());
-    PlacesDetailsResponse detail = await places.getDetailsByPlaceId(p.placeId!);
-    final lat = detail.result.geometry!.location.lat;
-    final lng = detail.result.geometry!.location.lng;
-
-    ///***************
-    // searchMarkerCubit.state.data.clear();
-    // searchMarkerCubit.state.data.add(Marker(
-    //     markerId: const MarkerId("0"),
-    //     position: LatLng(lat, lng),
-    //     infoWindow: InfoWindow(title: detail.result.name)));
-    // searchMarkerCubit.onUpdateData(searchMarkerCubit.state.data);
-    ///to display custom marker for search uncomment the text
-    googleMapController
-        .animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 16.4746));
-  }
+  // Future<void> displaySearchPrediction(Prediction p) async {
+  //   GoogleMapsPlaces places = GoogleMapsPlaces(
+  //       apiKey: kGoogleApiKey,
+  //       apiHeaders: await const GoogleApiHeaders().getHeaders());
+  //   PlacesDetailsResponse detail = await places.getDetailsByPlaceId(p.placeId!);
+  //   final lat = detail.result.geometry!.location.lat;
+  //   final lng = detail.result.geometry!.location.lng;
+  //
+  //   ///***************
+  //   // searchMarkerCubit.state.data.clear();
+  //   // searchMarkerCubit.state.data.add(Marker(
+  //   //     markerId: const MarkerId("0"),
+  //   //     position: LatLng(lat, lng),
+  //   //     infoWindow: InfoWindow(title: detail.result.name)));
+  //   // searchMarkerCubit.onUpdateData(searchMarkerCubit.state.data);
+  //   ///to display custom marker for search uncomment the text
+  //   googleMapController
+  //       .animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 16.4746));
+  // }
 
   /// used to fetch & display the search results from Google_Api_Services .
 }

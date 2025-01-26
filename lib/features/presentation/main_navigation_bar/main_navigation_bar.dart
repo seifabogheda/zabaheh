@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/features/presentation/home/cubits/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -40,8 +42,11 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
   @override
   Widget build(BuildContext context) {
 
-    return WillPopScope(
-      onWillPop: onBackPressed,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        SystemNavigator.pop();
+      },
       child: BlocBuilder<BottomNavCubit, int>(
         builder: (context, state) {
           return Scaffold(

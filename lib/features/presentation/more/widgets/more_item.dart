@@ -23,7 +23,7 @@ class MoreItem extends StatelessWidget {
         height: 56,
         padding: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
-          color:isLogout == true ? Color(0xFFEC2F2F).withOpacity(0.5  ): ColorManager.white,
+          color:isLogout == true ? Color(0xFFEC2F2F).withValues(alpha: 0.5  ): ColorManager.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(

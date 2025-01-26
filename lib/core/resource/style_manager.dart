@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 import 'font_manager.dart';
 
-TextStyle _getTextStyle(
-    double fontSize, String fontFamily, FontWeight fontWeight, Color color,TextDecoration textDecoration ) {
+TextStyle _getTextStyle(double fontSize, String fontFamily,
+    FontWeight fontWeight, Color color, TextDecoration textDecoration) {
   return TextStyle(
       fontSize: fontSize,
       fontFamily: fontFamily,
@@ -14,39 +13,53 @@ TextStyle _getTextStyle(
 
 // regular style
 
-TextStyle getRegularStyle(
-    {double fontSize = FontSize.s12, required Color color,TextDecoration textDecoration = TextDecoration.none,}) {
-  return _getTextStyle(
-      fontSize, FontConstants.fontFamily, FontWeightManager.regular,color,textDecoration);
+TextStyle getRegularStyle({
+  double fontSize = FontSize.s12,
+  required Color color,
+  TextDecoration textDecoration = TextDecoration.none,
+}) {
+  return _getTextStyle(fontSize, FontConstants.fontFamily,
+      FontWeightManager.regular, color, textDecoration);
 }
 // light text style
 
-TextStyle getLightStyle(
-    {double fontSize = FontSize.s12, required Color color,TextDecoration textDecoration = TextDecoration.none,}) {
-  return _getTextStyle(
-      fontSize, FontConstants.fontFamily, FontWeightManager.light, color,textDecoration);
+TextStyle getLightStyle({
+  double fontSize = FontSize.s12,
+  required Color color,
+  TextDecoration textDecoration = TextDecoration.none,
+}) {
+  return _getTextStyle(fontSize, FontConstants.fontFamily,
+      FontWeightManager.light, color, textDecoration);
 }
 // bold text style
 
-TextStyle getBoldStyle(
-    {double fontSize = FontSize.s12, required Color color,TextDecoration textDecoration = TextDecoration.none,}) {
-  return _getTextStyle(
-      fontSize, FontConstants.fontFamily, FontWeightManager.bold, color,textDecoration);
+TextStyle getBoldStyle({
+  double fontSize = FontSize.s12,
+  required Color color,
+  TextDecoration textDecoration = TextDecoration.none,
+}) {
+  return _getTextStyle(fontSize, FontConstants.fontFamily,
+      FontWeightManager.bold, color, textDecoration);
 }
 
 // semi bold text style
 
-TextStyle getSemiBoldStyle(
-    {double fontSize = FontSize.s12, required Color color,TextDecoration textDecoration = TextDecoration.none,}) {
-  return _getTextStyle(
-      fontSize, FontConstants.fontFamily, FontWeightManager.semiBold, color,textDecoration);
+TextStyle getSemiBoldStyle({
+  double fontSize = FontSize.s12,
+  required Color color,
+  TextDecoration textDecoration = TextDecoration.none,
+}) {
+  return _getTextStyle(fontSize, FontConstants.fontFamily,
+      FontWeightManager.semiBold, color, textDecoration);
 }
-
 
 // medium text style
 
-TextStyle getMediumStyle(
-    {double fontSize = FontSize.s12, required Color color,TextDecoration textDecoration = TextDecoration.none,}) {
-  return _getTextStyle(
-      fontSize, FontConstants.fontFamily, FontWeightManager.medium, color,textDecoration);
+TextStyle getMediumStyle({
+  double fontSize = FontSize.s12,
+  required Color color,
+  TextDecoration textDecoration = TextDecoration.none,
+}) {
+  return _getTextStyle(fontSize, FontConstants.fontFamily,
+      FontWeightManager.medium, color, textDecoration);
 }

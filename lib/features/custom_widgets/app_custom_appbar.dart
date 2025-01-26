@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';

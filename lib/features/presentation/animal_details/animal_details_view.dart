@@ -53,14 +53,7 @@ class AnimalDetailsView extends StatelessWidget {
                 return Center(
                   child: AppLoaderHelper.showSimpleLoading(),
                 );
-              default:
-                return CustomButton(
-                  title: tr(context, "addToCart"),
-                  onTap: () {
-                    context.read<AddToCartCubit>().addToCart();
-                  },
-                );
-            }
+              }
             return CustomButton(
               title: tr(context, "addToCart"),
               onTap: () {

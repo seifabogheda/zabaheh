@@ -46,7 +46,7 @@ class DioHelper {
       } else{
         showErrorMessage(response);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       showErrorMessage(e.response);
     }
     return null;
@@ -96,7 +96,7 @@ class DioHelper {
       } else{
         showErrorMessage(response);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       showErrorMessage(e.response);
     }
 
@@ -147,7 +147,7 @@ class DioHelper {
       } else{
         showErrorMessage(response);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       showErrorMessage(e.response);
     }
 
@@ -166,7 +166,7 @@ class DioHelper {
       } else{
         showErrorMessage(response);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       showErrorMessage(e.response);
     }
 
@@ -186,7 +186,7 @@ class DioHelper {
       } else{
         showErrorMessage(response);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       showErrorMessage(e.response);
     }
 
@@ -236,7 +236,7 @@ class DioHelper {
       } else{
         showErrorMessage(response);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       showErrorMessage(e.response);
     }
 

@@ -53,14 +53,14 @@ class DropdownButtonCustom<T> extends StatelessWidget {
               ),
               border: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: ColorManager.grey.withOpacity(.8), width: 1),
+                      color: ColorManager.grey.withValues(alpha:.8), width: 1),
                   borderRadius: BorderRadius.circular(4)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(4),
                   borderSide: BorderSide(color: ColorManager.grey, width: 2)),
               errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: ColorManager.grey.withOpacity(.5), width: 1),
+                      color: ColorManager.grey.withValues(alpha:.5), width: 1),
                   borderRadius: BorderRadius.circular(4)),
               focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(4),

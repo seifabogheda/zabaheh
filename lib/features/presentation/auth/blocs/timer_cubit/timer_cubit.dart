@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:base_flutter/features/presentation/auth/blocs/timer_cubit/timer_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wakelock/wakelock.dart';
-
+import 'package:wakelock_plus/wakelock_plus.dart';
 class TimerCubit extends Cubit<TimerState>{
   TimerCubit():super(const TimerInitial());
 
@@ -16,14 +15,14 @@ class TimerCubit extends Cubit<TimerState>{
 
       }else{
         _timer!.cancel();
-        Wakelock.disable();
+        WakelockPlus.disable();
         emit(const TimerInitial());
       }
     }
   }
 
   startWorkout( [int? index]){
-    Wakelock.enable();
+    WakelockPlus.enable();
     if(index != null){
       emit(const TimerInProgress( 59));
     }else{
