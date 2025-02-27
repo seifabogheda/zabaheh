@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:base_flutter/features/models/cateogries_model.dart';
-import 'package:base_flutter/features/models/home_model.dart';
 import 'package:base_flutter/features/models/update_profile_model.dart';
 import 'package:base_flutter/features/models/user_model.dart';
 import 'package:base_flutter/features/presentation/auth/screens/login/login_view.dart';
@@ -27,7 +26,6 @@ import '../models/order_details_model.dart';
 import '../models/orders_model.dart';
 import '../models/product_model.dart';
 import '../models/register_model.dart';
-import '../models/settings_model.dart';
 import '../models/slider_model.dart';
 import '../models/time_model.dart';
 import '../presentation/auth/blocs/register_cubit/register_cubit.dart';

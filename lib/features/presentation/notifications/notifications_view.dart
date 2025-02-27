@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/notifications/widgets/notifications_body.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class NotificationsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
-      title: 'الاشعارات',
+      title: tr(context, 'notifications'),
       child: NotificationsBody(),
       needBack: true,
       scaffoldColor: ColorManager.offWhite,

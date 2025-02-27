@@ -22,7 +22,6 @@ class ResetPasswordBody extends StatelessWidget {
         create: (context) => ResetPasswordCubit(),
         child: BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
           builder: (context, state) {
-            var cubit = ResetPasswordCubit.get(context);
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(

@@ -12,7 +12,7 @@ class SearchView extends StatelessWidget {
     return AuthCustomAppBar(
       scaffoldColor: ColorManager.offWhite,
       textColor: ColorManager.primary,
-      title: "نتيجة البحث",
+      title: "",
       needBack: true,
       child: BlocProvider(
         create: (context) => SearchCubit(),

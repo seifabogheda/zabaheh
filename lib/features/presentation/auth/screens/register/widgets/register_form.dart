@@ -1,22 +1,15 @@
-import 'dart:developer';
 
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
-import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
-import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
-import 'package:base_flutter/core/localization/lang_cubit/lang_cubit.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/presentation/auth/blocs/register_cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../../core/base_widgets/custom_drop_down.dart';
 import '../../../../../../core/base_widgets/my_text.dart';
 import '../../../../../../core/localization/app_localizations.dart';
 import '../../../../../../core/resource/assets_manager.dart';
 import '../../../../../../core/resource/value_manager.dart';
-import '../../../../../models/city_model.dart';
 
 
 class RegisterForm extends StatelessWidget {

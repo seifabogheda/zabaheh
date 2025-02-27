@@ -8,7 +8,6 @@ import '../../../../core/base_widgets/my_text.dart';
 import '../../../../core/helpers/app_loader_helper.dart';
 import '../../../../core/localization/app_localizations.dart';
 import '../../../custom_widgets/animal_item.dart';
-import '../../../models/product_model.dart';
 import '../cubits/all_products_cubit/all_products_cubit.dart';
 
 class HomeSeeAllView extends StatelessWidget {
@@ -21,7 +20,6 @@ class HomeSeeAllView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthCustomAppBar(
       scaffoldColor: ColorManager.offWhite,
-      // title: "عجل بلدي",
       title: categoryTitle,
       needBack: true,
       textColor: ColorManager.primary,

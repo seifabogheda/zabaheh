@@ -74,7 +74,7 @@ class LocationAddressData {
     addMarkerCubit.state.data.clear();
     addMarkerCubit.state.data.add(Marker(
       markerId: const MarkerId("0"),
-      icon: BitmapDescriptor.fromBytes(markerImg),
+      icon: BitmapDescriptor.bytes(markerImg),
       position: latLng,
       onTap: () {},
       // infoWindow: InfoWindow(title: address,)

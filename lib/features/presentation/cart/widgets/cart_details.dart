@@ -47,7 +47,7 @@ class CartDetails extends StatelessWidget {
                   if (cartModel.isNotEmpty) {
                     cubit.deleteAllProducts();
                   } else {
-                    SnackBarHelper.showBasicSnack(msg: "السلة خالية بالفعل");
+                    SnackBarHelper.showBasicSnack(msg: tr(context, 'noItemsInCart'));
                   }
                 },
                 child: Padding(

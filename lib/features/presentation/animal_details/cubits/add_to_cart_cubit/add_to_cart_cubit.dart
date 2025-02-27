@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/localization/app_localizations.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../../models/add_to_cart_model.dart';
 import '../../../../repos/base_repo.dart';
@@ -33,14 +35,14 @@ class AddToCartCubit extends Cubit<AddToCartState> {
       emit(
         state.copyWith(
             addToCartRequestState: RequestState.loaded,
-            addToCartMessage: 'تم اضافة طلبك بنجاح'),
+            addToCartMessage: tr(navigatorKey.currentContext!,"addedToCart")),
       );
       options?.clear();
     } else {
       emit(
         state.copyWith(
             addToCartRequestState: RequestState.error,
-            addToCartMessage: 'يبدو هناك مشكلة ما حاول مرة اخرى'),
+            addToCartMessage: tr(navigatorKey.currentContext!,"someThingWrong")),
       );
     }
   }

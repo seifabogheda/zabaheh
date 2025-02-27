@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/base_widgets/my_text.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,7 +7,6 @@ import '../../../../core/generic_cubit/generic_cubit.dart';
 import '../../../../core/resource/color_manager.dart';
 import '../../../models/product_model.dart';
 import '../cubits/add_to_cart_cubit/add_to_cart_cubit.dart';
-import 'build_addition_item.dart';
 
 class AllWeightsWidget extends StatelessWidget {
   final List<Variants> variants;
@@ -23,7 +23,7 @@ class AllWeightsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyText(
-            title: "حجم الذبيحة",
+            title: tr(context, 'carcassSize'),
             size: 16,
             fontWeight: FontWeight.bold,
             color: ColorManager.black,
@@ -35,7 +35,6 @@ class AllWeightsWidget extends StatelessWidget {
             variants.length,
             (index) => BlocBuilder<AddToCartCubit, AddToCartState>(
               builder: (context, state) {
-                var cubit = AddToCartCubit.get(context);
                 return BlocBuilder<GenericCubit<int>, GenericState<int>>(
                   bloc: radioCubit,
                   builder: (context, state) {
@@ -58,7 +57,7 @@ class AllWeightsWidget extends StatelessWidget {
                           ),
                           Spacer(),
                           MyText(
-                            title: "${variants[index].price} ر.س" ?? '',
+                            title: "${variants[index].price}  ${tr(context, 'sr')}",
                             size: 15,                            color: ColorManager.black,
 
                           ),

@@ -42,7 +42,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MyText(
-                    title: "مرحبا, ",
+                    title: "${tr(context, 'welcome')}, ",
                     size: 16,
                     color: ColorManager.white,
                     fontWeight: FontWeight.w600,
@@ -75,7 +75,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             hint: tr(context,"search"),
             onTap: () {
               auth?    NavigationService.navigateTo(SearchView()):
-              SnackBarHelper.showBasicSnack(msg: "يجب تسجيل الدخول أولا");
+              SnackBarHelper.showBasicSnack(msg: tr(context, 'loginFirst'));
             },
           ),
         ],

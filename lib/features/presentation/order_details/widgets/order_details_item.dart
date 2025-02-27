@@ -27,7 +27,7 @@ class OrderDetailsOrderItem extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: " تفاصيل المنتج :",
+              title: tr(context, 'productDetails'),
               color: ColorManager.black,
               size: 14,
             ),

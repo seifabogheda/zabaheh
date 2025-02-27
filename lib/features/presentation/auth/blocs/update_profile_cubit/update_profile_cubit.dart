@@ -1,4 +1,3 @@
-import 'package:base_flutter/core/localization/lang_cubit/lang_cubit.dart';
 import 'package:base_flutter/features/models/update_profile_model.dart';
 import 'package:base_flutter/features/repos/repo_impl.dart';
 import 'package:base_flutter/features/repos/base_repo.dart';

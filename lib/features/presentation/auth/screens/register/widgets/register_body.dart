@@ -1,5 +1,4 @@
 import 'package:base_flutter/core/resource/assets_manager.dart';
-import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/core/resource/value_manager.dart';
 import 'package:base_flutter/features/presentation/auth/screens/register/widgets/register_form.dart';
 import 'package:base_flutter/features/presentation/auth/screens/register/widgets/register_texts.dart';

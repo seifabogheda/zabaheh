@@ -1,7 +1,6 @@
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
-import 'package:base_flutter/core/resource/color_manager.dart';
-import 'package:base_flutter/features/models/option_model.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +18,6 @@ class BuildAdditionItem extends StatelessWidget {
     final GenericCubit<int> radioCubit = GenericCubit(0);
     return BlocBuilder<AddToCartCubit, AddToCartState>(
       builder: (context, state) {
-        var cubit = AddToCartCubit.get(context);
         return BlocBuilder<GenericCubit<int>, GenericState<int>>(
           bloc: radioCubit,
           builder: (context, state) {
@@ -40,7 +38,7 @@ class BuildAdditionItem extends StatelessWidget {
                   ),
                   Spacer(),
                   MyText(
-                    title: "${options.price} ر.س" ?? '',
+                    title: "${options.price}  ${tr(context, 'sr')}",
                     size: 15,
                   ),
                 ],

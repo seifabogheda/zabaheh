@@ -86,11 +86,9 @@ class Utils {
   }
 
   static void launchWhatsApp(phone) async {
-    String message = 'مرحبا بك';
     if (phone.startsWith("00966")) {
       phone = phone.substring(5);
     }
-    String testPhone = "01002348032";
     var whatsAppUrl = "https://wa.me/$phone";
     final Uri url = Uri.parse(whatsAppUrl);
     if (await launchUrl(url)) {

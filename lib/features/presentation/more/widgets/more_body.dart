@@ -52,22 +52,22 @@ class MoreBody extends StatelessWidget {
                 NavigationService.navigateTo(ProfileView());
               },
             ) : SizedBox(),
-            // auth ? Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 10),
-            //   child: MyText(
-            //     title: tr(context, "publicSettings"),
-            //     size: 12,
-            //     color: ColorManager.grey2,
-            //     fontWeight: FontWeight.w600,
-            //   ),
-            // ) : SizedBox(),
-            // auth ? MoreItem(
-            //   titleItem: tr(context, "langSettings"),
-            //   imageItem: AssetsManager.translate,
-            //   onTap: () {
-            //     NavigationService.navigateTo(ChangeLangView());
-            //   },
-            // ) : SizedBox(),
+            auth ? Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: MyText(
+                title: tr(context, "publicSettings"),
+                size: 12,
+                color: ColorManager.grey2,
+                fontWeight: FontWeight.w600,
+              ),
+            ) : SizedBox(),
+            auth ? MoreItem(
+              titleItem: tr(context, "langSettings"),
+              imageItem: AssetsManager.translate,
+              onTap: () {
+                NavigationService.navigateTo(ChangeLangView());
+              },
+            ) : SizedBox(),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(

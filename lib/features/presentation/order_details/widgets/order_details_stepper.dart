@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/presentation/order_details/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:base_flutter/features/presentation/order_details/cubits/stepper_cubit.dart';
@@ -51,7 +52,7 @@ class _OrderDetailsStepperState extends State<OrderDetailsStepper> {
                       state.step == 0 ? StepState.complete : StepState.indexed,
                   title: SizedBox(),
                   label: MyText(
-                    title: "جارى التجهيز",
+                    title: tr(context, 'pending'),
                     color: ColorManager.black,
                     size: 10,
                   ),
@@ -62,7 +63,8 @@ class _OrderDetailsStepperState extends State<OrderDetailsStepper> {
                       state.step == 1 ? StepState.complete : StepState.indexed,
                   title: SizedBox(),
                   label: MyText(
-                    title: "في الطريق",
+                    title: tr(context, 'inDelivery'),
+
                     color: ColorManager.black,
                     size: 10,
                   ),
@@ -73,7 +75,7 @@ class _OrderDetailsStepperState extends State<OrderDetailsStepper> {
                       state.step == 2 ? StepState.complete : StepState.indexed,
                   title: SizedBox(),
                   label: MyText(
-                    title: "تم التسليم",
+                    title: tr(context, 'Delivered'),
                     color: ColorManager.black,
                     size: 10,
                   ),

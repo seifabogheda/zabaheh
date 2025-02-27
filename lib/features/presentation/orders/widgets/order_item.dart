@@ -1,4 +1,3 @@
-import 'package:base_flutter/core/base_widgets/cache_image.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';

@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/base_widgets/my_text.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/utils/utils_imports.dart';
@@ -12,7 +13,7 @@ class ContactUsSocial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MyText(title: "تواصل معنا عبر الميل او الواتساب",
+        MyText(title: tr(context, 'contactUsOnMailOrWhatsapp'),
         fontWeight: FontWeight.bold,
         size: 20,color: ColorManager.black,),
         const SizedBox(height: 50,),

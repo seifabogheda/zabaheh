@@ -39,11 +39,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
     reasonController = TextEditingController();
     commentReviewController = TextEditingController();
     controller = BottomSheet.createAnimationController(this);
-    // Animation duration for displaying the BottomSheet
     controller.duration = const Duration(milliseconds: 600);
-    // Animation duration for retracting the BottomSheet
     controller.reverseDuration = const Duration(milliseconds: 600);
-    // Set animation curve duration for the BottomSheet
     controller.drive(CurveTween(curve: Curves.easeIn));
   }
 

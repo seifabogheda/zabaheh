@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/more/cubits/contact_us_cubit/contact_us_cubit.dart';
 import 'package:base_flutter/features/presentation/more/screens/contact_us/widgets/contact_us_body.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _ContactUsViewState extends State<ContactUsView> {
   @override
   Widget build(BuildContext context) {
     return MoreScaffold(
-      titleScreen: "تواصل معنا",
+      titleScreen: tr(context, 'contactUs'),
       body: ContactUsBody(),
     );
   }

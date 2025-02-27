@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/resource/color_manager.dart';
 import '../../../../../custom_widgets/logo_widget.dart';
-import 'forget_password_button.dart';
 import 'login_buttons.dart';
 import 'login_form.dart';
 

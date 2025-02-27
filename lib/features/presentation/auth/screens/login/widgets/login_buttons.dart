@@ -47,41 +47,41 @@ class LoginButtons extends StatelessWidget {
             }
           },
         ),
-        CustomTextButton(
-          title: tr(context, "skip"),
-          onTap: () {
-            context.read<AuthCubit>().onUpdateAuth(false);
-            NavigationService.removeUntil(MainNavigationBar());
-          },
-          color: ColorManager.grey2,
-        ),
-        Text.rich(
-          TextSpan(
-            text: tr(context, "don'tHaveAccount"),
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-                color: ColorManager.black,
-                fontFamily: FontConstants.fontFamily),
-            children: <InlineSpan>[
-              TextSpan(
-                text: tr(context, "register"),
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                    color: ColorManager.primary,
-                    fontFamily: FontConstants.fontFamily),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    NavigationService.navigateTo(BlocProvider(
-                      create: (context) => RegisterCubit(),
-                      child: RegisterView(),
-                    ));
-                  },
-              ),
-            ],
-          ),
-        ),
+        // CustomTextButton(
+        //   title: tr(context, "skip"),
+        //   onTap: () {
+        //     context.read<AuthCubit>().onUpdateAuth(false);
+        //     NavigationService.removeUntil(MainNavigationBar());
+        //   },
+        //   color: ColorManager.grey2,
+        // ),
+        // Text.rich(
+        //   TextSpan(
+        //     text: tr(context, "don'tHaveAccount"),
+        //     style: TextStyle(
+        //         fontSize: 16,
+        //         fontWeight: FontWeight.normal,
+        //         color: ColorManager.black,
+        //         fontFamily: FontConstants.fontFamily),
+        //     children: <InlineSpan>[
+        //       TextSpan(
+        //         text: tr(context, "register"),
+        //         style: TextStyle(
+        //             fontSize: 14,
+        //             fontWeight: FontWeight.normal,
+        //             color: ColorManager.primary,
+        //             fontFamily: FontConstants.fontFamily),
+        //         recognizer: TapGestureRecognizer()
+        //           ..onTap = () {
+        //             NavigationService.navigateTo(BlocProvider(
+        //               create: (context) => RegisterCubit(),
+        //               child: RegisterView(),
+        //             ));
+        //           },
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

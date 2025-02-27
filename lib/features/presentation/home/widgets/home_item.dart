@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class HomeItem extends StatelessWidget {
                 ),
                 SizedBox(height: 10,),
                 MyText(
-                  title:"${products.price} ر.س"?? '',
+                  title:"${products.price}  ${tr(context, 'sr')}",
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w600,
                   size: 12,

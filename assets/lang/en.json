@@ -64,6 +64,7 @@
   "payConfirm": "Confirm the payment",
   "saveChanges": "Save modifications",
   "home": "Main",
+  "deleteAccount" : "Delete Account",
   "profile": "Profile",
   "delegateReceiveOrder": " Hand over the request to the representative",
   "onWay": "On the way.",
@@ -367,6 +368,7 @@
   "travelCityDestination": "The city you want to travel to",
   "noOffers": "No offers",
   "someThingWrong" : "Some Thing Wrong,please try again",
+  "loginFirst" : "Login First",
   "loginDone" : "Logged in successfully",
   "firstName" : "First Name",
   "insertFirstName" : "Insert First Name",
@@ -376,6 +378,19 @@
   "noData" : "No Data",
   "orderSummary" : "Order Summary",
   "policy" : "Policy",
-  "rateApp" :"Rate App"
+  "rateApp" :"Rate App",
+  "animalType" :"Type of sacrifice",
+  "addOns" : "Add-Ons",
+  "kiloMinced" : "Price per kilo of minced meat",
+  "carcassSize" : "Carcass Size",
+  "addedToCart" : "Your request has been added successfully.",
+  "contactUsOnMailOrWhatsapp" : "Contact Us On Mail Or Whatsapp",
+  "privacy" : "privacy",
+  "pending": "pending",
+  "inDelivery": "inDelivery",
+  "Delivered" : "Delivered",
+  "searchAbout" : "Search About",
+  "productDetails" : "Product Details",
+  "pickUp" : "Pick Up"
 
 }

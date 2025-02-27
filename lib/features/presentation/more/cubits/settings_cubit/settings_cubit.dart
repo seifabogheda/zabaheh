@@ -3,7 +3,6 @@ import 'package:base_flutter/features/repos/base_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../models/settings_model.dart';
 import '../../../../repos/repo_impl.dart';
 
 part 'settings_state.dart';

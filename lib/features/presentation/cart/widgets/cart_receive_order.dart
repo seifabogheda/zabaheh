@@ -1,25 +1,15 @@
-import 'dart:developer';
 
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
-import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/features/presentation/cart/cubits/cart_cubit/cart_cubit.dart';
-import 'package:base_flutter/features/repos/base_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/base_widgets/custom_drop_down.dart';
 import '../../../../core/base_widgets/my_text.dart';
-import '../../../../core/helpers/adaptive_picker.dart';
 import '../../../../core/localization/app_localizations.dart';
-import '../../../../core/location_address/location_cubit/location_cubit.dart';
 import '../../../../core/resource/color_manager.dart';
 
-import '../../../models/city_model.dart';
-import '../../../repos/repo_impl.dart';
-import '../cubits/delivery_time_cubit/delivery_time_cubit.dart';
-import 'build_receive_order_time_item.dart';
 
 class CartReceiveOrder extends StatefulWidget {
   @override
@@ -70,7 +60,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
                               cubit.culTotalPrice();
                             }),
                         MyText(
-                          title: "توصيل",
+                          title: tr(context, 'delivery'),
                           color: state.data == 0
                               ? ColorManager.black
                               : ColorManager.grey2,
@@ -89,7 +79,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
                               cubit.selectedReceivePlaceOrder = 1;
                             }),
                         MyText(
-                          title: "استلام من الفرع",
+                          title: tr(context, 'pickUp'),
                           color: state.data == 1
                               ? ColorManager.black
                               : ColorManager.grey2,
@@ -103,7 +93,7 @@ class _CartReceiveOrderState extends State<CartReceiveOrder> {
                         fieldTypes: FieldTypes.normal,
                         type: TextInputType.text,
                         controller: cubit.dateController,
-                        upperText: "العنوان",
+                        upperText: tr(context, 'address'),
                       ),
                       CustomTextField(
                         validator: (value) => value?.noValidate(),

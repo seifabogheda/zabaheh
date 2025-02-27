@@ -1,5 +1,4 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
-import 'package:base_flutter/core/helpers/snack_helper.dart';
 import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/custom_widgets/auth_custom_appbar.dart';

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:base_flutter/core/helpers/snack_helper.dart';
+import 'package:base_flutter/core/localization/app_localizations.dart';
+import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/core/utils/enums.dart';
 import 'package:base_flutter/features/models/city_model.dart';
 import 'package:base_flutter/features/models/coupon_response_model.dart';
@@ -100,14 +102,14 @@ class CartCubit extends Cubit<CartState> {
         emit(state.copyWith(couponState: RequestState.init));
       }
     } else {
-      SnackBarHelper.showBasicSnack(msg: "يجب كتابة كود الخصم اولا");
+      SnackBarHelper.showBasicSnack(msg: tr(navigatorKey.currentContext!, 'insertCoupon'));
     }
   }
 
   culTotalPrice() {
     if (coupon != null) {
       num vat = state.cartPriceAfterCoupon * 0.15;
-      finalTotalPrice = state.cartPriceAfterCoupon + deliveryPrice! + vat;
+      finalTotalPrice = state.cartPriceAfterCoupon + deliveryPrice + vat;
       emit(state.copyWith(
           cartPriceAfterCoupon: finalTotalPrice,
           cartState: RequestState.loading));

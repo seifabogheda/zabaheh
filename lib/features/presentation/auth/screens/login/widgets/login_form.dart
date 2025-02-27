@@ -1,4 +1,3 @@
-import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/value_manager.dart';
@@ -15,7 +14,6 @@ import '../../../../../../core/resource/color_manager.dart';
 class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final GenericCubit<bool> showPasswordCubit = GenericCubit(false);
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         var cubit = LoginCubit.get(context);

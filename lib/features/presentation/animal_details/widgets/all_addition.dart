@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/base_widgets/my_text.dart';
+import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/resource/color_manager.dart';
 import '../../../models/add_to_cart_model.dart';
 import '../../../models/product_model.dart';
@@ -21,11 +20,9 @@ class AllAddition extends StatefulWidget {
 }
 
 class _AllAdditionState extends State<AllAddition> {
-  // Cubits الخاصة بالكمية وغيره موجودة
   final GenericCubit<int> quantityCubit = GenericCubit(0);
   final GenericCubit<int> sacrificeType = GenericCubit(0);
 
-  // Map لتخزين الحالة لكل type
   Map<String, int> selectedRadioForType = {};
 
   @override
@@ -40,12 +37,11 @@ class _AllAdditionState extends State<AllAddition> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyText(
-                title: "نوع الذبيحة",
+                title: tr(context, 'animalType'),
                 size: 16,
                 fontWeight: FontWeight.bold,
                 color: ColorManager.black,
               ),
-              // خيارات الذبيحة
               Column(
                 children: [
                   Padding(
@@ -60,9 +56,9 @@ class _AllAdditionState extends State<AllAddition> {
                           },
                         ),
                         MyText(
-                          title: 'حي',
-                          size: 16,                            color: ColorManager.black,
-
+                          title: tr(context, 'alive'),
+                          size: 16,
+                          color: ColorManager.black,
                         ),
                       ],
                     ),
@@ -79,8 +75,8 @@ class _AllAdditionState extends State<AllAddition> {
                           },
                         ),
                         MyText(
-                          title: 'مذبوح',                            color: ColorManager.black,
-
+                          title: tr(context, 'slaughtered'),
+                          color: ColorManager.black,
                           size: 16,
                         ),
                       ],
@@ -90,7 +86,7 @@ class _AllAdditionState extends State<AllAddition> {
               ),
               if (sacrificeState.data == 2) ...[
                 MyText(
-                  title: "الاضافات",
+                  title: tr(context, 'addOns'),
                   size: 16,
                   fontWeight: FontWeight.bold,
                   color: ColorManager.black,
@@ -144,7 +140,8 @@ class _AllAdditionState extends State<AllAddition> {
                                           const SizedBox(height: 5),
                                           MyText(
                                             title:
-                                                "سعر كيلو المفروم ${option.price} ر.س",
+                                                "${tr(context, 'kiloMinced')} ${option.price} "
+                                                    " ${tr(context, "sr")}",
                                             size: 13,
                                             color: ColorManager.grey,
                                           ),
@@ -180,7 +177,8 @@ class _AllAdditionState extends State<AllAddition> {
                                                               OptionsCart(
                                                                 optionId:
                                                                     option.id,
-                                                                type: option.type,
+                                                                type:
+                                                                    option.type,
                                                                 quantity:
                                                                     quantityCubit
                                                                         .state
@@ -273,7 +271,7 @@ class _AllAdditionState extends State<AllAddition> {
                                       ),
                                       Spacer(),
                                       MyText(
-                                        title: "${option.price} ر.س",
+                                        title: "${option.price}  ${tr(context, 'sr')}",
                                         size: 15,
                                         color: ColorManager.grey,
                                       ),

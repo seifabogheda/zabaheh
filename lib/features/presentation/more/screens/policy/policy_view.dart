@@ -1,5 +1,6 @@
 
 
+import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/features/presentation/more/screens/policy/widgets/policy_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class _PolicyViewState extends State<PolicyView> {
   @override
   Widget build(BuildContext context) {
     return MoreScaffold(
-      titleScreen: "سياسية الخصوصية",
+      titleScreen: tr(context, 'privacy'),
       body: PolicyBody(),
     );
   }
