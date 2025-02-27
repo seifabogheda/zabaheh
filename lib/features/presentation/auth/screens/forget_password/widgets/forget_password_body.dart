@@ -11,8 +11,10 @@ import '../../../../../../core/base_widgets/my_text.dart';
 import '../../../../../../core/localization/app_localizations.dart';
 import '../../../../../../core/resource/assets_manager.dart';
 import '../../../../../../core/resource/color_manager.dart';
+import '../../../../../../core/resource/navigation_service.dart';
 import '../../../../../../core/resource/value_manager.dart';
 import '../../../blocs/forget_password_cubit/forget_password_cubit.dart';
+import '../../reset_password/reset_password_view.dart';
 import 'forget_password_texts.dart';
 
 class ForgetPasswordBody extends StatelessWidget {
@@ -45,7 +47,7 @@ class ForgetPasswordBody extends StatelessWidget {
                       color: ColorManager.primary,
                     ),
                     suffixIcon: Container(
-                      width: 100,
+                      width: 150,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -81,7 +83,8 @@ class ForgetPasswordBody extends StatelessWidget {
                         title: tr(context, "send"),
                         width: context.width * 0.8,
                         onTap: () {
-                          cubit.checkPhoneNumber();
+                          // cubit.checkPhoneNumber();
+                          NavigationService.navigateTo(ResetPasswordView());
                         },
                       ),
               ],

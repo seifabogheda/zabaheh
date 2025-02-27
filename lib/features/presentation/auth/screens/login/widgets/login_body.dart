@@ -27,7 +27,7 @@ class LoginBody extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: ColorManager.black,),
               LoginForm(),
-              ForgetPasswordButton(),
+              // ForgetPasswordButton(),
               LoginButtons(),
             ],
           ),

@@ -1,12 +1,24 @@
 part of 'contact_us_cubit.dart';
 
-abstract class ContactUsState extends Equatable {
-  const ContactUsState();
-  @override
-  List<Object> get props => [];
-}
+ class ContactUsState extends Equatable {
+   final ContactModel? settings;
+   final RequestState settingsState;
 
-class ContactUsInitial extends ContactUsState {}
-class ContactUsLoading extends ContactUsState {}
-class ContactUsSuccess extends ContactUsState {}
-class ContactUsFailed extends ContactUsState {}
+   const ContactUsState(
+       {this.settings, this.settingsState = RequestState.init});
+
+   ContactUsState copyWith({
+     ContactModel? settings,
+     RequestState? settingsState,
+
+   }) {
+     return ContactUsState(
+       settings: settings ?? this.settings,
+       settingsState: settingsState ?? this.settingsState,
+     );
+   }
+
+   @override
+   List<Object?> get props => [settings, settingsState];
+ }
+

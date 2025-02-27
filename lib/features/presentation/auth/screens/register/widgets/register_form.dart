@@ -22,8 +22,6 @@ import '../../../../../models/city_model.dart';
 class RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final GenericCubit<bool> showPassCubit = GenericCubit(false);
-    final GenericCubit<bool> showConfirmPassCubit = GenericCubit(false);
     var cubit = RegisterCubit.get(context);
     return Form(
         key: cubit.formKey,
@@ -65,7 +63,7 @@ class RegisterForm extends StatelessWidget {
                 color: ColorManager.primary,
               ),
               suffixIcon: Container(
-                width: 100,
+                width: 120,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -104,79 +102,19 @@ class RegisterForm extends StatelessWidget {
                 color: ColorManager.primary,
               ),
             ),
-            BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-              bloc: showPassCubit,
-              builder: (context, state) {
-                return CustomTextField(
-                  validator: (value) => value?.validatePassword(context),
-                  fieldTypes:state.data ? FieldTypes.normal : FieldTypes.password,
-                  type: TextInputType.text,
-                  controller: cubit.passwordController,
-                  upperText: tr(context, "password"),
-                  hint: tr(context, "insertPass"),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: ColorManager.primary,
-                  ),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      showPassCubit.onUpdateData(!state.data);
-                    },
-                    icon: state.data ? Icon(
-                      Icons.visibility, color: ColorManager.primary,) :
-                    Icon(
-                      Icons.visibility_off, color: ColorManager.grey2,),
-                  ),
-                );
-              },
+            CustomTextField(
+              validator: (value) => value?.validateEmpty(context),
+              fieldTypes: FieldTypes.normal,
+              type: TextInputType.text,
+              controller: cubit.address,
+              upperText: tr(context, "address"),
+              hint: tr(context, "address"),
+              prefixIcon: Icon(
+                Icons.add_location_outlined,
+                color: ColorManager.primary,
+              ),
             ),
-            BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-              bloc: showConfirmPassCubit,
-              builder: (context, state) {
-                return CustomTextField(
-                  validator: (value) =>
-                      value?.validatePasswordConfirm(context, pass: cubit
-                          .passwordController.text),
-                  fieldTypes:state.data ? FieldTypes.normal : FieldTypes.password,
-                  controller: cubit.confirmPasswordController,
-                  type: TextInputType.text,
-                  upperText: tr(context, 'confirmPassword'),
-                  hint: tr(context, 'insertConfirmPass'),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: ColorManager.primary,
-                  ),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      showConfirmPassCubit.onUpdateData(!state.data);
-                    },
-                    icon: state.data ? Icon(
-                      Icons.visibility, color: ColorManager.primary,) :
-                    Icon(
-                      Icons.visibility_off, color: ColorManager.grey2,),
-                  ),
-                );
-              },
-            ),
-        cubit.state is CitiesLoading ? AppLoaderHelper.showSimpleLoading() :    DropdownButtonCustom<CityModel>(
-              hintText:tr(context, 'selectCity'),
-              items: [
-                for (var item in cubit.cities ?? [])
-                  DropdownMenuItem<CityModel>(
-                    value: item,
-                    child: Text(
-                    context.read<LangCubit>().state.locale.languageCode == 'ar' ?   item.nameAr  : item.nameEn ?? '',
-                    ),
-                  )
-              ],
-              dropDownValue: cubit.cities?.first,
-              onChangeAction: (v) {
-                log("change : $v");
-                cubit.selectedCity = v;
-                log("change : ${cubit.selectedCity?.nameAr}");
 
-              },
-            )
           ],
         ));
   }

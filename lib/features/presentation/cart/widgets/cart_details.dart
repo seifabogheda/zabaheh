@@ -11,7 +11,7 @@ import '../../../../core/helpers/snack_helper.dart';
 import '../../../../core/resource/color_manager.dart';
 
 class CartDetails extends StatelessWidget {
-  final List<GetCartModel> cartModel;
+  final List<CartItems> cartModel;
   final GenericCubit<int> cartCountCubit = GenericCubit(0);
 
   final GenericCubit<num> cartPriceItem = GenericCubit(0);
@@ -66,8 +66,8 @@ class CartDetails extends StatelessWidget {
             children: List.generate(cubit.state.cartList.length, (index) {
               cartCountCubit
                   .onUpdateData(cubit.state.cartList[index].quantity ?? 0);
-              cartPriceItem
-                  .onUpdateData(cubit.state.cartList[index].price ?? 0);
+              cartPriceItem.onUpdateData(
+                  num.parse(cubit.state.cartList[index].totalPrice ?? ''));
               return Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: Row(
@@ -83,7 +83,9 @@ class CartDetails extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: CachedImage(
-                        url: cubit.state.cartList[index].productId?.image ?? '',
+                        url: cubit.state.cartList[index].variant?.product
+                                ?.image ??
+                            '',
                         borderRadius: BorderRadius.circular(15),
                         height: 60,
                         width: 50,
@@ -99,130 +101,26 @@ class CartDetails extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               MyText(
-                                title: cubit.state.cartList[index].productId
-                                        ?.name ??
+                                title: cubit.state.cartList[index].variant
+                                        ?.product?.name ??
                                     '',
                                 color: ColorManager.black,
                                 size: 12,
                                 fontWeight: FontWeight.w700,
                               ),
-                              IconButton(
-                                  onPressed: () {
-                                    cubit.deleteProduct(
-                                        cubit.state.cartList[index].productId
-                                                ?.id ??
-                                            0,
-                                        index);
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: ColorManager.error,
-                                  )),
                             ],
                           ),
-                          Row(
-                            children: [
-                              BlocBuilder<GenericCubit<num>, GenericState<num>>(
-                                bloc: cartPriceItem,
-                                builder: (context, priceState) {
-                                  return MyText(
-                                    title:
-                                        "${cubit.state.cartList[index].price} ${tr(context, 'sr')}  ",
-                                    color: ColorManager.primary,
-                                    size: 12,
-                                    fontWeight: FontWeight.w700,
-                                  );
-                                },
-                              ),
-                              Spacer(),
-                              BlocBuilder<GenericCubit<int>, GenericState<int>>(
-                                bloc: cartCountCubit,
-                                builder: (context, counterState) {
-                                  return Container(
-                                    height: 40,
-                                    width: 100,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 5),
-                                    margin: EdgeInsets.symmetric(horizontal: 5),
-                                    decoration: BoxDecoration(
-                                      color: ColorManager.offWhite,
-                                      borderRadius: BorderRadius.circular(5),
-                                      border:
-                                          Border.all(color: ColorManager.grey2),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            if (counterState.data > 1) {
-                                              cartCountCubit.onUpdateData(
-                                                  counterState.data - 1);
-
-                                              cubit.updateCart(
-                                                  cubit.state.cartList[index].id ??
-                                                      0,
-                                                  cartCountCubit.state.data,
-                                                  index);
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                  color: ColorManager.grey2),
-                                              color: ColorManager.white,
-                                            ),
-                                            child: Icon(
-                                              Icons.remove,
-                                              color: ColorManager.grey,
-                                              size: 20,
-                                            ),
-                                          ),
-                                        ),
-                                        MyText(
-                                          title: cubit
-                                              .state.cartList[index].quantity
-                                              .toString(),
-                                          size: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: ColorManager.black,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            cartCountCubit.onUpdateData(
-                                                counterState.data + 1);
-                                            cubit.updateCart(
-                                                cubit.state.cartList[index].id  ??
-                                                    0,
-                                                cartCountCubit.state.data,
-                                                index);
-                                          },
-                                          child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                  color: ColorManager.grey2),
-                                              color: ColorManager.green,
-                                            ),
-                                            child: Icon(
-                                              Icons.add,
-                                              color: ColorManager.white,
-                                              size: 20,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
+                          BlocBuilder<GenericCubit<num>, GenericState<num>>(
+                            bloc: cartPriceItem,
+                            builder: (context, priceState) {
+                              return MyText(
+                                title:
+                                    "${cubit.state.cartList[index].totalPrice} ${tr(context, 'sr')}  ",
+                                color: ColorManager.primary,
+                                size: 12,
+                                fontWeight: FontWeight.w700,
+                              );
+                            },
                           ),
                         ],
                       ),

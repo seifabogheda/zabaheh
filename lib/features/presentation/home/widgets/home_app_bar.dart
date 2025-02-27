@@ -1,5 +1,6 @@
 
 import 'package:base_flutter/core/base_widgets/custom_text_field.dart';
+import 'package:base_flutter/core/extensions/media_query.dart';
 import 'package:base_flutter/core/helpers/snack_helper.dart';
 import 'package:base_flutter/core/helpers/validator.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
@@ -24,7 +25,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return Container(
       padding: EdgeInsets.only(top: 40, left: 10, right: 10),
-      height: 180,
+      height: context.height *0.25,
       decoration: BoxDecoration(
         color: ColorManager.primary,
         borderRadius: BorderRadius.only(
@@ -41,13 +42,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MyText(
-                    title: "مرحبا,",
+                    title: "مرحبا, ",
                     size: 16,
                     color: ColorManager.white,
                     fontWeight: FontWeight.w600,
                   ),
                   MyText(
-                    title: context.read<UserCubit>().state.model.firstName ?? '',
+                    title: context.read<UserCubit>().state.model.name ?? '',
                     size: 14,
                     color: ColorManager.white,
                     fontWeight: FontWeight.w600,

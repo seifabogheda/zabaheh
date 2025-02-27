@@ -11,16 +11,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../models/orders_model.dart';
 
 class OrderItem extends StatelessWidget {
-  final OrderData orderData;
+  final Data orderData;
 
   const OrderItem({Key? key, required this.orderData}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>NavigationService.navigateTo(OrderDetailsView(id: orderData.id ?? 0,)),
+      onTap: () => NavigationService.navigateTo(OrderDetailsView(
+        id: orderData.id ?? 0,
+      )),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-        padding: EdgeInsets.symmetric(horizontal: 7,vertical: 5),
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
         decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(10),
@@ -28,24 +30,24 @@ class OrderItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              height: 90,
-              width: 90,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(
-                color: ColorManager.offWhite,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: CachedImage(
-                url:
-                    "${orderData.products?.first.image ?? ''}",
-                borderRadius: BorderRadius.circular(15),
-                height: 60,
-                width: 50,
-                fit: BoxFit.fill,
-              ),
-            ),
+            // Container(
+            //   height: 90,
+            //   width: 90,
+            //   padding: EdgeInsets.all(10),
+            //   margin: EdgeInsets.symmetric(horizontal: 4),
+            //   decoration: BoxDecoration(
+            //     color: ColorManager.offWhite,
+            //     borderRadius: BorderRadius.circular(15),
+            //   ),
+            //   child: CachedImage(
+            //     url:
+            //         "${orderData.?.first.image ?? ''}",
+            //     borderRadius: BorderRadius.circular(15),
+            //     height: 60,
+            //     width: 50,
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,13 +56,13 @@ class OrderItem extends StatelessWidget {
                   Row(
                     children: [
                       MyText(
-                        title: "${tr(context, "orderNum")} : #${orderData.orderNumber}",
+                        title: "${tr(context, "orderNum")} : #${orderData.id}",
                         color: ColorManager.black,
                         size: 13,
                       ),
                       Spacer(),
                       MyText(
-                        title: "${orderData.createdAt?.substring(14,19)}",
+                        title: "${orderData.orderDate}",
                         color: ColorManager.grey,
                         size: 10,
                       ),
@@ -69,29 +71,22 @@ class OrderItem extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  ...List.generate(orderData.products?.length ?? 0, (index) => Column(
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          MyText(
-                            title: "${tr(context, "productName")} : ",
-                            color: ColorManager.grey,
-                            size: 10,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          MyText(
-                            title: "${orderData.products![index].name}",
-                            color: ColorManager.grey,
-                            size: 10,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ],
+                      MyText(
+                        title: "${tr(context, "productName")} : ",
+                        color: ColorManager.grey,
+                        size: 10,
+                        fontWeight: FontWeight.normal,
                       ),
-                      SizedBox(
-                        height: 5,
+                      MyText(
+                        title: "${orderData.variant?.productName}",
+                        color: ColorManager.grey,
+                        size: 10,
+                        fontWeight: FontWeight.w700,
                       ),
                     ],
-                  ),),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
                     child: Divider(
@@ -112,7 +107,7 @@ class OrderItem extends StatelessWidget {
                             size: 12,
                           ),
                           MyText(
-                            title: "${orderData.orderStatus}",
+                            title: "${orderData.status}",
                             color: ColorManager.primary,
                             size: 12,
                           ),

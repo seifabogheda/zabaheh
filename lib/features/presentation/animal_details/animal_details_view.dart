@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/base_widgets/custom_button.dart';
+import 'package:base_flutter/core/helpers/snack_helper.dart';
 import 'package:base_flutter/core/localization/app_localizations.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/custom_widgets/auth_custom_appbar.dart';
@@ -24,44 +25,24 @@ class AnimalDetailsView extends StatelessWidget {
       title: title,
       needBack: true,
       scaffoldColor: ColorManager.offWhite,
-      textColor: ColorManager.primary,
+      textColor: ColorManager.black,
       child: BuildAnimalBody(),
-      // todo : refactor this shit..
       bottomNavigationBar: Container(
         color: ColorManager.white,
+        margin: const EdgeInsets.all(10),
         child: BlocBuilder<AddToCartCubit, AddToCartState>(
-          builder: (context, state) {
-            switch (state.addToCartRequestState) {
-              case RequestState.init:
-                return CustomButton(
-                  title: tr(context, "addToCart"),
-                  onTap: () {
-                    context.read<AddToCartCubit>().addToCart();
-                  },
-                );
-              case RequestState.loaded:
-                // TODO: Handle this case.
-                break;
-              case RequestState.error:
-                return CustomButton(
-                  title: tr(context, "addToCart"),
-                  onTap: () {
-                    context.read<AddToCartCubit>().addToCart();
-                  },
-                );
-              case RequestState.loading:
-                return Center(
+            builder: (context, state) {
+          return state.addToCartRequestState == RequestState.loading
+              ? Center(
                   child: AppLoaderHelper.showSimpleLoading(),
+                )
+              : CustomButton(
+                  title: tr(context, "addToCart"),
+                  onTap: () {
+                    context.read<AddToCartCubit>().addToCart();
+                  },
                 );
-              }
-            return CustomButton(
-              title: tr(context, "addToCart"),
-              onTap: () {
-                context.read<AddToCartCubit>().addToCart();
-              },
-            );
-          },
-        ),
+        }),
       ),
     );
   }

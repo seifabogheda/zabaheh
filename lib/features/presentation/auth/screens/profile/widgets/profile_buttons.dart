@@ -19,26 +19,28 @@ class ProfileButtons extends StatelessWidget {
     BaseRepo repo = RepoImpl();
     return Column(
       children: [
-      cubit.state is UpdateProfileLoading ? AppLoaderHelper.showLoadingView():  CustomButton(
-          title: 'حفظ التغييرات',
-          onTap: () {
-            cubit.updateProfile();
-          },
-        ),
-        CustomTextButton(
-          title: 'تغيير كلمة المرور',
-          onTap: () {
-            NavigationService.navigateTo(BlocProvider(
-              create: (context) => ChangePasswordCubit(),
-              child: ChangePasswordBody(),
-            ),);
-          },
-          color: ColorManager.black,
-        ),
+        cubit.state is UpdateProfileLoading
+            ? AppLoaderHelper.showLoadingView()
+            : CustomButton(
+                title: 'حفظ التغييرات',
+                onTap: () {
+                  cubit.updateProfile();
+                },
+              ),
+        // CustomTextButton(
+        //   title: 'تغيير كلمة المرور',
+        //   onTap: () {
+        //     NavigationService.navigateTo(BlocProvider(
+        //       create: (context) => ChangePasswordCubit(),
+        //       child: ChangePasswordBody(),
+        //     ),);
+        //   },
+        //   color: ColorManager.black,
+        // ),
         CustomTextButton(
           title: 'حذف الحساب  ',
-          onTap: () async{
-         await repo.deleteAcc();
+          onTap: () async {
+            await repo.deleteAcc();
           },
           color: ColorManager.error,
         ),

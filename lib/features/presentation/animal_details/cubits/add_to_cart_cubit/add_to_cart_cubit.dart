@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,19 +15,54 @@ class AddToCartCubit extends Cubit<AddToCartState> {
   static AddToCartCubit get(context) => BlocProvider.of(context);
 
   BaseRepo cartRepo = RepoImpl();
-  List<int>? options = [];
+  List<OptionsCart>? options = [];
   int? quantity;
   int? productId;
-  addToCart() async{
-    emit(state.copyWith(addToCartRequestState: RequestState.loading,addToCartMessage: ''));
-    var result = await cartRepo.addToCart(AddToCartModel(productId: productId,options: options,quantity: quantity));
-    if(result){
-      emit(state.copyWith(addToCartRequestState: RequestState.loaded,addToCartMessage: 'تم اضافة طلبك بنجاح'),);
+  int? variantId;
+  addToCart() async {
+    Set<OptionsCart> setOptions = Set.from(options!);
+    options = setOptions.toList();
+    emit(state.copyWith(
+        addToCartRequestState: RequestState.loading, addToCartMessage: ''));
+    var result = await cartRepo.addToCart(AddToCartModel(
+        variantId: variantId,
+        productId: productId,
+        options: options,
+        quantity: quantity));
+    if (result) {
+      emit(
+        state.copyWith(
+            addToCartRequestState: RequestState.loaded,
+            addToCartMessage: 'تم اضافة طلبك بنجاح'),
+      );
       options?.clear();
+    } else {
+      emit(
+        state.copyWith(
+            addToCartRequestState: RequestState.error,
+            addToCartMessage: 'يبدو هناك مشكلة ما حاول مرة اخرى'),
+      );
     }
-    else{
-      emit(state.copyWith(addToCartRequestState: RequestState.error,addToCartMessage: 'يبدو هناك مشكلة ما حاول مرة اخرى'));
+  }
 
+  addOption(OptionsCart option) {
+    if (options!.where((o) => o.optionId == option.optionId).isNotEmpty ||
+        options!.where((e) => e.type == option.type).isNotEmpty) {
+      log("contain");
+      updateOption(option);
+    } else {
+      log("add");
+      options?.add(option);
+    }
+  }
+
+  void updateOption(OptionsCart optionCart) {
+    final index = options?.indexWhere((o) => o.type == optionCart.type);
+    if (index != -1) {
+      final updated = options![index!];
+      updated.quantity = optionCart.quantity;
+      updated.optionId = optionCart.optionId;
+      updated.type = optionCart.type;
     }
   }
 }

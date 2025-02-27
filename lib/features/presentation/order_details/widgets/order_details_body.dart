@@ -29,15 +29,16 @@ class OrderDetailsBody extends StatelessWidget {
                   create: (context) => StepperCubit(0),
                   child: OrderDetailsStepper(),
                 ),
+                OrderDetailsOrderItem(
+                  productsOrder: state.orderDetailsModel!,
+                ),
                 OrderDetailsInfo(
                   model: state.orderDetailsModel,
                 ),
-                OrderDetailsNotices(
-                  notes: state.orderDetailsModel?.note ?? '',
-                ),
-                OrderDetailsOrderItem(
-                  productsOrder: state.orderDetailsModel?.products ?? [],
-                ),
+                state.orderDetailsModel?.notes != null ?   OrderDetailsNotices(
+                  notes: state.orderDetailsModel?.notes ?? '',
+                ) : const SizedBox(),
+
               ],
             );
           case RequestState.error:

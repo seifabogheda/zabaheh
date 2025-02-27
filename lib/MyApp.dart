@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<AddToCartCubit>(
           create: (BuildContext context) => AddToCartCubit(),
         ),BlocProvider<SettingsCubit>(
-          create: (BuildContext context) => SettingsCubit()..getSettings(),
+          create: (BuildContext context) => SettingsCubit(),
         ),
       ],
       child: BlocBuilder<LangCubit, ChangeLangState>(

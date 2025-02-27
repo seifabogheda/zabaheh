@@ -49,6 +49,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   file: ^7.0.0
   wakelock_plus: ^1.2.10
+  flutter_plugin_android_lifecycle: ^2.0.2
 
 
 

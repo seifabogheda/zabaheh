@@ -27,6 +27,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
   }
 
   final _pageNavigation = [
+    // HomeView(),
     BlocProvider(
       create: (context) => HomeCubit()..getHome(),
       child: HomeView(),
@@ -36,6 +37,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
       create: (context) => CartCubit()..getCart(),
       child: CartView(),
     ),
+    // CartView(),
     MoreView()
   ];
 

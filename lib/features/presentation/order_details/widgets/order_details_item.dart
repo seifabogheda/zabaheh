@@ -8,7 +8,7 @@ import '../../../../core/resource/color_manager.dart';
 import '../../../models/order_details_model.dart';
 
 class OrderDetailsOrderItem extends StatelessWidget {
-  final List<ProductsOrder> productsOrder;
+  final OrderDetailsModel? productsOrder;
 
   const OrderDetailsOrderItem({Key? key, required this.productsOrder})
       : super(key: key);
@@ -27,74 +27,72 @@ class OrderDetailsOrderItem extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: MyText(
-              title: " ${tr(context, "orderDetails")} :",
+              title: " تفاصيل المنتج :",
               color: ColorManager.black,
               size: 14,
             ),
           ),
           Divider(),
-          ...List.generate(
-              productsOrder.length,
-              (index) => Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 90,
-                        width: 90,
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.symmetric(horizontal: 4),
-                        decoration: BoxDecoration(
-                          color: ColorManager.offWhite,
-                          borderRadius: BorderRadius.circular(15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                height: 90,
+                width: 90,
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 4),
+                decoration: BoxDecoration(
+                  color: ColorManager.offWhite,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: CachedImage(
+                  url: "${productsOrder?.variant?.productImage}",
+                  borderRadius: BorderRadius.circular(15),
+                  height: 60,
+                  width: 50,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyText(
+                      title: "${productsOrder?.variant?.productName}",
+                      color: ColorManager.black,
+                      size: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        MyText(
+                          title:
+                              "الوزن : ${productsOrder?.variant?.variantWeight}",
+                          color: ColorManager.black,
+                          size: 12,
+                          fontWeight: FontWeight.w700,
                         ),
-                        child: CachedImage(
-                          url: "${productsOrder[index].image}",
-                          borderRadius: BorderRadius.circular(15),
-                          height: 60,
-                          width: 50,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MyText(
-                              title: "${productsOrder[index].name}",
-                              color: ColorManager.black,
-                              size: 12,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                MyText(
-                                  title:
-                                      "${productsOrder[index].discountPrice} ${tr(context, "sr")}",
-                                  color: ColorManager.primary,
-                                  size: 12,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                Spacer(),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
-                                  child: MyText(
-                                    title:
-                                        "${tr(context, "qty")}: ${productsOrder[index].orderQuantity}",
-                                    color: ColorManager.grey,
-                                    size: 10,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
+                        Spacer(),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          child: MyText(
+                            title:
+                                "${tr(context, "qty")}: ${productsOrder?.quantity}",
+                            color: ColorManager.grey,
+                            size: 10,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );

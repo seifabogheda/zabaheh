@@ -1,6 +1,9 @@
 import '../models/add_to_cart_model.dart';
 import '../models/all_cart_model.dart';
+import '../models/cateogries_model.dart';
 import '../models/city_model.dart';
+import '../models/contact_us_model.dart';
+import '../models/coupon_response_model.dart';
 import '../models/create_order_model.dart';
 import '../models/home_model.dart';
 import '../models/notifications_model.dart';
@@ -13,10 +16,12 @@ import '../models/settings_model.dart';
 import '../models/slider_model.dart';
 import '../models/time_model.dart';
 import '../models/update_profile_model.dart';
+import '../models/user_model.dart';
 
 abstract class BaseRepo {
   // Auth
-  Future<bool> login(String phone, String password);
+  Future<bool> login(String phone);
+  Future<UserModel?> getUserData();
   Future<bool> forgetPassword({required String phone});
   Future<bool> register(RegisterModel model);
   Future<bool> logout();
@@ -27,13 +32,13 @@ abstract class BaseRepo {
       String oldPassword, String newPassword, String confirmNewPassword);
   Future<List<CityModel>> getCities();
   // Home
-  Future<List<HomeModel>> home();
+  Future<CategoriesModel?> home();
   // Animal Details
-  Future<Products?> productDetails(int id);
+  Future<ProductModel?> productDetails(int id);
 // Options
   Future<List<OptionModel>> options();
-  Future<List<Products>> allProducts(int categoryId);
-  Future<List<GetCartModel>> getAllCart();
+  Future<List<ProductModel>> allProducts(int categoryId);
+  Future<GetCartModel?> getAllCart();
 
   // Cart
   Future<bool> addToCart(AddToCartModel model);
@@ -43,20 +48,19 @@ abstract class BaseRepo {
   Future<List<TimeModel>> timeList();
 
   // orders
-  Future<OrdersModel?> currentOrders(int page);
-  Future<OrdersModel?> completedOrders(int page);
+  Future<OrderModel?> currentOrders();
+  Future<OrderModel?> completedOrders(int page);
   Future<OrderDetailsModel?> orderDetails(int id);
   Future<bool> cancelOrder(int id, String reason);
-  Future<String?> checkCoupon(String coupon);
+  Future<CouponResponseModel?> checkCoupon(String coupon);
   Future<bool> createOrder(CreateOrderModel model);
 
   // settings
-  Future<List<SettingsModel>> settings();
-  Future<bool> contactUs(String name, String phone,String message);
-
+  Future<String?> settings(String pageName);
+  Future<ContactModel?> contactUs();
   // slider
   Future<List<SliderModel>> slider();
-  Future<List<Products>> search(String search);
+  Future<List<ProductModel>> search(String search);
 
   // notifications
   Future<List<NotificationModel>> notifications();

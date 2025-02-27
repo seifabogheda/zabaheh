@@ -420,13 +420,13 @@ packages:
     source: hosted
     version: "1.1.1"
   flutter_plugin_android_lifecycle:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_plugin_android_lifecycle
-      sha256: "6f25e9e30df26b3971041847c9106c5a037e72517c8e6514ada99ca42e07e2c7"
+      sha256: "615a505aef59b151b46bbeef55b36ce2b6ed299d160c51d84281946f0aa0ce0e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.24"
   flutter_rating_bar:
     dependency: "direct main"
     description:

@@ -12,16 +12,16 @@ class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit() : super(SettingsState());
 
   BaseRepo repo = RepoImpl();
-  getSettings() async {
+  getSettings(String pageName) async {
     emit(state.copyWith(settingsState: RequestState.loading));
 
-    var result = await repo.settings();
-    if (result.isNotEmpty) {
+    var result = await repo.settings(pageName);
+    if (result != '') {
 
       emit(state.copyWith(
           settingsState: RequestState.loaded,settings: result));
     } else {
-      emit(state.copyWith(settingsState: RequestState.error, settings: []));
+      emit(state.copyWith(settingsState: RequestState.error, settings:''));
     }
   }
 

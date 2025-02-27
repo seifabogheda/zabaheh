@@ -17,14 +17,11 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final GenericCubit<bool> showPasswordCubit = GenericCubit(false);
     return BlocBuilder<LoginCubit, LoginState>(
-  builder: (context, state) {
-    var cubit = LoginCubit.get(context);
-    return Form(
-      key: cubit.formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTextField(
+      builder: (context, state) {
+        var cubit = LoginCubit.get(context);
+        return Form(
+            key: cubit.formKey,
+            child: CustomTextField(
               upperText: tr(context, "phone"),
               validator: (value) => value?.validatePhone(context),
               fieldTypes: FieldTypes.normal,
@@ -36,7 +33,7 @@ class LoginForm extends StatelessWidget {
                 color: ColorManager.primary,
               ),
               suffixIcon: Container(
-                width: 100,
+                width: 150,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -62,33 +59,8 @@ class LoginForm extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-              bloc: showPasswordCubit,
-              builder: (context, state) {
-                return CustomTextField(
-                  upperText: tr(context, "password"),
-                  validator: (value) => value?.validatePassword(context),
-                  fieldTypes: state.data ? FieldTypes.normal : FieldTypes.password,
-                  type: TextInputType.text,
-                  controller: cubit.passwordController,
-                  hint: tr(context, "password"),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: ColorManager.primary,
-                  ),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      showPasswordCubit.onUpdateData(!state.data);
-                    }, icon: Icon(state.data ? Icons.visibility : Icons.visibility_off,
-                    color:state.data ? ColorManager.primary : ColorManager.grey2),
-                  ),
-                );
-              },
-            ),
-          ],
-        ));
-  },
-);
+            ));
+      },
+    );
   }
 }

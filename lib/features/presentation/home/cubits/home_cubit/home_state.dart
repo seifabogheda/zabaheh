@@ -11,7 +11,7 @@ class HomeInitial extends HomeState {
 }
 class HomeLoading extends HomeState {}
 class HomeSuccess extends HomeState {
-  final List<HomeModel> home;
+  final CategoriesModel home;
 
   HomeSuccess(this.home);
   @override

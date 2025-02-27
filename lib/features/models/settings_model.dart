@@ -1,18 +1,15 @@
 class SettingsModel {
-  String? key;
-  String? value;
+  String? content;
 
-  SettingsModel({this.key, this.value});
+  SettingsModel({this.content});
 
   SettingsModel.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
-    value = json['value'];
+    content = json['content'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['value'] = this.value;
+    data['content'] = this.content;
     return data;
   }
 }

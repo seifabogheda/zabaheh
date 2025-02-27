@@ -9,7 +9,7 @@ abstract class CurrentOrdersState extends Equatable {
 class CurrentOrdersInitial extends CurrentOrdersState {}
 class CurrentOrdersLoading extends CurrentOrdersState {}
 class CurrentOrdersSuccess extends CurrentOrdersState {
-  final OrdersModel ordersModel;
+  final List<Data> ordersModel;
 
   CurrentOrdersSuccess(this.ordersModel);
   @override
@@ -19,7 +19,7 @@ class CurrentOrdersFailed extends CurrentOrdersState {}
 class CompletedOrdersInitial extends CurrentOrdersState {}
 class CompletedOrdersLoading extends CurrentOrdersState {}
 class CompletedOrdersSuccess extends CurrentOrdersState {
-  final OrdersModel ordersModel;
+  final OrderModel ordersModel;
 
   CompletedOrdersSuccess(this.ordersModel);
   @override

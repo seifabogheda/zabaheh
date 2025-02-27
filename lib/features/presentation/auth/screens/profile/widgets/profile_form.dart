@@ -51,74 +51,31 @@ class ProfileForm extends StatelessWidget {
           suffixIcon:  Image.asset(AssetsManager.edit,scale: 3,color: ColorManager.grey2,),
         ),
         CustomTextField(
-          upperText: tr(context,"phone"),
-          validator: (value) => value?.validatePhone(context),
-          fieldTypes: FieldTypes.normal,
-          type: TextInputType.phone,
-          controller: cubit.phoneController,
-          hint: tr(context,'phone'),
-          prefixIcon: Icon(
-            Icons.phone_android_sharp,
-            color: ColorManager.primary,
-          ),
-          suffixIcon: Container(
-            width: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: AppPadding.p8),
-                  child: MyText(
-                    title: "|",
-                    size: 20,
-                    color: ColorManager.grey2,
-                    fontWeight: FontWeight.w100,
-                  ),
-                ),
-                SvgPicture.asset(AssetsManager.saudi),
-                Padding(
-                  padding: const EdgeInsets.all(AppPadding.p8),
-                  child: MyText(
-                    title: "+966",
-                    size: 14,
-                    fontWeight: FontWeight.w600,
-                    color: ColorManager.grey2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        CustomTextField(
           validator: (value) => value?.validateEmpty(context),
           fieldTypes: FieldTypes.normal,
           type: TextInputType.text,
           controller: cubit.emailController,
           upperText: "البريد الالكترونى",
-          hint: "seifabogheda89@gmail.com",
+          hint: "@gmail.com",
           prefixIcon: Icon(
             Icons.email,
             color: ColorManager.primary,
           ),
           suffixIcon:  Image.asset(AssetsManager.edit,scale: 3,color: ColorManager.grey2,),
         ),
-        Align(alignment: Alignment.topRight,child: MyText(title: "المدينة",size: 14,color: ColorManager.black,)),
-        DropdownButtonCustom<String>(
-          hintText: "اختر بلد",
-          items: [
-            for (var item in cities)
-              DropdownMenuItem<String>(
-                value: item,
-                child: Text(
-                  item,
-                ),
-              )
-          ],
-          dropDownValue: cities.last,
-          onChangeAction: (v) {
-            log("change : $v");
-          },
-        )
+        CustomTextField(
+          validator: (value) => value?.validateEmpty(context),
+          fieldTypes: FieldTypes.normal,
+          type: TextInputType.text,
+          controller: cubit.address,
+          upperText: "العنوان",
+          hint: "@gmail.com",
+          prefixIcon: Icon(
+            Icons.location_on_outlined,
+            color: ColorManager.primary,
+          ),
+          suffixIcon:  Image.asset(AssetsManager.edit,scale: 3,color: ColorManager.grey2,),
+        ),
       ],
     ));
   }

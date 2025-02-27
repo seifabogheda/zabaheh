@@ -49,7 +49,7 @@ extension Validator on String {
   String? validatePhone(BuildContext context,{String? message}) {
     if (this.trim().isEmpty) {
       return message ?? tr(context,"fillField");
-    } else if (this.length != 9) {
+    } else if (this.length < 9 ) {
       return message ?? tr(context,"phoneValidation");
     }
     return null;

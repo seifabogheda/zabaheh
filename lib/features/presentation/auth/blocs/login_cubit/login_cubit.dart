@@ -29,18 +29,19 @@ class LoginCubit extends Cubit<LoginState> {
 
   login(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      String phone = "+966${phoneController.text}";
+      String phone = "${phoneController.text}";
       emit(LoginLoading());
       var result =
-          await authRepo.login(phone, passwordController.text);
+          await authRepo.login(phone);
       if (result) {
+        authRepo.getUserData();
         NavigationService.removeUntil(MainNavigationBar());
         SnackBarHelper.showBasicSnack(msg: tr(context, "loginDone"));
 
         emit(LoginSuccess());
       } else {
         emit(LoginInitial());
-        SnackBarHelper.showBasicSnack(msg: tr(context, "someThingWrong"));
+        // SnackBarHelper.showBasicSnack(msg: tr(context, "someThingWrong"));
       }
     }
   }

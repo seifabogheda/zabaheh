@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'all_addition.dart';
+import 'all_weights_widget.dart';
 import 'animal_description.dart';
+import 'build_qty.dart';
 
 class BuildAnimalBody extends StatelessWidget {
   @override
@@ -16,12 +18,27 @@ class BuildAnimalBody extends StatelessWidget {
           return Expanded(
             child: ListView(
               children: [
-                AnimalDetailsSwiper(image: state.products.image ?? '',),
+                AnimalDetailsSwiper(
+                  image: state.products.image ?? '',
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
                 AnimalDescription(
                   title: state.products.name ?? '',
                   desc: state.products.description ?? '',
                 ),
-                AllAddition(),
+                const SizedBox(
+                  height: 8,
+                ),
+                AllWeightsWidget(
+                  variants: state.products.variants ?? [],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                AllAddition(options: state.products.options ?? []),
+                BuildQty(),
               ],
             ),
           );

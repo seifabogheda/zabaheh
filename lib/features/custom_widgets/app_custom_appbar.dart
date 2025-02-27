@@ -40,7 +40,7 @@ class AppCustomAppbar extends StatelessWidget {
           )),
         ),
         actions: [
-          auth?   InkWell(
+          auth?   GestureDetector(
             onTap: (){
               NavigationService.navigateTo(NotificationsView());
             },

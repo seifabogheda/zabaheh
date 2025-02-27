@@ -9,7 +9,7 @@ abstract class ProductDetailsState extends Equatable {
 class ProductDetailsInitial extends ProductDetailsState {}
 class ProductDetailsLoading extends ProductDetailsState {}
 class ProductDetailsSuccess extends ProductDetailsState {
-  final Products products;
+  final ProductModel products;
 
   ProductDetailsSuccess(this.products);
   @override

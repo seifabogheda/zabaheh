@@ -2,7 +2,7 @@ part of 'utils_imports.dart';
 
 class Utils {
   static Future<void> manipulateSplashData(BuildContext context) async {
-    getCurrentLocation();
+    // getCurrentLocation();
     var strUser = Preferences.getString("user");
     if (strUser != null) {
       UserModel data = UserModel.fromJson(json.decode("$strUser"));
@@ -10,6 +10,9 @@ class Utils {
       changeLanguage(
           context.read<LangCubit>().state.locale.languageCode, context);
       setCurrentUserData(data);
+      NavigationService.removeUntil(
+        MainNavigationBar(),
+      );
     } else {
       changeLanguage("ar", context);
       NavigationService.removeUntil(SelectLangView());
@@ -31,11 +34,13 @@ class Utils {
   }
 
   static void setCurrentUserData(UserModel model) async {
-    navigatorKey.currentContext!.read<AuthCubit>().onUpdateAuth(true);
+    log("message from Current");
     navigatorKey.currentContext?.read<UserCubit>().onUpdateUserData(model);
-    NavigationService.removeUntil(
-      MainNavigationBar(),
-    );
+    navigatorKey.currentContext!.read<AuthCubit>().onUpdateAuth(true);
+
+    Preferences.setString("user", json.encode(model.toJson()));
+    log("user : ${json.encode(model.toJson())}");
+
   }
 
   static Future<void> saveUserData(UserModel model) async {
@@ -70,10 +75,11 @@ class Utils {
 
   static void launchURL({required String url}) async {
     if (!url.toString().startsWith("https")) {
-      url = "https://" + url;
+      url = "https://$url";
     }
-    if (await canLaunch(url)) {
-      await launch(url);
+    final Uri url0 = Uri.parse(url);
+    if (await launchUrl(url0)) {
+      await launchUrl(url0);
     } else {
       SnackBarHelper.showBasicSnack(msg: "من فضلك تآكد من الرابط");
     }
@@ -84,41 +90,57 @@ class Utils {
     if (phone.startsWith("00966")) {
       phone = phone.substring(5);
     }
-    var _whatsAppUrl = "whatsapp://send?phone=+966$phone&text=$message";
-    print(_whatsAppUrl);
-    if (await canLaunch(_whatsAppUrl)) {
-      await launch(_whatsAppUrl);
+    String testPhone = "01002348032";
+    var whatsAppUrl = "https://wa.me/$phone";
+    final Uri url = Uri.parse(whatsAppUrl);
+    if (await launchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'حدث خطأ ما';
     }
   }
 
   static void launchYoutube({required String url}) async {
+    final Uri url0 = Uri.parse(url);
+
     if (Platform.isIOS) {
-      if (await canLaunch('$url')) {
-        await launch('$url', forceSafariVC: false);
+      if (await launchUrl(url0)) {
+        await launchUrl(url0);
       } else {
-        if (await canLaunch('$url')) {
-          await launch('$url');
+        if (await launchUrl(url0)) {
+          await launchUrl(url0);
         } else {
-          throw 'Could not launch $url';
+          throw 'Could not launch $url0';
         }
       }
     } else {
-      if (await canLaunch(url)) {
-        await launch(url);
+      if (await launchUrl(url0)) {
+        await launchUrl(url0);
       } else {
-        throw 'Could not launch $url';
+        throw 'Could not launch $url0';
       }
     }
   }
 
   static void callPhone({phone}) async {
-    await launch("tel:$phone");
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phone,
+    );
+    await launchUrl(launchUri);
   }
 
-  static void sendMail(mail) async {
-    await launch("mailto:$mail");
+
+  static void sendMail(String mail) async {
+    final Uri launchUri = Uri(
+      scheme: 'mailto',
+      path: "mail",
+    );
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      throw 'Could not launch $launchUri';
+    }
   }
 
   static void shareApp(url) {

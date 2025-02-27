@@ -1,49 +1,40 @@
-
 class UserModel {
   int? id;
-  String? firstName;
-  String? lastName;
+  String? name;
   String? email;
   String? phone;
-  String? emailVerifiedAt;
-  String? code;
-  String? token;
-  int? cityId;
+  String? address;
+  String? language;
+  String? createdAt;
 
   UserModel(
       {this.id,
-        this.firstName,
-        this.lastName,
+        this.name,
         this.email,
-        this.emailVerifiedAt,
-        this.code,
-        this.token,
         this.phone,
-        this.cityId,
-      });
+        this.address,
+        this.language,
+        this.createdAt});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    firstName = json['first_name'];
-    lastName = json['last_name'];
+    name = json['name'];
     email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
     phone = json['phone'];
-    cityId = json['city_id'];
+    address = json['address'];
+    language = json['language'];
+    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
+    data['name'] = this.name;
     data['email'] = this.email;
     data['phone'] = this.phone;
-    data['city_id'] = this.cityId;
-    data['email_verified_at'] = this.emailVerifiedAt;
-    data['code'] = this.code;
-
-
+    data['address'] = this.address;
+    data['language'] = this.language;
+    data['created_at'] = this.createdAt;
     return data;
   }
 }

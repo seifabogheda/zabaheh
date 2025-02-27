@@ -5,17 +5,33 @@ import 'package:base_flutter/features/presentation/more/cubits/settings_cubit/se
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/helpers/app_loader_helper.dart';
+import '../../../../../../core/utils/enums.dart';
+
 class AboutBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
         LogoWidget(),
-        MyText(
-          color: ColorManager.black,
-            size: 12,
-            fontWeight: FontWeight.bold,
-            title:  context.read<SettingsCubit>().state.settings[2].value ?? ''),
+        const SizedBox(height: 30,),
+        BlocBuilder<SettingsCubit, SettingsState>(
+          builder: (context, state) {
+            if(state.settingsState == RequestState.loading){
+              return Center(child: AppLoaderHelper.showSimpleLoading(),);
+            }
+            if(state.settingsState == RequestState.loaded){
+              return MyText(
+                color: ColorManager.black,
+                size: 12,
+                fontWeight: FontWeight.bold,
+                title: state.settings ?? '',
+              );
+            }else{
+              return const SizedBox();
+            }
+          },
+        ),
       ],
     );
   }

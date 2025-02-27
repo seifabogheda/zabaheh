@@ -4,13 +4,15 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../models/coupon_response_model.dart';
+
 part 'coupon_state.dart';
 
 class CouponCubit extends Cubit<CouponState> {
   CouponCubit() : super(CouponInitial());
   static CouponCubit get(context) => BlocProvider.of(context);
   TextEditingController couponController = TextEditingController();
-  String? coupon = '';
+  CouponResponseModel? coupon;
   BaseRepo repo = RepoImpl();
   @override
   Future<void> close() {

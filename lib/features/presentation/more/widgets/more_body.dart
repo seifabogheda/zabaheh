@@ -3,6 +3,7 @@ import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/features/presentation/auth/screens/login/login_view.dart';
+import 'package:base_flutter/features/presentation/more/cubits/contact_us_cubit/contact_us_cubit.dart';
 import 'package:base_flutter/features/presentation/more/cubits/settings_cubit/settings_cubit.dart';
 import 'package:base_flutter/features/presentation/more/widgets/more_item.dart';
 import 'package:flutter/material.dart';
@@ -35,38 +36,38 @@ class MoreBody extends StatelessWidget {
         return ListView(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           children: [
-            auth?     Padding(
+            auth ? Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
-                title:tr(context, "accountInfo"),
+                title: tr(context, "accountInfo"),
                 size: 12,
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.w600,
               ),
             ) : SizedBox(),
-         auth?   MoreItem(
-              titleItem:tr(context, "profile"),
+            auth ? MoreItem(
+              titleItem: tr(context, "profile"),
               imageItem: AssetsManager.profile,
               onTap: () {
                 NavigationService.navigateTo(ProfileView());
               },
             ) : SizedBox(),
-            auth?     Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: MyText(
-                title: tr(context, "publicSettings"),
-                size: 12,
-                color: ColorManager.grey2,
-                fontWeight: FontWeight.w600,
-              ),
-            ):SizedBox(),
-          auth?  MoreItem(
-              titleItem: tr(context, "langSettings"),
-              imageItem: AssetsManager.translate,
-              onTap: () {
-                NavigationService.navigateTo(ChangeLangView());
-              },
-            ) : SizedBox(),
+            // auth ? Padding(
+            //   padding: EdgeInsets.symmetric(vertical: 10),
+            //   child: MyText(
+            //     title: tr(context, "publicSettings"),
+            //     size: 12,
+            //     color: ColorManager.grey2,
+            //     fontWeight: FontWeight.w600,
+            //   ),
+            // ) : SizedBox(),
+            // auth ? MoreItem(
+            //   titleItem: tr(context, "langSettings"),
+            //   imageItem: AssetsManager.translate,
+            //   onTap: () {
+            //     NavigationService.navigateTo(ChangeLangView());
+            //   },
+            // ) : SizedBox(),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: MyText(
@@ -83,11 +84,14 @@ class MoreBody extends StatelessWidget {
                 NavigationService.navigateTo(AboutView());
               },
             ),
-         auth?   MoreItem(
+            auth ? MoreItem(
               titleItem: tr(context, "contactUs"),
               imageItem: AssetsManager.contactus,
               onTap: () {
-                NavigationService.navigateTo(ContactUsView());
+                NavigationService.navigateTo(BlocProvider(
+                  create: (context) => ContactUsCubit(),
+                  child: ContactUsView(),
+                ));
               },
             ) : SizedBox(),
             MoreItem(

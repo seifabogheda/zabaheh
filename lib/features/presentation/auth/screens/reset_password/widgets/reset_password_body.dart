@@ -8,7 +8,9 @@ import 'package:base_flutter/features/presentation/auth/screens/reset_password/w
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/resource/navigation_service.dart';
 import '../../../blocs/reset_password_cubit/reset_password_cubit.dart';
+import '../../login/login_view.dart';
 
 class ResetPasswordBody extends StatelessWidget {
   const ResetPasswordBody();
@@ -29,12 +31,16 @@ class ResetPasswordBody extends StatelessWidget {
                     LogoWidget(),
                     ResetPasswordTexts(),
                     ResetPasswordForm(),
-                  state is ResetPasswordLoading ? AppLoaderHelper.showLoadingView() :   CustomButton(
-                      title: tr(context, "confirm"),
-                      onTap: () {
-                        cubit.resetPassword();
-                      },
-                    )
+                    state is ResetPasswordLoading
+                        ? AppLoaderHelper.showLoadingView()
+                        : CustomButton(
+                            title: tr(context, "confirm"),
+                            onTap: () {
+                              // cubit.resetPassword();
+                              NavigationService.navigateAndReplacement(
+                                  LoginView());
+                            },
+                          )
                   ],
                 ),
               ),

@@ -263,22 +263,23 @@ class DioHelper {
       if(data is String) data = json.decode(response.data);
       switch(response.statusCode){
         case 500:
+        case 422:
           SnackBarHelper.showBasicSnack( msg: data["message"].toString());
           break;
-        case 422:
-          if(data["errors"]!=null){
-            Map<String,dynamic> errors = data["message"];
-            log("response errors $errors");
-            errors.forEach((key, value){
-              List<String> lst = List<String>.from(value.map((e) => e));
-              lst.forEach((e) {
-                SnackBarHelper.showBasicSnack( msg: e);
-              });
-            });
-          }else{
-            SnackBarHelper.showBasicSnack( msg: data["message"].toString());
-          }
-          break;
+        // case 422:
+        //   if(data["errors"]!=null){
+        //     Map<String,dynamic> errors = data["message"];
+        //     log("response errors $errors");
+        //     errors.forEach((key, value){
+        //       List<String> lst = List<String>.from(value.map((e) => e));
+        //       lst.forEach((e) {
+        //         SnackBarHelper.showBasicSnack( msg: e);
+        //       });
+        //     });
+        //   }else{
+        //     SnackBarHelper.showBasicSnack( msg: data["message"].toString());
+        //   }
+        //   break;
         case 401:
           SnackBarHelper.showBasicSnack( msg: data["error"].toString());
           tokenExpired();

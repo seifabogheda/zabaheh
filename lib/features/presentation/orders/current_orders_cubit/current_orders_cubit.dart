@@ -13,32 +13,50 @@ class CurrentOrdersCubit extends Cubit<CurrentOrdersState> {
   CurrentOrdersCubit() : super(CurrentOrdersInitial());
 
   int page = 1;
-
+  List<Data> currentOrders = [];
   BaseRepo orderRepo = RepoImpl();
   getCurrentOrders() async {
     emit(CurrentOrdersLoading());
-    var data = await orderRepo.currentOrders(page);
-    if (data!.orderData?.length != 0 && data.nextPageUrl != null) {
-      emit(CurrentOrdersSuccess(data));
-      log("data is ${data.orderData?.first.id}");
-      page++;
-    } else if (data.nextPageUrl == null) {
-      emit(CurrentOrdersSuccess(data));
-      log("data is ${data.orderData?.first.id}");
+    var data = await orderRepo.currentOrders();
+    if (data != null) {
+      if (data.data?.length != 0 && data.links?.next != null) {
+        currentOrders.addAll(
+            data.data?.where((element) => element.status != 'Delivered') ?? []);
+
+        emit(CurrentOrdersSuccess(currentOrders));
+        page++;
+      } else if (data.links?.next == null) {
+        log("testDev");
+        data.data?.forEach((element) {
+          if (element.status != 'Delivered') {
+            currentOrders.add(element);
+          }else{
+            null;
+          }
+        });
+
+
+        emit(CurrentOrdersSuccess(currentOrders));
+      } else {
+        emit(CurrentOrdersFailed());
+      }
     } else {
       emit(CurrentOrdersFailed());
     }
   }
+
   getCompletedOrders() async {
     emit(CurrentOrdersLoading());
     var data = await orderRepo.completedOrders(page);
-    if (data!.orderData?.length != 0 && data.nextPageUrl != null) {
-      emit(CurrentOrdersSuccess(data));
-      log("data is 0 ${data.orderData?.first.id}");
-      page++;
-    } else if (data.nextPageUrl == null) {
-      emit(CurrentOrdersSuccess(data));
-      log("data is ${data.orderData?.length}");
+    if (data != null) {
+      if (data.data?.length != 0 && data.links?.next != null) {
+        emit(CurrentOrdersSuccess(data.data ?? []));
+        page++;
+      } else if (data.links?.next == null) {
+        emit(CurrentOrdersSuccess(data.data ?? []));
+      } else {
+        emit(CurrentOrdersFailed());
+      }
     } else {
       emit(CurrentOrdersFailed());
     }

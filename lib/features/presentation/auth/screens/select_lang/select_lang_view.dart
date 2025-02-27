@@ -46,7 +46,7 @@ class SelectLangView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           langBloc.onUpdateData('ar');
                         },
@@ -79,7 +79,9 @@ class SelectLangView extends StatelessWidget {
                               ),
                               Center(
                                 child: MyText(
-                                  color: ColorManager.black,
+                                  color: state.data == "ar"
+                                      ? ColorManager.white
+                                      : ColorManager.black,
                                   size: 16,
                                   title: tr(context, "langAr"),
                                 ),
@@ -88,7 +90,7 @@ class SelectLangView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           langBloc.onUpdateData('en');
                         },
@@ -121,7 +123,9 @@ class SelectLangView extends StatelessWidget {
                               ),
                               Center(
                                 child: MyText(
-                                  color: ColorManager.black,
+                                  color: state.data == "en"
+                                      ? ColorManager.white
+                                      : ColorManager.black,
                                   size: 16,
                                   title: tr(context, "langEn"),
                                 ),

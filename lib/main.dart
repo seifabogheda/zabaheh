@@ -1,5 +1,4 @@
 import 'package:base_flutter/core/resource/app_strings_manager.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -16,7 +15,7 @@ void main()async{
   if (!kIsWeb) {
     Preferences.load();
     DioHelper.init(base: AppStringsManager.baseUrl);
-    await Firebase.initializeApp();
+    // await Firebase.initializeApp();
   }
   runApp(
     BlocProvider(

@@ -1,4 +1,5 @@
 import 'package:base_flutter/core/resource/assets_manager.dart';
+import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/core/resource/value_manager.dart';
 import 'package:base_flutter/features/presentation/auth/screens/register/widgets/register_form.dart';
 import 'package:base_flutter/features/presentation/auth/screens/register/widgets/register_texts.dart';
@@ -31,13 +32,17 @@ class RegisterBody extends StatelessWidget {
               children: [
                 RegisterTexts(),
                 RegisterForm(),
-              state is RegisterLoading ?  AppLoaderHelper.showLoadingView() :  CustomButton(
-                  title: tr(context, 'confirm'),
-                  onTap: () {
-                    cubit.register(context);
-                  },
-                  margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-                ),
+                state is RegisterLoading
+                    ? AppLoaderHelper.showLoadingView()
+                    : CustomButton(
+                        title: tr(context, 'confirm'),
+                        onTap: () {
+                          cubit.register(context);
+                          // NavigationService.back();
+                        },
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                      ),
                 SvgPicture.asset(AssetsManager.undraw_good),
               ],
             ),

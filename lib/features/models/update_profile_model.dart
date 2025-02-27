@@ -6,8 +6,7 @@ class UpdateProfileModel {
   String? email;
   String? phone;
 
-  String? lang;
-  int? cityId;
+  String? address;
 
   UpdateProfileModel(
       {
@@ -15,9 +14,8 @@ class UpdateProfileModel {
         this.lastName,
         this.email,
 
-        this.lang,
+        this.address,
         this.phone,
-        this.cityId,
       });
 
   UpdateProfileModel.fromJson(Map<String, dynamic> json) {
@@ -25,8 +23,7 @@ class UpdateProfileModel {
     lastName = json['last_name'];
     email = json['email'];
     phone = json['phone'];
-    lang = json['lang'];
-    cityId = json['city_id'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,8 +32,7 @@ class UpdateProfileModel {
     data['last_name'] = this.lastName;
     data['email'] = this.email;
     data['phone'] = this.phone;
-    data['lang'] = this.lang;
-    data['city_id'] = this.cityId;
+    data['address'] = this.address;
 
 
     return data;

@@ -26,14 +26,9 @@ class CartPaymentWay extends StatelessWidget {
           subTitle: tr(context, "payOnReceipt"),
           title: tr(context, "cash"),
           image: AssetsManager.cash),
-      PaymentWayModel(
-          id: 3,
-          subTitle: tr(context, 'bankTransferByBank'),
-          title: tr(context, "bankTransfer"),
-          image: AssetsManager.bank),
     ];
     return Container(
-      height: context.height * 0.4,
+      // height: context.height * 0.4,
       width: context.width * 0.9,
       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(

@@ -1,9 +1,6 @@
-import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/generic_cubit/generic_cubit.dart';
-import 'package:base_flutter/core/helpers/app_loader_helper.dart';
 import 'package:base_flutter/features/repos/base_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/notifications_model.dart';
 import '../../../repos/repo_impl.dart';
@@ -31,38 +28,50 @@ class _NotificationsBodyState extends State<NotificationsBody> {
   }
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericCubit<List<NotificationModel>>,
-        GenericState<List<NotificationModel>>>(
-      bloc: notificationCubit,
-      builder: (context, state) {
-        if (state is GenericUpdateState) {
-          if (state.data != []) {
-            return Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                itemCount: state.data.length,
-                itemBuilder: (context, index) {
-                  return NotificationsItem(model: state.data[index],);
-                },
-              ),
-            );
-          }
-          else {
-            Expanded(
-              child: Center(
-                child: MyText(
-                  title: "لا يوجد اشعارات",
-                ),
-              ),
-            );
-          }
-        }
-        return Expanded(
-          child: Center(
-            child: AppLoaderHelper.showSimpleLoading(),
-          ),
-        );
-      },
+    return  Expanded(
+      child: ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+        itemCount: 5,
+        // itemCount: state.data.length,
+        itemBuilder: (context, index) {
+          return NotificationsItem(model:NotificationModel(),);
+        },
+      ),
     );
+
+    //   BlocBuilder<GenericCubit<List<NotificationModel>>,
+    //     GenericState<List<NotificationModel>>>(
+    //   bloc: notificationCubit,
+    //   builder: (context, state) {
+    //     if (state is GenericUpdateState) {
+    //       if (state.data != []) {
+    //         return Expanded(
+    //           child: ListView.builder(
+    //             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+    //             itemCount: 5,
+    //             // itemCount: state.data.length,
+    //             itemBuilder: (context, index) {
+    //               return NotificationsItem(model: state.data[index],);
+    //             },
+    //           ),
+    //         );
+    //       }
+    //       else {
+    //         Expanded(
+    //           child: Center(
+    //             child: MyText(
+    //               title: "لا يوجد اشعارات",
+    //             ),
+    //           ),
+    //         );
+    //       }
+    //     }
+    //     return Expanded(
+    //       child: Center(
+    //         child: AppLoaderHelper.showSimpleLoading(),
+    //       ),
+    //     );
+    //   },
+    // );
   }
 }

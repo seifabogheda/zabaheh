@@ -31,7 +31,7 @@ class LoginButtons extends StatelessWidget {
               return CustomButton(
                 title: tr(context, 'login'),
                 onTap: () {
-                  NavigationService.removeUntil(MainNavigationBar());
+                  cubit.login(context);
                 },
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
               );
@@ -40,6 +40,7 @@ class LoginButtons extends StatelessWidget {
                 title: tr(context, 'login'),
                 onTap: () {
                   cubit.login(context);
+                  // NavigationService.removeUntil(MainNavigationBar());
                 },
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
               );
@@ -73,7 +74,7 @@ class LoginButtons extends StatelessWidget {
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     NavigationService.navigateTo(BlocProvider(
-                      create: (context) => RegisterCubit()..getCities(),
+                      create: (context) => RegisterCubit(),
                       child: RegisterView(),
                     ));
                   },

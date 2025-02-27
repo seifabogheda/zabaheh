@@ -1,3 +1,4 @@
+import 'package:base_flutter/core/base_widgets/cache_image.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
 import 'package:base_flutter/features/models/product_model.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import '../presentation/animal_details/animal_details_view.dart';
 import '../presentation/animal_details/cubits/product_details/product_details_cubit.dart';
 
 class AnimalItem extends StatelessWidget {
-  final Products product;
+  final ProductModel product;
   final String image =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9dzIHVAv1xLixcBkhvrQczkClOugFe5qPtg&usqp=CAU';
 
@@ -20,47 +21,49 @@ class AnimalItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         NavigationService.navigateTo(BlocProvider(
-          create: (context) => ProductDetailsCubit()..getProductDetails(1),
-          child: AnimalDetailsView(title: '', productId: 0,),
+          create: (context) => ProductDetailsCubit()..getProductDetails(product.id ?? 0),
+          child: AnimalDetailsView(
+            title: product.name ?? '',
+            productId: product.id ?? 0,
+          ),
         ));
       },
       child: Container(
-        height: 80,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: ColorManager.white,
+          border: Border.all(color: ColorManager.grey1.withValues(alpha: 0.5)),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              height: 65,
-              width: 70,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: NetworkImage(product.image ?? ''), scale: 2, fit: BoxFit.fill),
-              ),
+            CachedImage(
+              url: product.image ?? '',
+              height: 100,
+              width: 100,
+              haveRadius: true,
+              borderRadius: BorderRadius.circular(10),
             ),
+            const SizedBox(width: 10,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MyText(
                   title: product.name ?? '',
                   color: ColorManager.black,
                   fontWeight: FontWeight.w600,
-                  size: 12,
+                  size: 16,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 MyText(
-                  title: product.cityName ?? '',
+                  title: "${product.price} ر.س",
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w600,
-                  size: 12,
+                  size: 15,
                 ),
               ],
             )

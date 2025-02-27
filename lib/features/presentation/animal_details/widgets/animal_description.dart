@@ -13,11 +13,12 @@ class AnimalDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 10,horizontal: 5),
       color: ColorManager.white,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyText(title: title,color: ColorManager.primary,size: 16,),
+          MyText(title: title,color: ColorManager.black,size: 16,),
           SizedBox(height: 10,),
           MyText(title:desc,color: ColorManager.grey2,size: 12,
           fontWeight: FontWeight.normal,),

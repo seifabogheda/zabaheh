@@ -9,7 +9,7 @@ abstract class AllProductsState extends Equatable {
 class AllProductsInitial extends AllProductsState {}
 class AllProductsLoading extends AllProductsState {}
 class AllProductsSuccess extends AllProductsState {
-  final List<Products> allProducts;
+  final List<ProductModel> allProducts;
 
   AllProductsSuccess(this.allProducts);
   @override

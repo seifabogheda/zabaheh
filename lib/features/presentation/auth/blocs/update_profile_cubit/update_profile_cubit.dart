@@ -29,12 +29,15 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController address = TextEditingController();
   BaseRepo authRepo = RepoImpl();
   getProfileData(){
+
     phoneController.text = user.phone ?? '';
-    firstNameController.text = user.firstName ?? '';
-    lastNameController.text = user.lastName ?? '';
+    firstNameController.text =  user.name?.split(" ").first ?? '';
+    lastNameController.text =  user.name?.split(" ").last ?? '';
     emailController.text = user.email ?? '';
+    address.text = user.address ?? '';
   }
   void updateProfile() async{
     if (formKey.currentState!.validate()) {
@@ -44,9 +47,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
         lastName: lastNameController.text,
         email: emailController.text,
         phone: phoneController.text,
-        cityId: 1,
-        lang: navigatorKey.currentContext!.read<LangCubit>().state.locale.languageCode,
-      );
+        address: address.text,);
       var result = await authRepo.updateProfile(model);
       if(result){
         emit(UpdateProfileSuccess());

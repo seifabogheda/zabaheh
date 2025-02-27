@@ -1,11 +1,11 @@
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/core/resource/navigation_service.dart';
-import 'package:base_flutter/features/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/base_widgets/cache_image.dart';
 import '../../../../core/base_widgets/my_text.dart';
+import '../../../models/cateogries_model.dart';
 import '../../animal_details/animal_details_view.dart';
 import '../../animal_details/cubits/product_details/product_details_cubit.dart';
 
@@ -39,18 +39,20 @@ class HomeItem extends StatelessWidget {
               width: 100,
               height: 130,
             ),
+            const SizedBox(width: 10,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MyText(
                   title: products.name ?? '',
                   color: ColorManager.black,
                   fontWeight: FontWeight.w600,
-                  size: 12,
+                  size: 14,
                 ),
                 SizedBox(height: 10,),
                 MyText(
-                  title: products.cityName ?? '',
+                  title:"${products.price} ر.س"?? '',
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w600,
                   size: 12,

@@ -1,11 +1,11 @@
 part of 'settings_cubit.dart';
 
 class SettingsState extends Equatable {
-  final List<SettingsModel> settings;
+  final String? settings;
   final RequestState settingsState;
-  const SettingsState({this.settings =  const [], this.settingsState = RequestState.init});
+  const SettingsState({this.settings, this.settingsState = RequestState.init});
   SettingsState copyWith({
-    List<SettingsModel>? settings,
+    String? settings,
      RequestState? settingsState,
 
   }) {

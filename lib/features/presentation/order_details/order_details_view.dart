@@ -64,7 +64,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
         title: tr(context, "orderDetails"),
         needBack: true,
         scaffoldColor: ColorManager.offWhite,
-        textColor: ColorManager.green,
+        textColor: ColorManager.black,
         child: Expanded(
           child: OrderDetailsBody(),
         ),
@@ -73,8 +73,8 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
             return Container(
               height: 70,
               color: ColorManager.white,
-              child: state.orderDetailsModel?.orderStatus ==
-                      OrderState.pending.name
+              child: state.orderDetailsModel?.status ==
+                      OrderState.completed
                   ? CustomButton(
                       title: tr(context, "receiveOrder"),
                       onTap: () {
@@ -177,7 +177,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView>
                         );
                       },
                     )
-                  : state.orderDetailsModel?.orderStatus ==
+                  : state.orderDetailsModel?.status ==
                           OrderState.pending.name
                       ? CustomButton(
                           title: tr(context, "cancel"),

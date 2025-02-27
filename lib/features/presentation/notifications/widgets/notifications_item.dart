@@ -1,6 +1,7 @@
 import 'package:base_flutter/core/base_widgets/cache_image.dart';
 import 'package:base_flutter/core/base_widgets/my_text.dart';
 import 'package:base_flutter/core/extensions/media_query.dart';
+import 'package:base_flutter/core/resource/assets_manager.dart';
 import 'package:base_flutter/core/resource/color_manager.dart';
 import 'package:base_flutter/features/models/notifications_model.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class NotificationsItem extends StatelessWidget {
           CircleAvatar(
             radius: 20,
             child: CachedImage(
-              url:model.logo ?? '',
+              url:model.logo ?? '${AssetsManager.splashLogo}',
             ),
           ),
           SizedBox(
@@ -39,7 +40,7 @@ class NotificationsItem extends StatelessWidget {
                 child: SizedBox(
                     width: context.width * 0.7,
                     child: MyText(
-                      title: model.body ?? '',
+                      title: model.body ?? 'لقد وصل طلب جديد',
                       size: 12,
                       color: ColorManager.black,
                       fontWeight: FontWeight.w600,
@@ -49,7 +50,8 @@ class NotificationsItem extends StatelessWidget {
                 height: 5,
               ),
               MyText(
-                title: "منذ : ${model.createdAt}",
+                title: "منذ : ساعة",
+                // title: "منذ : ${model.createdAt}",
                 size: 10,
                 color: ColorManager.grey2,
                 fontWeight: FontWeight.normal,

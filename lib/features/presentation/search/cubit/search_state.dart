@@ -1,11 +1,11 @@
 part of 'search_cubit.dart';
 
 class SearchState extends Equatable {
-  final List<Products> products;
+  final List<ProductModel> products;
   final RequestState searchState;
   const SearchState({this.products = const [], this.searchState=RequestState.init});
   SearchState copyWith({
-    List<Products>? products,
+    List<ProductModel>? products,
     RequestState? searchState,
   }) {
     return SearchState(

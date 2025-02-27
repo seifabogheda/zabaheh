@@ -1,4 +1,3 @@
-
 import 'package:base_flutter/features/models/product_model.dart';
 
 class HomeModel {
@@ -6,7 +5,7 @@ class HomeModel {
   String? name;
   String? image;
   int? status;
-  List<Products>? products;
+  List<ProductModel>? products;
 
   HomeModel({this.id, this.name, this.image, this.status, this.products});
 
@@ -16,9 +15,9 @@ class HomeModel {
     image = json['image'];
     status = json['status'];
     if (json['products'] != null) {
-      products = <Products>[];
+      products = <ProductModel>[];
       json['products'].forEach((v) {
-        products!.add(new Products.fromJson(v));
+        products!.add(new ProductModel.fromJson(v));
       });
     }
   }
@@ -35,5 +34,3 @@ class HomeModel {
     return data;
   }
 }
-
-
